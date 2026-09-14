@@ -1,0 +1,12 @@
+[n=5, degree 4, D=16] 11 sign-shapes (EXHAUSTIVE up to switching+isomorphism)
+  pass 1 (uniform weights) done in 0s; best C_4 = 1.066667 (shape atlas10, 6 minus-edges), median 1.000000
+  new best: C_4 = 1.066667  (uniform 1.066667)  opt=0.600000 SoS in [0.625000,0.625000]  shape atlas10 (6 minus-edges)
+[n=5] FINAL best C_4 = 1.066667   (150s)
+[n=6, degree 4, D=22] 34 sign-shapes (EXHAUSTIVE up to switching+isomorphism)
+  pass 1 (uniform weights) done in 15s; best C_4 = 1.000000 (shape atlas33, 10 minus-edges), median 1.000000
+  new best: C_4 = 1.066667  (uniform 1.000000)  opt=0.600000 SoS in [0.625000,0.625000]  shape atlas33 (10 minus-edges)
+  new best: C_4 = 1.066667  (uniform 1.000000)  opt=0.600000 SoS in [0.625000,0.625000]  shape atlas13 (4 minus-edges)
+[n=7, degree 4, D=29] 156 sign-shapes (EXHAUSTIVE up to switching+isomorphism)
+  pass 1 (uniform weights) done in 57s; best C_4 = 1.032258 (shape atlas123, 10 minus-edges), median 1.000000
+  new best: C_4 = 1.032258  (uniform 1.032258)  opt=0.619048 SoS in [0.630952,0.630952]  shape atlas123 (10 minus-edges)
+[n=8, degree 4, D=37] 1044 sign-shapes (EXHAUSTIVE up to switching+isomorphism)

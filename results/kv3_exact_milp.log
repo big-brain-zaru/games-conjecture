@@ -1,0 +1,5 @@
+sanity 0 0.7333333333333333 0.7333333333333333 True
+sanity 1 0.8 0.8 True
+sanity 2 0.8 0.8 True
+KV k=3 eta=0.2: value 0.356841 bound 0.8348817567567568 optimal=False time 1500.5s  Time limit reached. (HiGHS Status 13: Time limit reached)
+KV k=3 eta=0.3: value 0.179220 bound 0.8538487238676368 optimal=False time 1500.4s  Time limit reached. (HiGHS Status 13: Time limit reached)

@@ -1,0 +1,14 @@
+numpy>=1.24.0
+scipy>=1.10.0
+networkx>=3.0
+matplotlib>=3.7.0
+sympy>=1.12
+python-sat>=0.1.8      # CaDiCaL 1.9.5 binding (MaxSAT / RC2)
+ortools>=9.10          # CP-SAT: exact optima and certified dual bounds
+cvxpy>=1.5             # small exact SDP / Lasserre calibration
+scs>=3.2               # SDP backend for cvxpy
+clarabel>=0.9          # interior-point backend for cvxpy (small instances only)
+torch>=2.0             # the certified GPU solvers (CPU also works)
+pypdf>=4.0             # tools/pdf2txt.py, for the literature survey
+# optional
+galois>=0.3            # finite fields, for Reed-Muller / short-code work

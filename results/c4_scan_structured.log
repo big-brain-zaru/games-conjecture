@@ -1,0 +1,23 @@
+{"name": "K5", "n": 5, "m": 10, "opt": 0.6, "sos2": 0.625, "sos4": 0.625, "C2": 1.066667, "C4": 1.066667, "tw_lb": null}
+{"name": "K7", "n": 7, "m": 21, "opt": 0.571429, "sos2": 0.583333, "sos4": 0.583333, "C2": 1.028571, "C4": 1.028571, "tw_lb": null}
+{"name": "K9", "n": 9, "m": 36, "opt": 0.555556, "sos2": 0.5625, "sos4": 0.5625, "C2": 1.015873, "C4": 1.015873, "tw_lb": null}
+{"name": "K11", "n": 11, "m": 55, "opt": 0.545455, "sos2": 0.55, "sos4": 0.55, "C2": 1.010101, "C4": 1.010101, "tw_lb": null}
+{"name": "K13", "n": 13, "m": 78, "opt": 0.538462, "sos2": 0.541667, "sos4": 0.541667, "C2": 1.006993, "C4": 1.006993, "tw_lb": null}
+{"name": "C5", "n": 5, "m": 5, "opt": 0.8, "sos2": 0.904508, "sos4": 0.8, "C2": 2.094427, "C4": 1.0, "tw_lb": null}
+{"name": "C7", "n": 7, "m": 7, "opt": 0.857143, "sos2": 0.950484, "sos4": 0.857143, "C2": 2.885096, "C4": 1.0, "tw_lb": null}
+{"name": "C9", "n": 9, "m": 9, "opt": 0.888889, "sos2": 0.969846, "sos4": 0.888889, "C2": 3.684826, "C4": 1.0, "tw_lb": null}
+{"name": "C11", "n": 11, "m": 11, "opt": 0.909091, "sos2": 0.979746, "sos4": 0.909091, "C2": 4.488559, "C4": 1.0, "tw_lb": null}
+{"name": "C13", "n": 13, "m": 13, "opt": 0.923077, "sos2": 0.985471, "sos4": 0.923077, "C2": 5.294418, "C4": 1.0, "tw_lb": null}
+{"name": "C15", "n": 15, "m": 15, "opt": 0.933333, "sos2": 0.989074, "sos4": 0.933333, "C2": 6.101542, "C4": 1.0, "tw_lb": null}
+{"name": "Paley5", "n": 5, "m": 10, "opt": 0.8, "sos2": 0.904508, "sos4": 0.8, "C2": 2.094427, "C4": 1.0, "tw_lb": null}
+{"name": "Paley9", "n": 9, "m": 27, "opt": 0.666667, "sos2": 0.75, "sos4": 0.666667, "C2": 1.333333, "C4": 1.0, "tw_lb": null}
+{"name": "Paley13", "n": 13, "m": 78, "opt": 0.666667, "sos2": 0.691898, "sos4": 0.666667, "C2": 1.081893, "C4": 1.0, "tw_lb": null}
+{"name": "Paley17", "n": 17, "m": 136, "opt": 0.647059, "sos2": 0.660097, "sos4": 0.652957, "C2": 1.038359, "C4": 1.016996, "tw_lb": null}
+{"name": "Petersen", "n": 10, "m": 15, "opt": 0.8, "sos2": 0.833333, "sos4": 0.8, "C2": 1.2, "C4": 1.0, "tw_lb": null}
+Traceback (most recent call last):
+  File "<stdin>", line 27, in <module>
+  File "<stdin>", line 10, in C
+  File "C:\Users\zaro7\magic\games-conjecture\experiments\gap_search.py", line 52, in brute_opt_boolean
+    sat = (x[:, u] * x[:, v]) == signs[None, :]
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: operands could not be broadcast together with shapes (128,12,3) (1,12) 

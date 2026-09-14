@@ -1,0 +1,54 @@
+[2^(1+2) = D4 [order 8]] order 8, abelian=False
+  -> 2^(1+2) = D4 [order 8] |H|=2 eta=0.5: n=4 k=2 m=12 search=2^4 D_lasserre2=33
+{"tag": "2^(1+2) = D4 [order 8]|H|=2|eta=0.5", "n": 4, "k": 2, "m": 12, "abelian": false, "opt_certified": true, "opt": 0.5, "sdp_lo": 0.5, "sdp_hi": 0.500001, "C2": 1.0, "lasserre2_D": 33, "sos4": 0.5, "C4": 1.0, "sandwich_ok": true}
+[A4] order 12, abelian=False
+[Z4xZ2xZ2] order 16, abelian=True
+  -> Z4xZ2xZ2 |H|=2 eta=0.5: n=8 k=2 m=56 search=2^8 D_lasserre2=129
+{"tag": "Z4xZ2xZ2|H|=2|eta=0.5", "n": 8, "k": 2, "m": 56, "abelian": true, "opt_certified": true, "opt": 0.5, "sdp_lo": 0.5, "sdp_hi": 0.5, "C2": 1.0, "lasserre2_D": 129, "sos4": 0.5, "C4": 1.0, "sandwich_ok": true}
+  -> Z4xZ2xZ2 |H|=2 eta=0.5: n=8 k=2 m=56 search=2^8 D_lasserre2=129
+{"tag": "Z4xZ2xZ2|H|=2|eta=0.5", "n": 8, "k": 2, "m": 56, "abelian": true, "opt_certified": true, "opt": 0.716749, "sdp_lo": 0.716749, "sdp_hi": 0.71675, "C2": 1.0, "lasserre2_D": 129, "sos4": 0.716749, "C4": 1.0, "sandwich_ok": true}
+  -> Z4xZ2xZ2 |H|=2 eta=0.5: n=8 k=2 m=56 search=2^8 D_lasserre2=129
+{"tag": "Z4xZ2xZ2|H|=2|eta=0.5", "n": 8, "k": 2, "m": 56, "abelian": true, "opt_certified": true, "opt": 0.716749, "sdp_lo": 0.716749, "sdp_hi": 0.71675, "C2": 1.0, "lasserre2_D": 129, "sos4": 0.716749, "C4": 1.0, "sandwich_ok": true}
+  -> Z4xZ2xZ2 |H|=2 eta=0.5: n=8 k=2 m=56 search=2^8 D_lasserre2=129
+{"tag": "Z4xZ2xZ2|H|=2|eta=0.5", "n": 8, "k": 2, "m": 56, "abelian": true, "opt_certified": true, "opt": 0.656292, "sdp_lo": 0.656292, "sdp_hi": 0.656293, "C2": 1.0, "lasserre2_D": 129, "sos4": 0.656292, "C4": 1.0, "sandwich_ok": true}
+  -> Z4xZ2xZ2 |H|=4 eta=0.5: n=4 k=4 m=24 search=4^4 D_lasserre2=113
+{"tag": "Z4xZ2xZ2|H|=4|eta=0.5", "n": 4, "k": 4, "m": 24, "abelian": true, "opt_certified": true, "opt": 0.473931, "sdp_lo": 0.473931, "sdp_hi": 0.473941, "C2": 1.0, "lasserre2_D": 113, "sos4": 0.473931, "C4": 1.0, "sandwich_ok": true}
+  -> Z4xZ2xZ2 |H|=4 eta=0.5: n=4 k=4 m=24 search=4^4 D_lasserre2=113
+{"tag": "Z4xZ2xZ2|H|=4|eta=0.5", "n": 4, "k": 4, "m": 24, "abelian": true, "opt_certified": true, "opt": 0.473931, "sdp_lo": 0.473931, "sdp_hi": 0.473941, "C2": 1.0, "lasserre2_D": 113, "sos4": 0.473931, "C4": 1.0, "sandwich_ok": true}
+  -> Z4xZ2xZ2 |H|=4 eta=0.5: n=4 k=4 m=24 search=4^4 D_lasserre2=113
+{"tag": "Z4xZ2xZ2|H|=4|eta=0.5", "n": 4, "k": 4, "m": 24, "abelian": true, "opt_certified": true, "opt": 0.388755, "sdp_lo": 0.49976, "sdp_hi": 0.499764, "C2": 1.221902, "lasserre2_D": 113, "sos4": 0.388755, "C4": 1.0, "sandwich_ok": true}
+  -> Z4xZ2xZ2 |H|=4 eta=0.5: n=4 k=4 m=24 search=4^4 D_lasserre2=113
+{"tag": "Z4xZ2xZ2|H|=4|eta=0.5", "n": 4, "k": 4, "m": 24, "abelian": true, "opt_certified": true, "opt": 0.388755, "sdp_lo": 0.49976, "sdp_hi": 0.499764, "C2": 1.221902, "lasserre2_D": 113, "sos4": 0.388755, "C4": 1.0, "sandwich_ok": true}
+[D8 [order 16]] order 16, abelian=False
+  -> D8 [order 16] |H|=2 eta=0.5: n=8 k=2 m=52 search=2^8 D_lasserre2=129
+{"tag": "D8 [order 16]|H|=2|eta=0.5", "n": 8, "k": 2, "m": 52, "abelian": false, "opt_certified": true, "opt": 0.755228, "sdp_lo": 0.82197, "sdp_hi": 0.821977, "C2": 1.374898, "lasserre2_D": 129, "sos4": 0.755228, "C4": 1.0, "sandwich_ok": true}
+  -> D8 [order 16] |H|=4 eta=0.5: n=4 k=4 m=22 search=4^4 D_lasserre2=113
+{"tag": "D8 [order 16]|H|=4|eta=0.5", "n": 4, "k": 4, "m": 22, "abelian": false, "opt_certified": true, "opt": 0.555848, "sdp_lo": 0.627151, "sdp_hi": 0.62717, "C2": 1.191239, "lasserre2_D": 113, "sos4": 0.555848, "C4": 1.0, "sandwich_ok": true}
+[S4] order 24, abelian=False
+  -> S4 |H|=4 eta=0.5: n=6 k=4 m=60 search=4^6 D_lasserre2=265
+{"tag": "S4|H|=4|eta=0.5", "n": 6, "k": 4, "m": 60, "abelian": false, "opt_certified": true, "opt": 0.440651, "sdp_lo": 0.536814, "sdp_hi": 0.53686, "C2": 1.207611, "lasserre2_D": 265, "sos4": 0.440651, "C4": 1.0, "sandwich_ok": true}
+[Z3xZ9] order 27, abelian=True
+  -> Z3xZ9 |H|=3 eta=0.5: n=9 k=3 m=27 search=3^9 D_lasserre2=352
+{"tag": "Z3xZ9|H|=3|eta=0.5", "n": 9, "k": 3, "m": 27, "abelian": true, "opt_certified": true, "opt": 0.333333, "sdp_lo": 0.333333, "sdp_hi": 0.333338, "C2": 1.0, "lasserre2_D": 352, "sos4": 0.333333, "C4": 1.0, "sandwich_ok": true}
+  -> Z3xZ9 |H|=3 eta=0.5: n=9 k=3 m=36 search=3^9 D_lasserre2=352
+{"tag": "Z3xZ9|H|=3|eta=0.5", "n": 9, "k": 3, "m": 36, "abelian": true, "opt_certified": true, "opt": 1.0, "sdp_lo": 1.0, "sdp_hi": 1.000003, "C2": 0.0, "lasserre2_D": 352, "sos4": 1.0, "C4": 0.0, "sandwich_ok": true}
+  -> Z3xZ9 |H|=3 eta=0.5: n=9 k=3 m=36 search=3^9 D_lasserre2=352
+{"tag": "Z3xZ9|H|=3|eta=0.5", "n": 9, "k": 3, "m": 36, "abelian": true, "opt_certified": true, "opt": 1.0, "sdp_lo": 1.0, "sdp_hi": 1.000003, "C2": 0.0, "lasserre2_D": 352, "sos4": 1.0, "C4": 0.0, "sandwich_ok": true}
+  -> Z3xZ9 |H|=3 eta=0.5: n=9 k=3 m=36 search=3^9 D_lasserre2=352
+{"tag": "Z3xZ9|H|=3|eta=0.5", "n": 9, "k": 3, "m": 36, "abelian": true, "opt_certified": true, "opt": 1.0, "sdp_lo": 1.0, "sdp_hi": 1.000003, "C2": 0.0, "lasserre2_D": 352, "sos4": 1.0, "C4": 0.0, "sandwich_ok": true}
+[Heis(3) [order 27]] order 27, abelian=False
+  -> Heis(3) [order 27] |H|=3 eta=0.5: n=9 k=3 m=27 search=3^9 D_lasserre2=352
+{"tag": "Heis(3) [order 27]|H|=3|eta=0.5", "n": 9, "k": 3, "m": 27, "abelian": false, "opt_certified": true, "opt": 0.333333, "sdp_lo": 0.333333, "sdp_hi": 0.333339, "C2": 1.0, "lasserre2_D": 352, "sos4": 0.333333, "C4": 1.0, "sandwich_ok": true}
+[2^(1+4) [order 32]] order 32, abelian=False
+  -> 2^(1+4) [order 32] |H|=4 eta=0.5: n=8 k=4 m=24 search=4^8 D_lasserre2=481
+{"tag": "2^(1+4) [order 32]|H|=4|eta=0.5", "n": 8, "k": 4, "m": 24, "abelian": false, "opt_certified": true, "opt": 0.5, "sdp_lo": 0.5, "sdp_hi": 0.500001, "C2": 1.0, "lasserre2_D": 481, "sos4": 0.5, "C4": 1.0, "sandwich_ok": true}
+  -> 2^(1+4) [order 32] |H|=4 eta=0.5: n=8 k=4 m=24 search=4^8 D_lasserre2=481
+{"tag": "2^(1+4) [order 32]|H|=4|eta=0.5", "n": 8, "k": 4, "m": 24, "abelian": false, "opt_certified": true, "opt": 0.5, "sdp_lo": 0.5, "sdp_hi": 0.500001, "C2": 1.0, "lasserre2_D": 481, "sos4": 0.5, "C4": 1.0, "sandwich_ok": true}
+  -> 2^(1+4) [order 32] |H|=4 eta=0.5: n=8 k=4 m=24 search=4^8 D_lasserre2=481
+{"tag": "2^(1+4) [order 32]|H|=4|eta=0.5", "n": 8, "k": 4, "m": 24, "abelian": false, "opt_certified": true, "opt": 0.5, "sdp_lo": 0.5, "sdp_hi": 0.500001, "C2": 1.0, "lasserre2_D": 481, "sos4": 0.5, "C4": 1.0, "sandwich_ok": true}
+  -> 2^(1+4) [order 32] |H|=4 eta=0.5: n=8 k=4 m=24 search=4^8 D_lasserre2=481
+{"tag": "2^(1+4) [order 32]|H|=4|eta=0.5", "n": 8, "k": 4, "m": 24, "abelian": false, "opt_certified": true, "opt": 0.5, "sdp_lo": 0.5, "sdp_hi": 0.500001, "C2": 1.0, "lasserre2_D": 481, "sos4": 0.5, "C4": 1.0, "sandwich_ok": true}
+[S3xS3] order 36, abelian=False
+[F2^4 x| Z3 [order 48]] order 48, abelian=False
+[F2^6 / simplex-ish] order 64, abelian=True
+[F2^8 / KV simplex] order 256, abelian=True

@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.pyo
+
+# third-party papers: copyrighted, fetched by the survey; not redistributable
+docs/papers/
+
+# large solver artefacts, regenerable from the scripts
+results/*.npy
+
+# latex build products
+*.aux
+*.out
+*.toc

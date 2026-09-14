@@ -1,0 +1,12 @@
+{"L": 9, "gens": [2, 4], "opt": 0.666667, "opt_ub": 0.666667, "proved": true, "sos2": 0.75, "sos4_lo": 0.689674, "sos4_hi": 0.689674, "tight": true, "C2": 1.333333, "C4": 1.074139, "s": 14.3}
+### L=9: best 4-regular C_4 = 1.074139  | overall 1.074139 at L=9 gens=[2, 4]
+{"L": 11, "gens": [1, 5], "opt": 0.727273, "opt_ub": 0.727273, "proved": true, "sos2": 0.775452, "sos4_lo": 0.727273, "sos4_hi": 0.727273, "tight": true, "C2": 1.214561, "C4": 1.0, "s": 29.1}
+### L=11: best 4-regular C_4 = 1.000000  | overall 1.074139 at L=9 gens=[2, 4]
+{"L": 13, "gens": [1, 6], "opt": 0.692308, "opt_ub": 0.692308, "proved": true, "sos2": 0.775779, "sos4_lo": 0.710544, "sos4_hi": 0.710551, "tight": true, "C2": 1.372272, "C4": 1.063003, "s": 198.1}
+### L=13: best 4-regular C_4 = 1.063003  | overall 1.074139 at L=9 gens=[2, 4]
+{"L": 15, "gens": [3, 6], "opt": 0.6, "opt_ub": 0.6, "proved": true, "sos2": 0.625, "sos4_lo": 0.625, "sos4_hi": 0.625, "tight": true, "C2": 1.066667, "C4": 1.066667, "s": 126.2}
+### L=15: best 4-regular C_4 = 1.066667  | overall 1.074139 at L=9 gens=[2, 4]
+{"L": 17, "gens": [2, 8], "opt": 0.764706, "opt_ub": 0.764706, "proved": true, "sos2": 0.863213, "sos4_lo": 0.782373, "sos4_hi": 0.782373, "tight": true, "C2": 1.720149, "C4": 1.081179, "s": 367.2}
+### L=17: best 4-regular C_4 = 1.081179  | overall 1.081179 at L=17 gens=[2, 8]
+{"L": 19, "gens": [4, 6], "opt": 0.789474, "opt_ub": 0.789474, "proved": true, "sos2": 0.889189, "sos4_lo": 0.796769, "sos4_hi": 0.802605, "tight": false, "C2": 1.899865, "C4": 1.035894, "s": 537.0}
+### L=19: best 4-regular C_4 = 1.035894  | overall 1.081179 at L=17 gens=[2, 8]

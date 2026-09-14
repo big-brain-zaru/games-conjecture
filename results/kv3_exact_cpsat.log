@@ -1,0 +1,4 @@
+sanity 0 0.7333333333333333 0.7333333333333333 OPTIMAL
+sanity 1 0.8 0.8 OPTIMAL
+KV k=3 eta=0.2: value 0.439189 status FEASIBLE optimal=False bound_value=0.6072635135135135 time 3000s
+KV k=3 eta=0.3: value 0.234424 status FEASIBLE optimal=False bound_value=0.31617762743864064 time 3002s

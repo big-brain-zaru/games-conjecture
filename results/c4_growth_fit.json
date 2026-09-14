@@ -1,0 +1,38 @@
+{
+ "certified": [
+  {
+   "n": 5,
+   "C4": 1.066667,
+   "instance": "$K_5$"
+  },
+  {
+   "n": 9,
+   "C4": 1.074139,
+   "instance": "Cay($\\mathbb{Z}_9$,{1,2})"
+  },
+  {
+   "n": 17,
+   "C4": 1.081179,
+   "instance": "Cay($\\mathbb{Z}_{17}$,$H_4$)"
+  },
+  {
+   "n": 41,
+   "C4": 1.093586,
+   "instance": "Cay($\\mathbb{Z}_{41}$,$H_4$)"
+  }
+ ],
+ "rigorous_upper_bounds": [
+  {
+   "n": 73,
+   "C4_upper": 1.0281806530289197,
+   "instance": "Cay($\\mathbb{Z}_{73}$,$H_4$)"
+  },
+  {
+   "n": 89,
+   "C4_upper": 1.0424992310488492,
+   "instance": "Cay($\\mathbb{Z}_{89}$,$H_4$)"
+  }
+ ],
+ "max_found": 1.093586,
+ "note": "the log-linear fit reported earlier was an artefact of an increasing 4-point subsequence; p=73 and p=89 refute it"
+}

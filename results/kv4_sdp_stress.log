@@ -1,0 +1,9 @@
+UG(n=4096, k=16, m=1425408, total_w=0.7463, meta={'family': 'khot_vishnoi', 'k': 4, 'N': 16, 'eta': 0.1, 'n_self_loops': 0, 'self_loop_weight': 0.0, 'soundness_bound': 0.757858283255199, 'sdp_completeness_bound': 0.09999999999999998, 'linear_over': 'F2^k'})
+init 4.8s, colours 32
+  sweep    0  obj 0.5424769
+  sweep   10  obj 0.7944929
+  sweep   20  obj 0.7950025
+run 6.1s, 21 sweeps, final 0.795002
+primal (verified fp64) 0.795002
+dual upper bound 0.795010 (lambda_min 9.74e-10) in 6.4s
+propagation rounding value 0.492206 in 51.8s ; subcube labeling (1-eta)^k=0.6561 ; Bonami bound N^-eta=0.7579

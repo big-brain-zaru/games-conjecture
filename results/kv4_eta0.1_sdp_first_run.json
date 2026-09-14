@@ -1,0 +1,20 @@
+{
+ "instance": "khot_vishnoi",
+ "k": 4,
+ "N": 16,
+ "eta": 0.1,
+ "n": 4096,
+ "labels": 16,
+ "m": 1425408,
+ "total_weight": 0.7463,
+ "sdp_primal_block_ascent_r24": 0.795002,
+ "sdp_dual_upper_bound": 0.79501,
+ "lambda_min_S": 9.74e-10,
+ "sweeps": 21,
+ "solve_time_s": 6.1,
+ "dual_time_s": 6.4,
+ "propagation_rounding_value": 0.492206,
+ "bonami_soundness_bound_N^-eta": 0.757858,
+ "subcube_labeling_untruncated": 0.6561,
+ "note": "first GPU block-ascent run; primal recomputed in fp64 from vectors; dual = sum_v max_a Lambda_v[a,a] + n*max(0,-lambda_min)"
+}

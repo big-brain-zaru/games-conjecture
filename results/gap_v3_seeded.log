@@ -1,0 +1,33 @@
+reference C9 degree2: 3.68482638639182
+[d=2] seeded C9 alone: C=3.6850 opt=0.8889 R=0.9698
+[d=2] weight-optimised from C9 seed: C=2.2902 opt=0.9386 R=0.9732 active=36 (1s)
+  pattern   0: C=1.2584 opt=0.7417 R2=0.7947 active=36
+  pattern   1: C=1.1898 opt=0.7278 R2=0.7712 active=36
+  pattern   2: C=1.1824 opt=0.7500 R2=0.7886 active=36
+  pattern   3: C=1.1071 opt=0.6944 R2=0.7240 active=36
+  pattern   4: C=1.1241 opt=0.6944 R2=0.7282 active=36
+  pattern   5: C=1.0362 opt=0.7842 R2=0.7918 active=36
+  pattern   6: C=1.1555 opt=0.7764 R2=0.8065 active=36
+  pattern   7: C=1.1455 opt=0.7490 R2=0.7809 active=36
+  pattern   8: C=1.1848 opt=0.6993 R2=0.7462 active=36
+  pattern   9: C=1.0719 opt=0.7222 R2=0.7409 active=36
+  pattern  10: C=1.1322 opt=0.7409 R2=0.7712 active=36
+  pattern  11: C=1.1813 opt=0.6667 R2=0.7178 active=36
+  pattern  12: C=1.0985 opt=0.6944 R2=0.7218 active=36
+[d=2] best over patterns: C=1.2584 opt=0.7417 R=0.7947 (3s)
+[d=4] seeded C9 alone: C=1.0000 opt=0.8889 R=0.8889
+[d=4] weight-optimised from C9 seed: C=1.0000 opt=0.8492 R=0.8492 active=36 (25s)
+  pattern   0: C=1.0000 opt=0.7600 R4=0.7600 active=36
+  pattern   1: C=1.0000 opt=0.7267 R4=0.7267 active=36
+  pattern   2: C=1.0000 opt=0.7500 R4=0.7500 active=36
+  pattern   3: C=1.0000 opt=0.7135 R4=0.7135 active=36
+  pattern   4: C=1.0000 opt=0.6944 R4=0.6944 active=36
+  pattern   5: C=1.0000 opt=0.7222 R4=0.7222 active=36
+  pattern   6: C=1.0000 opt=0.7778 R4=0.7778 active=36
+  pattern   7: C=1.0000 opt=0.7467 R4=0.7467 active=36
+  pattern   8: C=1.0000 opt=0.7135 R4=0.7135 active=36
+  pattern   9: C=1.0000 opt=0.7222 R4=0.7222 active=36
+  pattern  10: C=1.0000 opt=0.7227 R4=0.7227 active=36
+  pattern  11: C=1.0000 opt=0.6874 R4=0.6874 active=36
+  pattern  12: C=1.0000 opt=0.6945 R4=0.6945 active=36
+[d=4] best over patterns: C=1.0000 opt=0.7267 R=0.7267 (207s)

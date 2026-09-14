@@ -1,0 +1,2 @@
+KV k=3 eta=0.2 (xor model): value 0.439189 status FEASIBLE optimal=False bound_value=0.445524 time 2400s
+KV k=3 eta=0.3 (xor model): value 0.234424 status FEASIBLE optimal=False bound_value=0.301211 time 2152s
