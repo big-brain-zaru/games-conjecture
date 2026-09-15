@@ -1,0 +1,39 @@
+p=29: SoS4 in [0.6140208001,0.6140231427]  SoS2 0.6140208001  its 60000
+pair moments: residue -0.22804160020039346  nonresidue 0.15661302877181615  formula -0.22804160025480372 0.15661302882623226
+819 translation-orbits of 4-sets, 11 Legendre patterns
+  pattern ((np.int64(-1), np.int64(-1), np.int64(-1), np.int64(-1), np.int64(-1), np.int64(-1)), (np.int64(0), np.int64(0), np.int64(0), np.int64(0))): n=   7  mean +0.048094  std 5.19e-13  min +0.048094 max +0.048094
+  pattern ((np.int64(-1), np.int64(-1), np.int64(-1), np.int64(-1), np.int64(-1), np.int64(1)), (np.int64(0), np.int64(0), np.int64(1), np.int64(1))): n=  63  mean +0.028115  std 2.18e-02  min -0.004972 max +0.056380
+  pattern ((np.int64(-1), np.int64(-1), np.int64(-1), np.int64(-1), np.int64(1), np.int64(1)), (np.int64(0), np.int64(1), np.int64(1), np.int64(2))): n= 168  mean -0.058680  std 1.73e-02  min -0.079459 max -0.020104
+  pattern ((np.int64(-1), np.int64(-1), np.int64(-1), np.int64(-1), np.int64(1), np.int64(1)), (np.int64(1), np.int64(1), np.int64(1), np.int64(1))): n=  42  mean +0.164578  std 4.36e-03  min +0.159730 max +0.172700
+  pattern ((np.int64(-1), np.int64(-1), np.int64(-1), np.int64(1), np.int64(1), np.int64(1)), (np.int64(0), np.int64(2), np.int64(2), np.int64(2))): n=  42  mean -0.187890  std 8.77e-03  min -0.197106 max -0.176101
+  pattern ((np.int64(-1), np.int64(-1), np.int64(-1), np.int64(1), np.int64(1), np.int64(1)), (np.int64(1), np.int64(1), np.int64(1), np.int64(3))): n=  42  mean -0.038302  std 8.76e-03  min -0.050082 max -0.029093
+  pattern ((np.int64(-1), np.int64(-1), np.int64(-1), np.int64(1), np.int64(1), np.int64(1)), (np.int64(1), np.int64(1), np.int64(2), np.int64(2))): n= 175  mean +0.038095  std 2.65e-02  min -0.004616 max +0.103208
+  pattern ((np.int64(-1), np.int64(-1), np.int64(1), np.int64(1), np.int64(1), np.int64(1)), (np.int64(1), np.int64(2), np.int64(2), np.int64(3))): n= 168  mean -0.031598  std 2.40e-02  min -0.067256 max +0.014164
+  pattern ((np.int64(-1), np.int64(-1), np.int64(1), np.int64(1), np.int64(1), np.int64(1)), (np.int64(2), np.int64(2), np.int64(2), np.int64(2))): n=  42  mean +0.079469  std 2.31e-02  min +0.055425 max +0.112988
+  pattern ((np.int64(-1), np.int64(1), np.int64(1), np.int64(1), np.int64(1), np.int64(1)), (np.int64(2), np.int64(2), np.int64(3), np.int64(3))): n=  63  mean +0.105484  std 2.43e-02  min +0.082347 max +0.143013
+  pattern ((np.int64(1), np.int64(1), np.int64(1), np.int64(1), np.int64(1), np.int64(1)), (np.int64(3), np.int64(3), np.int64(3), np.int64(3))): n=   7  mean +0.338804  std 8.64e-13  min +0.338804 max +0.338804
+Traceback (most recent call last):
+  File "C:\Users\zaro7\magic\games-conjecture\experiments\paley_moments.py", line 49, in <module>
+    json.dump({"p": p, "sos4_lo": lo, "sos4_hi": hi, "sos2": s2, "patterns": out}, open(f"../results/paley_moments_{p}.json", "w"), indent=1)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\json\__init__.py", line 181, in dump
+    for chunk in iterable:
+                 ^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\json\encoder.py", line 435, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\json\encoder.py", line 409, in _iterencode_dict
+    yield from chunks
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\json\encoder.py", line 328, in _iterencode_list
+    yield from chunks
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\json\encoder.py", line 409, in _iterencode_dict
+    yield from chunks
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\json\encoder.py", line 328, in _iterencode_list
+    yield from chunks
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\json\encoder.py", line 328, in _iterencode_list
+    yield from chunks
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\json\encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\json\encoder.py", line 182, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type int64 is not JSON serializable

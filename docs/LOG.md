@@ -98,3 +98,18 @@ Documents consolidated for release: FINDINGS.md rewritten as one coherent record
 rewritten in the style of the sibling repositories with an explicit scope section. Third-party PDFs
 excluded from the repository as copyrighted, with a note explaining how to refetch them; the 13 MB
 solver artefact excluded as regenerable. reproduce.py: 50 checks, 0 mismatches.
+
+## Day 3 — the algorithmic turn
+
+The user's verdict on day 2 was blunt: too much computation for too little.  Day 3 replaces enumeration
+with optimisation and mechanism.
+
+**Built.** `group_sweep.py` stage 2 batched (`GroupSoSBatch`) and routed by carrier dimension;
+`weight_ascent.py` and `class_ascent.py` (certified alternating LP/SoS ascent over weights, with kicks);
+`kn_gap.py`; `hypercontract.py` (2→4 norm of the carrier eigenspace as a predictor of retention);
+`expander_gap.py` (random regular graphs); `paley_lift.py`, `paley_moments.py`, `wick_lift.py`.
+
+**Found.** Paley graphs p ≥ 29: SoS₄ = SoS₂ exactly (stored data; tight certification running).
+K_n: degree 4 adds nothing to degree 2 for every n.  Random cubic graphs n ≤ 20 and random dense
+instances n ≤ 7: degree 4 is exact.  Z₄₁ record: stationary under all class-weight perturbations.
+Non-abelian carriers of dimension 4 (F₂₀) retain 0.2 of the degree-2 gap; dimension 3 mostly 0.

@@ -175,3 +175,60 @@ Over every Cay(Z_L,S) with L odd in [5,19] and |S| <= 3: 374 instances swept in 
 the filter, 358 solved with certificates in 1501 s, 9 left undecided at 5,000 iterations and settled at
 250,000 (Cay(Z_19,{1,2}) and its multiplier orbit: SoS_4 = opt = 0.736842 exactly, width 0, so C_4 = 1).
 Maximum over the family: 1.081179 at Cay(Z_17,H_4). No gaps.
+
+## H14 — Retention is governed by the carrier eigenspace, not by the group  [computed, OPEN]
+
+Generalising H9/H11: for a vertex-transitive signed instance the degree-2 gap is carried by the top
+eigenspace V of the signed adjacency (in the group picture, by the irreps achieving the maximum).
+Barak–Brandão–Harrow–Kelner–Steurer–Zhou show degree-4 SoS refutes the degree-2 gap when V is
+2→4 hypercontractive.  Quantified prediction: retention ρ = (C₄−1)/(C₂−1) increases with
+H(V) = n · max_{f∈V, ‖f‖₂=1} Σ f_v⁴ and with dim V.
+Test: `hypercontract.py` (group sweep records + recomputed circulants).  First 59 non-abelian records:
+mean retention 0.023 for H < 2.5, 0.09 for 2.5 ≤ H < 8; corr(ρ, log H) = 0.26.  Weak, positive; more
+data pending from the full sweep.
+
+## H15 — On the Paley graphs the degree-2 gap survives degree 4 completely  [computed, being certified]
+
+Stored generalised-Paley data (`genpaley.jsonl`) show SoS₄ = SoS₂ = ½ + (1+√p)/(2(p−1)) to five
+decimals for Max-Cut on P_p at p = 29, 37, 41, 53, 61, 73, whereas p = 13 (SoS₄ = opt = 2/3) and
+p = 17 (SoS₄ = 0.65296 < 0.66010) lose part or all of the gap.  This is the finite-n, exact form of the
+Mohanty–Raghavendra–Xu degree-2 → degree-4 lifting on a deterministic pseudo-random graph.
+Tests: `paley_lift.py` (two-sided certificates at 1e-9), `paley_moments.py` (structure of the optimal
+degree-4 moments by Legendre pattern), `wick_lift.py` (the naive scaled Wick lift is NOT PSD on any
+of them — the extension is subtler than the Gaussian formula).
+Caveat: C₂(P_p) → 1, so this family gives retention 1 of a vanishing gap; no growth.
+
+## H16 — The gap shape of Max-Cut on cubic expanders (C₂ ≈ 2.7) survives degree 4  [computed, OPEN]
+
+MRX: on random d-regular graphs degree-4 SoS is no better than the spectral bound up to
+(1 − ε − γ(ε)/√d), i.e. asymptotically in d and n.  If this held at d = 3 the degree-4 gap shape
+would be ≈ (1 − mc₃)/(½ − √2/3) ≈ 2.7, far above the small-instance record 1.0936.
+Tests: `expander_gap.py` (random cubic graphs, certified SoS₄ + proved optimum); the A5 / S5 / PSL(2,7)
+cubic Cayley graphs through the symmetry-reduced sweep.  Result so far: n = 12, 16, 20 random cubic
+graphs are degree-4 EXACT (C₄ = 1 while C₂ = 1.04–1.37).  Small n is not the MRX regime; the question
+is at what n (if any) the lift starts to hold.
+
+## H17 — The best gap shape on n vertices, g₄(n), can be learned instead of guessed  [computed, tool]
+
+Alternating certified ascent (`weight_ascent.py`, `class_ascent.py`): fixed feasible pseudo-expectation
+⇒ the ratio is a linear-fractional program in the weights (cuts by enumeration or CP-SAT separation);
+fixed weights ⇒ re-solve degree 4.  Every LP value is a certified lower bound and the scheme is
+monotone; kicks escape first-order stationary points.  Findings: random dense instances on ≤ 7 vertices
+are degree-4 exact (the ascent cannot even start); K₇ is a strict local optimum at 36/35; Z₉ recovers the
+known 1.074139 from the all-minus seed by one kick; Cay(Z₄₁,H₄) is a first-order stationary point of C₄
+over all 40 (class, sign) weights.  K_n itself: SoS₄(K_n) = SoS₂(K_n) = n/(2(n−1)) for odd n, so
+C₄(K_n) = (n−1)²/(n(n−2)) → 1 (`kn_gap.py`).
+
+
+## H18 — A trade-off: at degree 4 the degree-2 gap survives only where it vanishes  [computed, OPEN]
+
+Synthesis of H15–H17 and section 11 of FINDINGS.  Full retention has been observed only on dense
+pseudo-random graphs (Paley p ≥ 29), where C₂ → 1; large C₂ (sparse, high girth: 1.9 at n = 32) is
+entirely refuted by degree 4 at every accessible size; the record instances (index-4 generalised Paley,
+1.0936) sit in between with partial retention and are locally optimal under weight perturbation.
+Prediction: no instance with n ≤ 50 has C₄ > 1.2.  Refutation would be a single certified instance.
+Consequence if true: the Khot–Moshkovitz question at degree 4 is decided only in the asymptotic
+regime of the lifting theorems, beyond exact computation.
+
+Ledger, day 3: H15 CONFIRMED at p = 29, 37, 41 (certified), H16 REFUTED at n ≤ 32 (degree 4 exact on
+all sparse graphs tested), H17 tools validated (Z₉, Z₁₁, Z₄₁ reproduced), H14 weakly supported (partial data).

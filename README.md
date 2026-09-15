@@ -48,6 +48,10 @@ At degree 2 the supremum is infinite: odd cycles give C_2 = 4L/π². At degree 4
 | **Exact basic-SDP values of the Khot–Vishnoi game** | a GL(k,2)-invariant linear program: 0.6157095, 0.3948238 (k=3), 0.7950017 (k=4), each confirmed by an independent certified numerical solve | exact |
 | Evidence for the Agarwal–Kindler–Kolla–Trevisan hypercube conjecture | at dimensions 4 and 5 the degree-4 value equals the optimum, sandwiching the triangle-inequality SDP to exactness | verified at d ≤ 5 |
 | A claimed growth rate, **refuted by its own follow-up** | C₄ ≈ 1.046 + 0.0127·ln n at R² 0.998 on four points, killed by p = 73 and p = 89 | retracted, kept in the record |
+| **On Paley graphs the degree-2 gap survives degree 4 exactly**: SoS₄ = SoS₂ = ½ + (1+√p)/(2(p−1)) for p = 29, 37, 41 | two-sided certificates agreeing with the closed form to 1e-9; p = 13, 17 lose the gap | verified (day 3) |
+| **Degree 4 is exact on every sparse graph tested** | random cubic n = 12–32 (girth up to 5, C₂ up to 1.90), the McGee cage, random d-regular d ≤ 10 at n = 24 | verified (day 3) |
+| The record is **locally optimal**: a certified alternating LP/SoS ascent over all 40 class-sign weights of Z₄₁ finds no improvement | stationary point; kicks fail; re-certified 1.093586 | verified (day 3) |
+| K_n: degree 4 adds nothing to degree 2 | SoS₄(K_n) = SoS₂(K_n) = n/(2(n−1)) for odd n, so C₄ → 1 | verified |
 
 ## Figure
 
@@ -71,7 +75,7 @@ python -m pip install -r requirements.txt
 All commands run from `experiments/`.
 
 ```bash
-python reproduce.py                    # recompute every published number: 50 checks, 0 mismatches (~47 s)
+python reproduce.py                    # recompute every published number: 58 checks, 0 mismatches
 ```
 
 Self-tests of the machinery:
@@ -97,6 +101,19 @@ python kv_invariant_sdp.py                     # exact Khot–Vishnoi SDP values
 python hypercube_track.py --dims 4,5           # the hypercube conjecture
 ```
 
+Day 3, the algorithmic tools (all certified; see FINDINGS section 11):
+
+```bash
+python weight_ascent.py --n 7 8 9              # learn the best gap shape on n vertices (LP/SoS ascent)
+python class_ascent.py --L 41 --seed_gens 1 4 10 16 18   # the same over all class weights of Z_41
+python kn_gap.py 21                            # C_4(K_n) for n = 5..21
+python paley_lift.py 13 17 29 37 41            # SoS_4 = SoS_2 on Paley graphs, two-sided certificates
+python paley_ansatz.py 29 37                   # is the extension a Legendre-pattern function? (no)
+python expander_gap.py --n 16 24 --d 3         # random regular graphs: degree 2 vs degree 4
+python group_sweep.py --max_order 60 --min_dim 3   # non-abelian sweep, batched, routed by carrier irrep
+python hypercontract.py group                  # 2->4 norm of the carrier eigenspace vs retention
+```
+
 ## Repository layout
 
 ```
@@ -118,7 +135,7 @@ python hypercube_track.py --dims 4,5           # the hypercube conjecture
 
 ## Reproducibility notes
 
-- `experiments/reproduce.py` reports **50 checks, 0 mismatches**. It recomputes each quantity rather
+- `experiments/reproduce.py` reports **58 checks, 0 mismatches**. It recomputes each quantity rather
   than reading it from a result file.
 - Every gap shape reported as a value comes from a *tight* certificate, meaning the certified lower and
   upper bounds on the relaxation agree to the printed precision, together with a proved optimum. Where

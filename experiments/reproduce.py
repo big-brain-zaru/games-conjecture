@@ -149,6 +149,35 @@ def main():
     opt, _, _ = maxsat_optimum(gu)
     check("opt <= SDP", 1.0 if opt <= exact + 1e-9 else 0.0, 1.0, tol=0)
 
+
+    print("== 8. Day 3: complete graphs, Paley lift, sparse exactness, weight ascent ==")
+    import itertools
+    dev = "cuda" if torch.cuda.is_available() else "cpu"
+    from weight_ascent import cpsat_min_unsat
+    for n, want in ((7, 7 / 12), (9, 9 / 16)):
+        E = np.array(list(itertools.combinations(range(n), 2))); m = len(E)
+        S = BooleanSoS(n, E, degree=4, device=dev, dtype=torch.float64).set_instance(-np.ones(m), np.ones(m))
+        S.solve(iters=20000, tol=1e-11); lo, hi = S.certified_bounds()
+        check(f"SoS4(K_{n}) = n/(2(n-1))", (lo + hi) / 2, want, tol=1e-6)
+    from circulant_sos import CirculantSoS
+    for p, want, tol_ in ((13, 2 / 3, 1e-6), (29, 0.5 + (1 + math.sqrt(29)) / 56, 5e-5)):
+        H = sorted(set(min(x, p - x) for x in (pow(a, 2, p) for a in range(1, p))))
+        P = CirculantSoS(p, device=dev).set_instance(H)
+        P.solve(iters=30000, tol=1e-12); lo, hi = P.certified_bounds()
+        check(f"Paley p={p}: SoS4 lower bound", lo, want, tol=tol_)
+        check(f"Paley p={p}: SoS4 <= SoS2", 1.0 if lo <= 0.5 + (1 + math.sqrt(p)) / (2 * (p - 1)) + 1e-9 else 0.0, 1.0, tol=0)
+    G = nx.random_regular_graph(3, 16, seed=1600)
+    E = np.array(sorted(tuple(sorted(e)) for e in G.edges())); m = len(E)
+    S = BooleanSoS(16, E, degree=4, device=dev, dtype=torch.float64).set_instance(-np.ones(m), np.ones(m))
+    S.solve(iters=30000, tol=1e-10); lo, hi = S.certified_bounds()
+    xs, unsat, unsat_ub, pr = cpsat_min_unsat(16, E, -np.ones(m), np.ones(m) / m, time_limit=60)
+    check("random cubic n=16: SoS4 = opt (degree 4 exact)", lo, 1 - unsat, tol=1e-4)
+    from class_ascent import CircAscent
+    A = CircAscent(9, device=dev)
+    w0 = np.zeros((4, 2)); w0[:, 0] = 1.0
+    t, w = A.run(w0, rounds=6, iters=6000, tol=1e-9, kicks=2, sigma=0.3, verbose=False)
+    check("class ascent on Z_9 recovers 1.074139", t, 1.074139, tol=1e-4)
+
     print(f"\n{len(CHECKS)} checks, {len(FAIL)} mismatches   ({time.time()-t0:.0f}s)")
     if FAIL:
         print("mismatched:", ", ".join(FAIL))

@@ -1,0 +1,71 @@
+== 1. Degree-2 calibration: odd cycles reproduce the closed form 4L/pi^2 ==
+  [ok ] C_2(C_5): got 2.094427, published 2.094427
+  [ok ] C_2(C_5) closed form: got 2.094427, published 2.094427
+  [ok ] C_2(C_7): got 2.885096, published 2.885096
+  [ok ] C_2(C_7) closed form: got 2.885096, published 2.885096
+  [ok ] C_2(C_9): got 3.684826, published 3.684826
+  [ok ] C_2(C_9) closed form: got 3.684826, published 3.684826
+  [ok ] C_2(C_11): got 4.488559, published 4.488559
+  [ok ] C_2(C_11) closed form: got 4.488559, published 4.488559
+  [ok ] C_2(C_13): got 5.294418, published 5.294418
+  [ok ] C_2(C_13) closed form: got 5.294418, published 5.294418
+  [ok ] C_2(C_15): got 6.101542, published 6.101542
+  [ok ] C_2(C_15) closed form: got 6.101542, published 6.101542
+== 2. Degree-4 solver validation ==
+  [ok ] K5 opt: got 0.600000, published 0.600000
+  [ok ] K5 SoS_2: got 0.625000, published 0.625000
+  [ok ] K5 SoS_4: got 0.625000, published 0.625000
+  [ok ] K7 opt: got 0.571429, published 0.571429
+  [ok ] K7 SoS_2: got 0.583333, published 0.583333
+  [ok ] K7 SoS_4: got 0.583333, published 0.583333
+  [ok ] C5 opt: got 0.800000, published 0.800000
+  [ok ] C5 SoS_2: got 0.904508, published 0.904509
+  [ok ] C5 SoS_4: got 0.800000, published 0.800000
+  [ok ] C_4(K5) = 1 + 1/(n(n-2)): got 1.066667, published 1.066667
+  [ok ] Petersen opt: got 0.800000, published 0.800000
+  [ok ] Petersen C_4: got 1.000000, published 1.000000
+== 3. Best degree-4 gap found: Cay(Z_9, {+-1,+-2}) ==
+  [ok ] Cay(Z9,{1,2}) opt: got 0.666667, published 0.666667
+  [ok ] Cay(Z9,{1,2}) SoS_4: got 0.689674, published 0.689674
+  [ok ] Cay(Z9,{1,2}) certificate width: got 0.000000, published 0.000000
+  [ok ] Cay(Z9,{1,2}) C_4: got 1.074139, published 1.074139
+== 3b. Certified degree-4 champion: Cay(Z_17, H_4), the index-4 Paley circulant ==
+  [ok ] Cay(Z17,H4) opt: got 0.764706, published 0.764706
+  [ok ] Cay(Z17,H4) optimality proved: got 1.000000, published 1.000000
+  [ok ] Cay(Z17,H4) SoS_4: got 0.782373, published 0.782373
+  [ok ] Cay(Z17,H4) certificate width: got 0.000000, published 0.000000
+  [ok ] Cay(Z17,H4) C_4: got 1.081179, published 1.081179
+== 4. Symmetry-reduced circulant SoS agrees with the dense solver ==
+  [ok ] symmetric SoS_4 == dense SoS_4 (L=9): got 0.689674, published 0.689674
+  [ok ] symmetric certificate width: got 0.000000, published 0.000000
+== 5. Khot-Vishnoi: construction, transversal identity, exact SDP values ==
+  [ok ] KV k=3 vertices: got 32.000000, published 32.000000
+  [ok ] KV k=3 labels: got 8.000000, published 8.000000
+  [ok ] KV k=3 constraints: got 1472.000000, published 1472.000000
+  [ok ] KV total weight = 1-(1-eta)^N: got 0.832228, published 0.832228
+  [ok ] KV k=3 subcube value: got 0.439189, published 0.439189
+  [ok ] KV k=3 eta=0.3 subcube value: got 0.234424, published 0.234424
+  [ok ] KV k=3 eta=0.2 exact basic SDP: got 0.615709, published 0.615710
+  [ok ] KV k=3 eta=0.3 exact basic SDP: got 0.394824, published 0.394824
+  [ok ] KV k=4 eta=0.1 exact basic SDP: got 0.795002, published 0.795002
+== 6. The group framework reproduces Khot-Vishnoi ==
+  [ok ] group framework -> KV vertices: got 32.000000, published 32.000000
+  [ok ] group framework -> KV labels: got 8.000000, published 8.000000
+  [ok ] group framework -> KV constraints: got 1472.000000, published 1472.000000
+== 7. Certified basic-SDP solver: primal = dual ==
+  [ok ] block ascent == cvxpy: got 0.773966, published 0.773966
+  [ok ] dual certificate width: got 0.000085, published 0.000000
+  [ok ] opt <= SDP: got 1.000000, published 1.000000
+== 8. Day 3: complete graphs, Paley lift, sparse exactness, weight ascent ==
+  [ok ] SoS4(K_7) = n/(2(n-1)): got 0.583333, published 0.583333
+  [ok ] SoS4(K_9) = n/(2(n-1)): got 0.562500, published 0.562500
+  [ok ] Paley p=13: SoS4 lower bound: got 0.666667, published 0.666667
+  [ok ] Paley p=13: SoS4 <= SoS2: got 1.000000, published 1.000000
+  [ok ] Paley p=29: SoS4 lower bound: got 0.614021, published 0.614021
+  [ok ] Paley p=29: SoS4 <= SoS2: got 1.000000, published 1.000000
+  [ok ] random cubic n=16: SoS4 = opt (degree 4 exact): got 0.916667, published 0.916667
+  polished start: C4 >= 1.015873
+  kick 0: improved to C4 >= 1.074139  supp 2
+  [ok ] class ascent on Z_9 recovers 1.074139: got 1.074139, published 1.074139
+
+58 checks, 0 mismatches   (7596s)

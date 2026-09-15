@@ -1,0 +1,13 @@
+== L=41 seed given
+    r= 0 SoS4 [0.727886,0.732423] mix 1.3e-06  LP-> C4>= 1.093516 (proved False)  supp 5  391.8s
+    r= 1 SoS4 [0.727886,0.732423] mix 1.3e-06  LP-> C4>= 1.093516 (proved False)  supp 5  179.7s
+  polished start: C4 >= 1.093516
+  kick 0: 1.093516 (no gain)
+  kick 1: 1.093516 (no gain)
+  kick 2: 1.093516 (no gain)
+  kick 3: 1.093516 (no gain)
+   FINAL L=41 seed given: C4 in [1.093586, 1.093586]  proved True  width 1.4e-10  gens [1, 4, 10, 16, 18] signs [-1.0, -1.0, -1.0, -1.0, -1.0] kappa 0.0000
+== L=41 seed all-minus
+    r= 0 SoS4 [0.512500,0.512500] mix 2.7e-10  LP-> C4>= 1.000625 (proved False)  supp 20  335.8s
+    r= 1 SoS4 [0.512500,0.512500] mix 2.7e-10  LP-> C4>= 1.000625 (proved False)  supp 20  32.6s
+  polished start: C4 >= 1.000625

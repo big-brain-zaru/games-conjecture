@@ -298,7 +298,7 @@ cyclic instances.
 `python experiments/reproduce.py` recomputes every headline number from scratch. It does not read them
 from result files.
 
-**50 checks, 0 mismatches, 47 seconds.** It covers the degree-2 odd-cycle calibration, the degree-4
+**58 checks, 0 mismatches** (47 seconds for the day-1–2 checks; the day-3 checks add a 29-vertex symmetry-reduced solve and a weight ascent, about 2 minutes on an idle GPU). It covers the degree-2 odd-cycle calibration, the degree-4
 solver validation on K₅, K₇, C₅ and Petersen, the certified champions at 9 and 17 vertices with their
 certificate widths, the agreement of the symmetry-reduced solver with the dense one, the Khot–Vishnoi
 construction (size, total weight, subcube values, three exact symmetry-reduced SDP values), the group
@@ -315,6 +315,9 @@ What this project establishes:
   quartic residues modulo 41.
 * Complete, not merely extensive, coverage of the circulant families swept, in the sense of section 2.
 * A construction framework for non-abelian unique games that reproduces Khot–Vishnoi as a special case.
+* (Day 3) SoS₄ = SoS₂ exactly on the Paley graphs P₂₉, P₃₇, P₄₁ (certified to 1e-9), degree-4 exactness on
+  every sparse graph tested to 32 vertices, and local optimality of the 1.093586 record under class-weight
+  perturbation — section 11.
 
 What it does **not** establish:
 
@@ -329,12 +332,126 @@ What it does **not** establish:
 
 ---
 
-## 11. Next
+## 11. Day 3: from enumeration to mechanism
 
-1. **Non-abelian instances at informative size.** The group framework is built and validated but the
-   census only reaches 8 vertices, where degree 4 is exact by treewidth. It needs the same isotypic
-   block-diagonalisation that the cyclic solver does, generalised to an arbitrary finite group through
-   its character table. That is the highest-leverage piece of engineering left.
+The day-2 verdict was fair: a great deal of computation had produced one number (1.093586) and a
+flat curve. Day 3 changed method. Instead of enumerating structured instances and certifying each,
+it (a) *optimised* the gap shape directly over the weights of an instance with a certified, monotone
+ascent, (b) tested the two families the theory of sum-of-squares lower bounds actually points at —
+pseudo-random dense graphs and sparse expanders — and (c) looked for the mechanism behind the
+survivors. Everything below is **[computed]** unless marked otherwise.
+
+### 11.1 Learning the extremal instance instead of guessing it
+
+For a fixed feasible degree-4 pseudo-expectation Ẽ, the map w ↦ (1 − opt(w)) / Ẽ[unsat_w] is a
+linear-fractional function of the weights, and its maximum over the simplex is a linear program
+(Charnes–Cooper; the cuts enter as constraints, by enumeration for n ≤ 18 or by CP-SAT separation).
+Because Ẽ stays feasible for every w, the LP value is a certified lower bound on C₄(w). Alternating
+LP steps with degree-4 re-solves is monotone, and a fixed point is first-order stationary for C₄
+(Danskin). Random multiplicative kicks with LP polish escape stationary points.
+Tools: `weight_ascent.py` (signed complete graph, both signs on every pair), `class_ascent.py`
+(all class weights and signs of a circulant, symmetry-reduced), `kn_gap.py`.
+
+* **Random dense instances on ≤ 7 vertices are degree-4 exact**, so the ascent cannot even start
+  from a random seed; it collapses to a contradictory pair with ratio 1.
+* **K₇ is a strict local maximum at 36/35.** More generally, for odd n,
+  SoS₄(K_n) = SoS₂(K_n) = n/(2(n−1)), so C₄(K_n) = (n−1)²/(n(n−2)) → 1; for even n both equal the
+  optimum. Degree 4 adds nothing to degree 2 on complete graphs (K₅ … K₂₁, certificates tight to 1e-7).
+* **Z₉ and Z₁₁**: from the all-minus seed one kick recovers the known maxima 1.074139 and 1.068701
+  (the latter with a mixed sign pattern, classes {2,4} with signs (+,−)).
+* **Cay(Z₄₁, H₄) is a first-order stationary point of C₄ over all 40 class-sign weights**, and four
+  kicks of size 0.3 find nothing better. Its value was re-certified: C₄ ∈ [1.093586, 1.093586],
+  certificate width 1.4e-10, optimum proved by CP-SAT. The record stands and is locally optimal.
+
+### 11.2 The Paley graphs: the degree-2 gap survives degree 4 exactly
+
+For Max-Cut on the Paley graph P_p (p ≡ 1 mod 4) the degree-2 value is closed-form,
+SoS₂ = ½ + (1+√p)/(2(p−1)), carried by the (p−1)/2-dimensional eigenspace of the Gauss period.
+Two-sided certificates from the symmetry-reduced solver (`paley_lift.py`, 1.6–1.8·10⁵ iterations):
+
+| p | SoS₄ certified interval | SoS₂ closed form | difference |
+|---|---|---|---|
+| 13 | [0.666666667, 0.666666667] = opt | 0.691897970 | 2.5e-2 (gap closed) |
+| 17 | [0.652957032, 0.652957032] | 0.660097051 | 7.1e-3 (gap partly closed) |
+| 29 | [0.614020800, 0.614020800] | 0.614020800 | < 2e-11 |
+| 37 | [0.598371702, 0.598371702] | 0.598371702 | < 6e-12 |
+| 41 | [0.592539053, 0.592539053] | 0.592539053 | < 5e-10 |
+
+Stored day-2 data (`genpaley.jsonl`) show the same to five decimals at p = 53, 61, 73. So from p = 29
+on, **degree-4 sum-of-squares is exactly as weak as the basic SDP on Paley graphs**: retention
+(C₄−1)/(C₂−1) = 1. This is the finite-n, exact form of the degree-2 → degree-4 lifting of Mohanty,
+Raghavendra and Xu (STOC 2020), whose theorem is asymptotic in the degree d and n; here it holds
+exactly on a deterministic quasi-random graph from p = 29. The catch is that C₂(P_p) → 1 (the
+optimum and the spectral bound both tend to ½), so the surviving gap is a vanishing one: C₄(P₄₁) = 1.0176.
+
+What the extension is *not*: the scaled Wick (Gaussian) lift of the degree-2 Gram matrix is far
+from PSD at every p (λ_min ≈ −0.74, `wick_lift.py`), and no pseudo-expectation whose 4-set moments
+depend only on the Legendre pattern of the six differences exists (an 11-parameter SDP,
+`paley_ansatz.py`: max λ_min = −0.092, −0.067, −0.062 at p = 29, 37, 41). The numerically optimal
+4-set moments vary within a Legendre pattern (standard deviation up to 0.026 against means of 0.03–0.19,
+`paley_moments.py`); only the two extreme patterns (all six differences residues: +0.3388; all
+non-residues: +0.0481 at p = 29) are single orbits and constant. The lift is arithmetic-finer than the
+Legendre symbols — a concrete target for a proof, not yet a formula.
+
+### 11.3 Sparse expanders: the regime the lifting theorem names, and it is not reached
+
+MRX's theorem for random d-regular graphs gives a degree-4 value ½ + (√(d−1)/d)(1 − ε − γ(ε)/√d),
+i.e. no better than the spectral bound as d → ∞. If it held at d = 3 the gap shape would be
+≈ (1 − mc₃)/(½ − √2/3) ≈ 2.7, far above 1.0936. Measured (`expander_gap.py`, `expander_named.py`,
+certified SoS₄, SoS₂ by the same solver, optimum proved by CP-SAT):
+
+| graph | n | girth | C₂ | C₄ (certified) |
+|---|---|---|---|---|
+| random cubic, 2 trials each | 12, 16, 20, 24 | 3 | 1.04–1.41 | 1.0000 (upper ≤ 1.027 where the certificate is loose) |
+| random cubic, girth ≥ 5 | 32 | 5 | **1.902** | 1.0000 |
+| McGee (3,7)-cage | 24 | 7 | 1.221 | 1.0000 |
+| random d-regular, d = 4, 6, 8, 10 | 24 | 3 | 1.20, 1.16, 1.10, 1.07 | 1.0000 |
+
+**Degree-4 sum-of-squares is exact on every sparse graph tested, up to 32 vertices and girth 7, even
+where the degree-2 gap shape is 1.9.** The lifting regime (large d, n → ∞) is out of reach of exact
+computation, and at accessible sizes the degree-2 gap of sparse graphs is entirely spurious.
+
+### 11.4 The non-abelian sweep (partial) and the carrier hypothesis
+
+`group_sweep.py` now runs stage 2 batched (`GroupSoSBatch`) and only routes instances whose degree-2
+gap is carried by an irrep of dimension ≥ 3. Records so far (orders 12–21, 127 certified, proved
+optima, tight certificates): best C₄ = 1.080371 at Z₇⋊Z₃ (carrier dimension 3, retention 0.338,
+below the record); F₂₀ = Z₅⋊Z₄ gives 1.066667 with retention 0.206 on a 4-dimensional carrier.
+Retention by carrier dimension: dim 3, n = 58, mean 0.043 (median 0); dim 4, n = 32, mean 0.100
+(median 0.091). The 2→4 hypercontractivity of the carrier eigenspace correlates weakly and positively
+with retention (corr(ρ, log H) = 0.26 on 59 records; `hypercontract.py`). The sweep to order 60
+continues and this subsection will be updated; nothing in it approaches the Paley behaviour.
+
+### 11.5 The picture
+
+* Degree-4 sum-of-squares is exact, or within a few per cent of exact, on every small instance class
+  examined: random dense (n ≤ 7), all cubic and d-regular random graphs (n ≤ 32), cages, complete
+  graphs, cycles, hypercubes, all circulants with ≤ 3 classes and L ≤ 19 (day 2), and the non-abelian
+  Cayley graphs to order 21.
+* The one family on which the degree-2 gap survives degree 4 *completely* is the Paley family from
+  p = 29 — dense, quasi-random, with a carrier eigenspace of dimension (p−1)/2 — and there the gap
+  itself vanishes with p.
+* The instances with the largest certified gap shape (index-4 generalised Paley circulants, 1.0936)
+  sit between the two: partial retention (0.58) of a moderate degree-2 gap (1.16). Weight optimisation
+  cannot improve them locally.
+
+Stated as a hypothesis (H18 in HYPOTHESES.md): **at degree 4, the degree-2 gap survives only on
+pseudo-random dense structure, where it is vanishing; where it is large (sparse, high girth) it is
+spurious at every accessible size.** If that trade-off is real, the Khot–Moshkovitz question at
+degree 4 is decided only at sizes where the lifting theorems start to bite, far beyond exact
+computation, and no computational search of this kind can settle it. That is a negative result about
+the method, reached by the method, and it is the honest end point of this line.
+
+---
+
+## 12. Next
+
+1. **Non-abelian instances at informative size.** Done on day 3 (`group_sos.py`, any finite group
+   through numerically computed irreps, batched); the sweep to order 60 is running. What remains is the
+   order 60–660 range (A₅, S₅, SL(2,5), PSL(2,7)), which needs a faster stage-1 incumbent search.
+1b. **Prove the Paley lift.** Section 11.2 gives an exact equality SoS₄ = SoS₂ on P_p from p = 29 with
+   no formula for the extension. The optimal moments are AGL(1,p)-invariant but not Legendre-pattern
+   functions; the next ansatz is cross-ratio classes of 4-sets.
 2. **Explain the index-4 phenomenon.** Quartic-residue Cayley graphs are the only family that produced
    anything; index 2 and index 6 produce nothing. A structural reason would say where else to look.
 3. **Close the Khot–Vishnoi optimum at k = 3**, currently bracketed in [0.439189, 0.445524]. The 168

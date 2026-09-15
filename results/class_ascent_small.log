@@ -1,0 +1,15 @@
+== L=11 seed all-minus
+    r= 0 SoS4 [0.550000,0.550000] mix 4.0e-10  LP-> C4>= 1.010101 (proved True)  supp 5  6.6s
+    r= 1 SoS4 [0.550000,0.550000] mix 4.0e-10  LP-> C4>= 1.010101 (proved True)  supp 5  1.5s
+  polished start: C4 >= 1.010101
+  kick 0: improved to C4 >= 1.068701  supp 2
+  kick 1: 1.068701 (no gain)
+  kick 2: 1.068701 (no gain)
+  kick 3: 1.068701 (no gain)
+  kick 4: 1.068701 (no gain)
+   FINAL L=11 seed all-minus: C4 in [1.068701, 1.068701]  proved True  width 5.1e-11  gens [2, 4] signs [1.0, -1.0] kappa 0.0000
+== L=11 seed dirichlet
+    r= 0 SoS4 [0.807361,0.807361] mix 0.0e+00  LP-> C4>= 0.999999 (proved True)  supp 2  57.5s
+    r= 1 SoS4 [0.500000,0.500000] mix 0.0e+00  LP-> C4>= 1.000000 (proved True)  supp 2  0.0s
+    r= 2 SoS4 [0.500000,0.500000] mix 0.0e+00  LP-> C4>= 1.000000 (proved True)  supp 2  0.0s
+  polished start: C4 >= 1.000000
