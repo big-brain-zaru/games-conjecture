@@ -184,8 +184,10 @@ Barak–Brandão–Harrow–Kelner–Steurer–Zhou show degree-4 SoS refutes th
 2→4 hypercontractive.  Quantified prediction: retention ρ = (C₄−1)/(C₂−1) increases with
 H(V) = n · max_{f∈V, ‖f‖₂=1} Σ f_v⁴ and with dim V.
 Test: `hypercontract.py` (group sweep records + recomputed circulants).  First 59 non-abelian records:
-mean retention 0.023 for H < 2.5, 0.09 for 2.5 ≤ H < 8; corr(ρ, log H) = 0.26.  Weak, positive; more
-data pending from the full sweep.
+mean retention 0.023 for H < 2.5, 0.09 for 2.5 ≤ H < 8; corr(ρ, log H) = 0.26.  Circulants, 321
+instances L ≤ 19: corr(ρ, H) = 0.42, corr(ρ, mult) = 0.39, driven by disjoint-K₅ instances (retention 1 by
+the K_n identity); mean retention 0.024 at multiplicity 2, 0.054 at multiplicity 4.
+**Verdict: WEAKLY SUPPORTED, not decisive.**  The non-abelian sweep past order 21 was stopped (no output in 18 h).
 
 ## H15 — On the Paley graphs the degree-2 gap survives degree 4 completely  [computed, being certified]
 

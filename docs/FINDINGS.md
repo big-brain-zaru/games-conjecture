@@ -407,7 +407,7 @@ certified SoS₄, SoS₂ by the same solver, optimum proved by CP-SAT):
 | random cubic, 2 trials each | 12, 16, 20, 24 | 3 | 1.04–1.41 | 1.0000 (upper ≤ 1.027 where the certificate is loose) |
 | random cubic, girth ≥ 5 | 32 | 5 | **1.902** | 1.0000 |
 | McGee (3,7)-cage | 24 | 7 | 1.221 | 1.0000 |
-| random d-regular, d = 4, 6, 8, 10 | 24 | 3 | 1.20, 1.16, 1.10, 1.07 | 1.0000 |
+| random d-regular, d = 4, 6, 8, 10, 12, 14, 16, 18 | 24 | 3 | 1.20, 1.16, 1.10, 1.07, 1.05, 1.06, 1.04, 1.01 | 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 0.9933, 0.9911 (upper bounds ≤ 1.0093) |
 
 **Degree-4 sum-of-squares is exact on every sparse graph tested, up to 32 vertices and girth 7, even
 where the degree-2 gap shape is 1.9.** The lifting regime (large d, n → ∞) is out of reach of exact
@@ -422,7 +422,14 @@ below the record); F₂₀ = Z₅⋊Z₄ gives 1.066667 with retention 0.206 on 
 Retention by carrier dimension: dim 3, n = 58, mean 0.043 (median 0); dim 4, n = 32, mean 0.100
 (median 0.091). The 2→4 hypercontractivity of the carrier eigenspace correlates weakly and positively
 with retention (corr(ρ, log H) = 0.26 on 59 records; `hypercontract.py`). The sweep to order 60
-continues and this subsection will be updated; nothing in it approaches the Paley behaviour.
+was stopped after 18 hours without a completed record at orders 24–60: the batched CPU stage 2 is
+pathological at those sizes, and the census stands as partial (orders 12–21, 127 records). The
+circulant side of the hypercontractivity test was run to 321 instances (L = 7–19, all with tight
+certificates and proved optima; `hypercontract_circulant.json`): corr(ρ, H) = 0.42, corr(ρ, mult) = 0.39,
+but the single strongest point is Cay(Z₁₅,{3,6}) — three disjoint copies of K₅, where retention 1 is
+the complete-graph identity SoS₄ = SoS₂ of 11.1, not a new effect; with multiplicity ≤ 4 the mean
+retention is 0.024 (mult 2, n = 305) and 0.054 (mult 4, n = 9). The carrier hypothesis H14 is at best
+weakly supported; nothing in either sweep approaches the Paley behaviour.
 
 ### 11.5 The picture
 

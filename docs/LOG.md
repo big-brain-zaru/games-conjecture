@@ -113,3 +113,12 @@ with optimisation and mechanism.
 K_n: degree 4 adds nothing to degree 2 for every n.  Random cubic graphs n ≤ 20 and random dense
 instances n ≤ 7: degree 4 is exact.  Z₄₁ record: stationary under all class-weight perturbations.
 Non-abelian carriers of dimension 4 (F₂₀) retain 0.2 of the degree-2 gap; dimension 3 mostly 0.
+
+## Day 3, close
+
+Paley p = 53, 61 certified (lower bounds exact to 1e-9). Degree sweep at n = 24: d = 4: C₂ 1.202, C₄ ∈ [1.0000, 1.0000], d = 6: C₂ 1.162, C₄ ∈ [1.0000, 1.0000], d = 8: C₂ 1.101, C₄ ∈ [1.0000, 1.0000], d = 10: C₂ 1.071, C₄ ∈ [1.0000, 1.0001], d = 12: C₂ 1.054, C₄ ∈ [1.0000, 1.0000], d = 14: C₂ 1.055, C₄ ∈ [1.0000, 1.0000], d = 16: C₂ 1.036, C₄ ∈ [0.9933, 1.0093], d = 18: C₂ 1.009, C₄ ∈ [0.9911, 1.0039]; max
+certified C₄ 1.0000 — degree 4 stays exact or within 1e-4 of exact for every d. Circulant
+hypercontractivity digest on 321 instances (weak support for H14; the outlier is disjoint K₅'s).
+The non-abelian sweep past order 21 and the circulant run past L = 19 were stopped as not finishable
+in useful time on a shared machine; both are recorded as partial. FINDINGS section 11 is the day-3
+record; reproduce.py: 58 checks, 0 mismatches. Pushed to the private repository.

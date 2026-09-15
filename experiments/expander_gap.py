@@ -14,6 +14,23 @@ import numpy as np, torch, networkx as nx
 from sos_gpu import BooleanSoS
 from weight_ascent import cpsat_min_unsat
 
+def bfs_girth(G):
+    """Girth by BFS from every vertex (O(n m)); 0 if acyclic."""
+    import collections
+    best = 0
+    for s in G.nodes():
+        dist = {s: 0}; parent = {s: None}; q = collections.deque([s])
+        while q:
+            u = q.popleft()
+            for v in G.neighbors(u):
+                if v not in dist:
+                    dist[v] = dist[u] + 1; parent[v] = u; q.append(v)
+                elif parent[u] != v:
+                    c = dist[u] + dist[v] + 1
+                    if best == 0 or c < best:
+                        best = c
+    return best
+
 def solve(n, E, degree, iters, tol, dev):
     m = len(E)
     S = BooleanSoS(n, E, degree=degree, device=dev, dtype=torch.float64).set_instance(-np.ones(m), np.ones(m))
@@ -34,7 +51,7 @@ if __name__ == "__main__":
         for t in range(a.trials):
             G = nx.random_regular_graph(a.d, n, seed=100 * n + t)
             E = np.array(sorted(tuple(sorted(e)) for e in G.edges())); m = len(E)
-            girth = min((len(c) for c in nx.minimum_cycle_basis(G)), default=0)
+            girth = bfs_girth(G)
             lam = np.linalg.eigvalsh(nx.to_numpy_array(G))
             t0 = time.time()
             lo2, hi2, it2 = solve(n, E, 2, a.iters, 1e-11, dev)
