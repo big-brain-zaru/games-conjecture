@@ -367,7 +367,7 @@ Tools: `weight_ascent.py` (signed complete graph, both signs on every pair), `cl
 
 For Max-Cut on the Paley graph P_p (p ≡ 1 mod 4) the degree-2 value is closed-form,
 SoS₂ = ½ + (1+√p)/(2(p−1)), carried by the (p−1)/2-dimensional eigenspace of the Gauss period.
-Two-sided certificates from the symmetry-reduced solver (`paley_lift.py`, 1.6–1.8·10⁵ iterations):
+Two-sided certificates from the symmetry-reduced solver (`paley_lift.py`, 1.6–2·10⁵ iterations):
 
 | p | SoS₄ certified interval | SoS₂ closed form | difference |
 |---|---|---|---|
@@ -376,8 +376,10 @@ Two-sided certificates from the symmetry-reduced solver (`paley_lift.py`, 1.6–
 | 29 | [0.614020800, 0.614020800] | 0.614020800 | < 2e-11 |
 | 37 | [0.598371702, 0.598371702] | 0.598371702 | < 6e-12 |
 | 41 | [0.592539053, 0.592539053] | 0.592539053 | < 5e-10 |
+| 53 | [0.579616441, 0.579616500] | 0.579616441 | < 6e-8 |
+| 61 | [0.573418747, 0.573434338] | 0.573418747 | lower bound exact to 7e-10; upper 1.6e-5 (200,000 iterations) |
 
-Stored day-2 data (`genpaley.jsonl`) show the same to five decimals at p = 53, 61, 73. So from p = 29
+Stored day-2 data (`genpaley.jsonl`) show the same to five decimals at p = 73. So from p = 29
 on, **degree-4 sum-of-squares is exactly as weak as the basic SDP on Paley graphs**: retention
 (C₄−1)/(C₂−1) = 1. This is the finite-n, exact form of the degree-2 → degree-4 lifting of Mohanty,
 Raghavendra and Xu (STOC 2020), whose theorem is asymptotic in the degree d and n; here it holds
