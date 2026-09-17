@@ -223,6 +223,19 @@ vanishes off the identity — and μ is the truncated noise. **[computed]** the 
 the k = 3 game vertex for vertex (32 vertices, 8 labels, 1,472 constraints, identical values on random
 labellings), and the Khot–Vishnoi ψ passes the representation test with Gram minimum eigenvalue −1.2e−14.
 
+**Prior art, checked (17 September 2026). This construction is very probably NOT new.** A literature
+search turns up the same description of Khot–Vishnoi already in print: the KV graph is stated as the
+Cayley graph of the quotient group of the ambient group by the code, with the two sides of an edge
+being cosets, the players each outputting one element of their coset, and the constraint being that
+the two elements differ by the prescribed group element. That is precisely the abelian case of this
+section, published. More broadly, the identification of a unique game with its label-extended graph
+is standard (Raghavendra–Steurer), and the framing of Unique Games and Max-2Lin as Maximum Section of
+a Covering Space (Computational Topology and the Unique Games Conjecture, SoCG 2018) is strictly more
+general than the construction here. What section 5 does is package those known ingredients for an
+arbitrary finite group with a normal subgroup and check the packaging computationally. The
+computational content — the generic builder reproducing Khot–Vishnoi vertex for vertex, and the
+representation-theoretic completeness test — stands. The claim of novelty does not, and is withdrawn.
+
 **Why this is the interesting direction [source].** Every known gap instance has an *abelian* G (noisy
 cube, short code), and its soundness is degree-4 certifiable because hypercontractivity of the abelian
 noise operator is provable in sum-of-squares: Barak, Brandão, Harrow, Kelner, Steurer and Zhou 2012,
@@ -333,8 +346,10 @@ What this project establishes:
 * Working, self-tested, certified solvers — including degree-4 sum-of-squares symmetry-reduced over an
   arbitrary finite group through numerically computed irreps, and a certified monotone ascent over
   instance weights. This is the part most likely to be useful to someone else.
-* A construction framework for non-abelian unique games that reproduces Khot–Vishnoi as the abelian
-  case. **Its novelty has not been checked against the literature.**
+* A construction builder for non-abelian unique games that reproduces Khot–Vishnoi as the abelian
+  case. Checked on 17 September 2026 and **not new** — the abelian case is published in exactly this
+  coset-and-quotient-Cayley form and the covering-space framing is more general (see §5). The builder
+  and its validation stand; the novelty claim is withdrawn.
 * Exact basic-SDP values for the Khot–Vishnoi game (section 6).
 
 What it does **not** establish:

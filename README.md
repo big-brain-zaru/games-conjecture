@@ -27,8 +27,10 @@ lower bound. What is here, stated at its actual size:
 * **A measurement** of the gap shape over several hundred certified instances (374 circulants, 127
   non-abelian Cayley graphs, 144 targeted circulants, the exhaustive n ≤ 6 census, and the sparse,
   Paley and hypercube families), and the null result above.
-* **A construction framework** for non-abelian unique games that reproduces Khot–Vishnoi as the
-  abelian case. Its novelty has not been checked against the literature.
+* **A construction builder** for non-abelian unique games that reproduces Khot–Vishnoi as the abelian
+  case. Checked against the literature and **not new**: the abelian case is published in exactly this
+  coset-and-quotient-Cayley form, and the covering-space framing of Unique Games is more general. The
+  builder is validated working code, not a new idea.
 * **Two proved theorems**, both negative: degree-4 sum-of-squares is strictly weaker than degree 2
   on the Paley graphs at p = 13 and 17, by exact integer certificates with no floating point in the
   verification.
@@ -78,7 +80,7 @@ with its correction.
 | **Complete sweep of the small circulants** | all 374 instances with L odd ≤ 19 and ≤ 3 connection classes: 16 ruled out by the filter, 358 certified, 9 stragglers settled at 250,000 iterations; maximum 1.081179 | measurement, complete — no gaps |
 | **Degree 4 is exact on every sparse graph tested** | random cubic n = 12–32 (girth up to 5, C₂ up to 1.90), the McGee cage, random d-regular d = 4, 6, …, 18 at n = 24 | measurement |
 | The record is **locally optimal**: a certified alternating LP/SoS ascent over all 40 class-sign weights of Z₄₁ finds no improvement | stationary point; kicks fail; re-certified 1.093586 | measurement |
-| **A group-theoretic generalisation of Khot–Vishnoi** | for any finite group, normal subgroup and symmetric measure, the maximum-weight transversal problem is a unique game whose label-extended graph is a Cayley graph; Khot–Vishnoi is the abelian case, reproduced vertex for vertex | construction — **novelty unchecked** |
+| A group-theoretic packaging of Khot–Vishnoi | for any finite group, normal subgroup and symmetric measure, the maximum-weight transversal problem is a unique game whose label-extended graph is a Cayley graph; Khot–Vishnoi is the abelian case, reproduced vertex for vertex | **not new**: the abelian case is published in this form, and the covering-space framing (SoCG 2018) is more general. The builder and its validation stand; the novelty claim is withdrawn |
 | **Exact basic-SDP values of the Khot–Vishnoi game** | a GL(k,2)-invariant linear program: 0.6157095, 0.3948238 (k=3), 0.7950017 (k=4), each confirmed by an independent certified numerical solve | measurement, exact |
 | Consistent with the Agarwal–Kindler–Kolla–Trevisan hypercube conjecture | at dimensions 4 and 5 the degree-4 value equals the optimum, sandwiching the triangle-inequality SDP to exactness | measurement at d ≤ 5 only — 32 vertices, weak evidence |
 | **On Paley graphs SoS₄ = SoS₂ = ½ + (1+√p)/(2(p−1))** for p = 29, 37, 41, 53, 61 | certified lower bounds equal to the closed form to 1e-9, upper bounds within 6e-8 (1.6e-5 at p = 61); p = 13, 17 lose the gap | **predicted**: Mohanty–Raghavendra–Xu imply this asymptotically (`mrx_check.py`). The exact finite-p equality and its threshold are not implied by their lift |
