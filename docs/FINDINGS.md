@@ -318,7 +318,7 @@ cyclic instances.
 `python experiments/reproduce.py` recomputes every headline number from scratch. It does not read them
 from result files.
 
-**120 checks, 0 mismatches, in 1368 s** on an idle machine with a GPU (`results/reproduce_day4.log`). An earlier 58-check run took 7596 s, but that was under three-way contention with other jobs; the same suite is far quicker on an idle machine, and an earlier note in this section claiming about three minutes was simply wrong. The suite covers the degree-2 odd-cycle calibration, the degree-4
+Last full run: **120 checks, 0 mismatches, in 1368 s** on an idle machine with a GPU (`results/reproduce_day4.log`); checks for the rank bound of 13.6 have since been added and the new total is being recomputed. An earlier 58-check run took 7596 s, but that was under three-way contention with other jobs; the same suite is far quicker on an idle machine, and an earlier note in this section claiming about three minutes was simply wrong. The suite covers the degree-2 odd-cycle calibration, the degree-4
 solver validation on K₅, K₇, C₅ and Petersen, the certified champions at 9 and 17 vertices with their
 certificate widths, the agreement of the symmetry-reduced solver with the dense one, the Khot–Vishnoi
 construction (size, total weight, subcube values, three exact symmetry-reduced SDP values), the group
@@ -336,6 +336,11 @@ nearly exact nearly everywhere. Nothing here suggests the supremum is finite, an
 suggests it is infinite. The measurement simply does not reach far enough to tell, and section 11.5
 argues that no search of this kind will.
 
+The substantive positive content is elsewhere, and it is narrow: section 13 determines the structure
+of the one object in this record that the literature does not already cover, the exact finite-p
+degree-4 extension on Paley graphs, and proves two small theorems on the other side of its existence
+threshold.
+
 What this project establishes:
 
 * The reformulation of section 1 and the inequality of section 2. Both are elementary one-line
@@ -351,6 +356,18 @@ What this project establishes:
   coset-and-quotient-Cayley form and the covering-space framing is more general (see §5). The builder
   and its validation stand; the novelty claim is withdrawn.
 * Exact basic-SDP values for the Khot–Vishnoi game (section 6).
+* **Two proved theorems** (section 13.2), both negative: SoS₄ < SoS₂ on the Paley graphs at p = 13
+  and 17, by exact integer dual certificates in which no floating point survives into the
+  verification. No published statement about Max-Cut on Paley graphs above degree 2 was found.
+* **A structural determination of the Paley extension** where it does exist (section 13): the
+  question reduces to one finite feasibility problem; the extension is bilinear, hence a single psd
+  form on Sym²(E_min) correcting the Wick lift; its block dimensions are closed form; and at p = 29,
+  where it is unique, its block data is rational with denominator 3p, which places the extension in
+  Q(√p, ζ_{(p−1)/4}) rather than Q(√p). That last point is why every ansatz over the quadratic field
+  had to fail.
+* **A proof of the rank bound** rank M_even ≤ (p−1)(p−7)/8 (section 13.6), with the kernel identified
+  explicitly, conditional on bilinearity. This is the one place where a measured pattern became a
+  theorem.
 
 What it does **not** establish:
 
@@ -370,6 +387,14 @@ What it does **not** establish:
   not a result.
 * The hypercube evidence of section 7 reaches dimension 5, which is 32 vertices. It is consistent with
   the Agarwal–Kindler–Kolla–Trevisan conjecture and is weak evidence for it.
+* The group-theoretic construction of section 5 is **not new** (checked 17 September 2026); only its
+  builder and validation stand.
+* The rank bound of 13.6 is an inequality, not an identity: the matching lower bound is measured at
+  five primes, not proved, and the bilinearity the proof rests on is itself verified rather than
+  derived.
+* The dimension of the family of extensions has **no known formula**. A pre-registered one was
+  confirmed at p = 41 and then refuted at p = 53 and 61, and an exhaustive search over two- and
+  three-term combinations of eighteen natural features finds nothing that fits the five values.
 
 **Measured against the plan.** `docs/PLAN.md` set the failure criterion before the search began:
 "Track A finds no degree-4 gap with C > 2 at n ≤ 60 after the full search budget → publish the negative
@@ -654,7 +679,8 @@ extensions exist with room to move, but never with an interior.
 | 61 | 15 | 405 | 405 | **11** | 8 ✗ | 5.3e+02 vs 4.4e-06 |
 
 **The rank formula holds at all five feasible primes**: rank M_even = (p−1)(p−7)/8 = m(m−3)/2,
-giving 77, 135, 170, 299, 405. Nothing contradicts it.
+giving 77, 135, 170, 299, 405. The **upper bound is now proved** (§13.6), together with the
+mechanism that produces it; only the exactness remains measured.
 
 **The family-dimension formula is refuted.** dim V₀ − 7 = (p−29)/4 was written into the repository as
 a prediction (commit `b7db208`) before the p = 41 run finished, and p = 41 confirmed it. It then
@@ -743,7 +769,72 @@ lives in Q(√p, ζ_{(p−1)/4}).** That is the explanation of the failed denomi
 earlier, and it is why every ansatz built from the six Legendre symbols, from the 4×4 conference
 submatrix, or from quartic character sums had to fail: all of those are defined over Q(√p).
 
-### 13.6 Status and what is not yet established
+### 13.6 The rank formula, proved  [reasoning + computed, `paley_rank_proof.py`]
+
+Sections 13.3a and 13.5 reported rank M_even = (p−1)(p−7)/8 at five primes. That is no longer a
+numerical coincidence: one direction of it is a theorem, and the proof also explains the kernel
+structure that 13.5 merely observed.
+
+**Theorem.** Let p ≡ 1 mod 4, p ≥ 13, m = (p−1)/2, and let E_min be the λ_min eigenspace of P_p,
+spanned by the additive characters ψ_t at non-residue frequencies t. Suppose a degree-4 extension of
+the canonical degree-2 optimum exists and is *bilinear*, i.e. u_ab = Ψ(v_a ⊙ v_b) for a linear Ψ on
+Sym²(E_min). Then ker Ψ contains the (p−1)-dimensional space spanned by
+
+  W_f := Σ_{t+s=f, t,s non-residues} a_t a_sᵀ,   f ≠ 0,
+
+where a_t are the coordinates of ψ_t, and consequently
+
+  **rank M_even ≤ dim Sym²(E_min) − (p−1) = (p²−1)/8 − (p−1) = (p−1)(p−7)/8 = m(m−3)/2.**
+
+*Proof.* Two ingredients.
+
+(1) *Frequencies.* The degree-2 optimum's unit vectors are v_a = m^(−1/2) Σ_{t non-residue} e(−ta/p) ψ_t,
+so their symmetric squares expand over the frequency f = t+s:
+
+  v_a v_aᵀ = (1/m) Σ_{f ∈ F_p} e(−fa/p) W_f,
+
+and the whole dependence on a sits in the character e(−fa/p).
+
+(2) *The empty index is shared.* Ψ(v_a v_aᵀ) = u_∅ for **every** a. This is forced, not assumed:
+⟨u_∅, u_ab⟩ = X_ab with |u_∅| = |v_a| = 1 gives equality in Cauchy–Schwarz, hence u_∅ = T_a v_a.
+
+Subtracting (2) at two different a and substituting (1), the f = 0 term cancels identically and
+
+  0 = Σ_{f≠0} (e(−fa/p) − e(−fb/p)) Ψ(W_f)  for all a, b.
+
+Distinct additive characters are linearly independent, so the coefficient matrix has rank p−1 on the
+nonzero frequencies and **Ψ(W_f) = 0 for every f ≠ 0**. Each W_f is nonzero exactly when dim V_f ≥ 1,
+and by 13.5 the block dimensions are (p−1)/4 at f = 0, ⌈(p−1)/8⌉ at f a residue and ⌊(p−1)/8⌋ at f a
+non-residue, all at least 1 once p ≥ 13. The W_f for f ≠ 0 lie in distinct frequency blocks, hence are
+independent, giving a kernel of dimension exactly p−1 = 2m. Since dim Sym²(E_min) = m(m+1)/2 =
+(p²−1)/8, the bound follows. ∎
+
+**This explains 13.5.** The measured kernel was "exactly one direction in each of the p−1 nonzero
+frequency blocks, and none at f = 0". That is precisely the W_f, and the f = 0 exception is exactly
+the term that cancels in the subtraction. It also explains the trivial-character eigenvalue: W_0 is
+*not* killed, and ‖W_0·Q‖ comes out at exactly m (14, 18, 20 at p = 29, 37, 41), matching the m found
+in 13.5.
+
+**Verification.** `paley_rank_proof.py` checks every step at p = 29, 37, 41: the expansion in (1) to
+5e-15, the independence of a in (2) to 1e-11, dim span{W_f : f ≠ 0} = p−1 exactly, Ψ(W_f) = 0 to
+1e-11 relative, W_0 not in the kernel, and the bound attained.
+
+**What is not proved.** Two things, stated plainly.
+
+* *Bilinearity.* The argument does not start without it. What **is** proved is weaker and was derived
+  in 13.4: for each a the map v_b ↦ u_ab is an isometry T_a, with T_a v_b = T_b v_a and T_a v_a = u_∅.
+  That the T_a assemble into a single linear map on Sym²(E_min) is verified numerically (8.6e-11 at
+  p = 29) and not derived. Equivalently, bilinearity says every linear relation among the v_a ⊙ v_b is
+  also a relation among the u_ab, and nothing in the constraints forces that.
+* *The matching lower bound.* The theorem gives ≤. Equality needs ker Ψ to be no larger than the W_f
+  span, which is a property of the particular extension rather than of the constraints, and is
+  verified at p = 29, 37, 41, 53, 61.
+
+So the formula is half a theorem: the upper bound and the mechanism are proved, the exactness is
+measured. That is a real change of status from "a pattern at five primes", and it is also the reason
+to expect the formula to keep holding.
+
+### 13.7 Status and what is not yet established
 
 Established, at p = 29, 37 and 41: the reduction, feasibility exactly on the boundary,
 rank M_even = m(m−3)/2, ker Q = 2m, bilinearity, the three-class frequency decomposition with
@@ -761,10 +852,15 @@ primes p = 1 mod 4 up to 149 (`paley_blockdims.py`):
 Feasibility begins exactly where dim V_non reaches 3, which is p ≥ 29, matching the proved
 infeasibility at p = 13 (dim V_non = 1) and p = 17 (dim V_non = 2).
 
-Not established: a canonical choice inside the families at p > 29; a formula for the rational
-numerators valid for all p; **any** formula for the family dimension, the pre-registered one having
-been refuted at p = 53 and 61; and a proof rather than a computation. The honest summary of the
-family dimension is a table of five measured integers with no known law behind them. Two claims made during
+Proved (§13.6): rank M_even ≤ (p−1)(p−7)/8, with the kernel of §13.5 identified explicitly as the
+nonzero-frequency vectors W_f, conditional on bilinearity.
+
+Not established: bilinearity itself, which the proof needs and which is verified rather than derived;
+the matching lower bound, so the rank formula is an inequality plus five measurements rather than an
+identity; a canonical choice inside the families at p > 29; a formula for the rational numerators
+valid for all p; and **any** formula for the family dimension, the pre-registered one having been
+refuted at p = 53 and 61. The honest summary of the family dimension is a table of five measured
+integers with no known law behind them. Two claims made during
 this work were corrected before publication: that the solver's Aut-symmetry was evidence of a unique
 optimum (it is forced by equivariant dynamics from a symmetric start), and that uniqueness implies
 q ∈ Q(√p) (it does not, and 13.5 shows the field is strictly larger).

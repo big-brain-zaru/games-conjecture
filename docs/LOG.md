@@ -178,3 +178,25 @@ and was validated against the dense answers first.
 
 Net: the Paley extension is now a described object rather than a measurement, with one proved
 theorem on each side of the threshold, and one published prediction of mine on the record as refuted.
+
+## 17 September 2026, close — the rank formula becomes a theorem
+
+Proved the upper half of rank M_even = (p−1)(p−7)/8, which had been a pattern at five primes.
+
+The mechanism is that the empty index is shared. Cauchy–Schwarz forces Ψ(v_a v_aᵀ) = u_∅ for every a,
+while the symmetric squares v_a v_aᵀ expand over frequencies with all the a-dependence in a character.
+Subtracting two of them cancels the zero frequency and, by independence of characters, kills Ψ on
+every nonzero frequency vector W_f. That is p−1 = 2m forced kernel directions, hence the bound. It
+also explains what 13.5 had only observed: one kernel direction per nonzero block, none at f = 0, and
+the trivial character carrying eigenvalue exactly m.
+
+Every step verified at p = 29, 37, 41 (`paley_rank_proof.py`): the expansion to 5e-15, the
+a-independence to 1e-11, the kernel dimension exactly p−1, and the bound attained.
+
+Stated honestly: this proves ≤, not =, and it is conditional on bilinearity, which is verified and
+not derived. Both limitations are written into 13.6 rather than glossed.
+
+Also closed the last unchecked novelty claim: the group-theoretic construction of section 5 is not
+new — the abelian case is published in exactly this coset-and-quotient-Cayley form and the
+covering-space framing of Unique Games is more general. The builder and its validation stand; the
+claim is withdrawn.

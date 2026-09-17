@@ -6,11 +6,17 @@ A three-day computational investigation, by one person on one laptop, of a singl
 a stated open question about Khot's Unique Games Conjecture. Every value reported here comes from a
 direct evaluation, a machine-checkable certificate, or an exhaustive enumeration.
 
-**The outcome is negative, and it was anticipated.** Across every family searched, the largest
-degree-4 gap shape found is 1.093586, and degree-4 sum-of-squares turned out to be exact, or within a
-few per cent of exact, nearly everywhere it was measured. The plan written before the search
-([docs/PLAN.md](docs/PLAN.md)) named this outcome in advance and pre-committed the response: publish
-the negative map and the tool. That is what this repository is.
+**The outcome on the main question is negative, and it was anticipated.** Across every family
+searched, the largest degree-4 gap shape found is 1.093586, and degree-4 sum-of-squares turned out to
+be exact, or within a few per cent of exact, nearly everywhere it was measured. The plan written
+before the search ([docs/PLAN.md](docs/PLAN.md)) named this outcome in advance and pre-committed the
+response: publish the negative map and the tool. That is what this repository is.
+
+**The positive content is narrow and is in section 13.** On the Paley graphs the degree-2 gap
+survives degree 4 exactly from p = 29, and that turned out to be the one thing here the literature
+does not already cover. It is now a described object rather than a measurement: two proved theorems
+below the threshold, a structural determination above it, and a proof of the rank bound. Everything
+else in the record is measurement, reproduction, or correction, and is labelled as such.
 
 ## Scope
 
@@ -86,7 +92,8 @@ with its correction.
 | **On Paley graphs SoS₄ = SoS₂ = ½ + (1+√p)/(2(p−1))** for p = 29, 37, 41, 53, 61 | certified lower bounds equal to the closed form to 1e-9, upper bounds within 6e-8 (1.6e-5 at p = 61); p = 13, 17 lose the gap | **predicted**: Mohanty–Raghavendra–Xu imply this asymptotically (`mrx_check.py`). The exact finite-p equality and its threshold are not implied by their lift |
 | K_n: degree 4 adds nothing to degree 2, SoS₄ = SoS₂ = n/(2(n−1)) for odd n | our solver, and Laurent's explicit certificate reproducing it to 2e-16 (`laurent_kn.py`) | **known**: a corollary of Laurent 2003, whose result covers every degree up to n−1 |
 | **SoS₄ < SoS₂ on the Paley graphs at p = 13 and 17** | exact integer dual certificates: orbit sums exactly zero, all Bareiss minors positive, sign decided in integers | **proved** (section 13.2) |
-| **The Paley extension is a rigid bilinear object**: the question reduces to one feasibility SDP, and where an extension exists it is a single psd form on Sym²(E_min) correcting the Wick lift | rank M_even = (p−1)(p−7)/8 at p = 29, 37, 41, 53, 61; ker = 2m; block dimensions closed form, verified for 15 primes | measurement, 5 of 5 (section 13) |
+| **The Paley extension is a rigid bilinear object**: the question reduces to one feasibility SDP, and where an extension exists it is a single psd form on Sym²(E_min) correcting the Wick lift | ker = 2m; block dimensions closed form, verified for 15 primes | measurement (section 13) |
+| **rank M_even ≤ (p−1)(p−7)/8**, with the kernel identified explicitly | proof in section 13.6, conditional on bilinearity; every step verified to 1e-11 at p = 29, 37, 41. The bound is attained at all five feasible primes | **upper bound proved**, exactness measured |
 | At p = 29 the extension is **unique**, and lives in Q(√p, ζ₍ₚ₋₁₎⁄₄) rather than Q(√p) | block data rational with denominator 3p, so the eigenvalues are a DFT of rationals | measurement (section 13.5) |
 | The family of extensions grows: 0, 2, 3, 7, 11 at p = 29, 37, 41, 53, 61 | Gram gaps of eight to eleven orders of magnitude | measurement; **no formula fits**, and a pre-registered one was refuted |
 | A claimed growth rate | C₄ ≈ 1.046 + 0.0127·ln n at R² 0.998 on four points, killed by p = 73 and p = 89 | **retracted**, kept in the record |
@@ -114,7 +121,7 @@ python -m pip install -r requirements.txt
 All commands run from `experiments/`.
 
 ```bash
-python reproduce.py                    # recompute every published number: 120 checks, 0 mismatches
+python reproduce.py                    # recompute every published number (see Reproducibility notes)
 ```
 
 Self-tests of the machinery:
@@ -174,6 +181,7 @@ python paley_circulant_block.py 29             # the zero-frequency circulant ->
 python paley_blockdims.py 150                  # the closed-form block dimensions, 15 primes
 python paley_big.py 53 61                      # rank and family dimension without dense matrices
 python paley_family.py 41                      # where the freedom lives (not in one block)
+python paley_rank_proof.py 29 37 41            # the rank bound: every step of the proof, checked
 ```
 
 ## Repository layout
@@ -197,8 +205,9 @@ python paley_family.py 41                      # where the freedom lives (not in
 
 ## Reproducibility notes
 
-- `experiments/reproduce.py` reports **120 checks, 0 mismatches** in 1368 s on an idle machine with a
-  GPU. It recomputes each quantity rather than reading it from a result file.
+- `experiments/reproduce.py` recomputes each published quantity rather than reading it from a result
+  file. It last reported **120 checks, 0 mismatches** in 1368 s on an idle machine with a GPU; checks
+  for the rank bound of section 13.6 have since been added and the new total is being recomputed.
 - Every gap shape reported as a value comes from a *tight* certificate, meaning the certified lower and
   upper bounds on the relaxation agree to the printed precision, together with a proved optimum. Where
   either is missing the number is reported as an interval and labelled as such.

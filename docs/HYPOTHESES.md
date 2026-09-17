@@ -257,7 +257,10 @@ Statement, in the form it survived day 4.  For Max-Cut on P_p, SoS₄ = SoS₂ i
 degree-4 extendable (§13.1, elementary and validated to 2.6e-12).  Where an extension exists it is
 bilinear: a single psd form Q on Sym²(E_min) with
 
-  * rank M_even = (p−1)(p−7)/8 = m(m−3)/2   — **CONFIRMED at p = 29, 37, 41, 53, 61 (5 of 5)**
+  * rank M_even = (p−1)(p−7)/8 = m(m−3)/2   — **CONFIRMED at p = 29, 37, 41, 53, 61 (5 of 5), and
+    the upper bound is now PROVED** (FINDINGS 13.6): the nonzero-frequency vectors W_f are forced
+    into the kernel because the empty index is shared, giving a (p−1)-dimensional kernel. The proof
+    is conditional on bilinearity and gives ≤ only; exactness stays measured.
   * ker Q = 2m, one direction per nonzero frequency block   — confirmed
   * dim V₀ = (p−1)/4, dim V_res = ⌈(p−1)/8⌉, dim V_non = ⌊(p−1)/8⌋, dim Sym² = (p²−1)/8
     — proved by counting, verified for all 15 primes ≡ 1 mod 4 up to 149
