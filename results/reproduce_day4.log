@@ -1,0 +1,28 @@
+README consolidated
+  [ok ] p=101: predicted rank (p-1)(p-7)/8 = m(m-3)/2: got 1175.000000, published 1175.000000
+  [ok ] K_5: Laurent recurrence = closed form: got 0.000000, published 0.000000
+  [ok ] K_5: Laurent moment matrix psd at order 2: got 1.000000, published 1.000000
+  [ok ] K_5: Ehat[(sum x)^2] = 0 at Laurent's y: got 0.000000, published 0.000000
+  [ok ] K_9: Laurent recurrence = closed form: got 0.000000, published 0.000000
+  [ok ] K_9: Laurent moment matrix psd at order 2: got 1.000000, published 1.000000
+  [ok ] K_9: Ehat[(sum x)^2] = 0 at Laurent's y: got 0.000000, published 0.000000
+  [ok ] K_15: Laurent recurrence = closed form: got 0.000000, published 0.000000
+  [ok ] K_15: Laurent moment matrix psd at order 2: got 1.000000, published 1.000000
+  [ok ] K_15: Ehat[(sum x)^2] = 0 at Laurent's y: got 0.000000, published 0.000000
+  [ok ] K_21: Laurent recurrence = closed form: got 0.000000, published 0.000000
+  [ok ] K_21: Laurent moment matrix psd at order 2: got 1.000000, published 1.000000
+  [ok ] K_21: Ehat[(sum x)^2] = 0 at Laurent's y: got 0.000000, published 0.000000
+  [ok ] p=29: canonical X attains the closed-form SoS_2: got 0.000000, published 0.000000
+  [ok ] p=29: MRX a_mag * sqrt(p) -> 1: got 1.228042, published 1.000000
+  [ok ] p=101: canonical X attains the closed-form SoS_2: got 0.000000, published 0.000000
+  [ok ] p=101: MRX a_mag * sqrt(p) -> 1: got 1.110499, published 1.000000
+  [ok ] p=401: canonical X attains the closed-form SoS_2: got -0.000000, published 0.000000
+  [ok ] p=401: MRX a_mag * sqrt(p) -> 1: got 1.052562, published 1.000000
+  [ok ] MRX loss/advantage ratio -> 8/sqrt(2): got 5.481485, published 5.656854
+  [ok ] p=29: reduction -- M_even psd at the ADMM point: got 1.000000, published 1.000000
+  [ok ] p=29: reduction -- rank M_even = (p-1)(p-7)/8: got 77.000000, published 77.000000
+  [ok ] p=29: degree-2 part equals the canonical X: got 0.000000, published 0.000000
+
+120 checks, 0 mismatches   (1368s)
+
+[exited with code 0]
