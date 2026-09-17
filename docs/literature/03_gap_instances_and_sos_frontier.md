@@ -19,6 +19,11 @@ bundle defined by (f, g) = ([P_i]χ_S, [P_j]χ_T): π(T⋆U) = S⋆U, i.e. **lab
 
 ## 2. Other basic/strong-SDP gaps
 
+* Mohanty–Raghavendra–Xu STOC 2020, *Lifting sum-of-squares lower bounds: degree-2 to degree-4*:
+  on random d-regular graphs and the Sherrington–Kirkpatrick model a degree-2 Max-Cut lower bound lifts
+  to degree 4, giving degree-4 value ≥ ½ + (√(d−1)/d)(1 − ε − γ(ε)/√d). Asymptotic in n. **[known;
+  measured at finite n in FINDINGS 11.2–11.3, where the Paley family attains it exactly from p = 29 and
+  the sparse family does not attain it at any computable size]**
 * Khot–Saket 2009, Raghavendra–Steurer 2009: gaps that survive super-constant rounds of Sherali–Adams
   on top of the SDP, for every CSP (translating Raghavendra's dictatorship-test machinery). **[known;
   KV §1.3]** Property: sub-metrics on super-constantly many points are ℓ1-embeddable.

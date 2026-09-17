@@ -48,8 +48,8 @@ At degree 2 the supremum is infinite: odd cycles give C_2 = 4L/π². At degree 4
 | **Exact basic-SDP values of the Khot–Vishnoi game** | a GL(k,2)-invariant linear program: 0.6157095, 0.3948238 (k=3), 0.7950017 (k=4), each confirmed by an independent certified numerical solve | exact |
 | Evidence for the Agarwal–Kindler–Kolla–Trevisan hypercube conjecture | at dimensions 4 and 5 the degree-4 value equals the optimum, sandwiching the triangle-inequality SDP to exactness | verified at d ≤ 5 |
 | A claimed growth rate, **refuted by its own follow-up** | C₄ ≈ 1.046 + 0.0127·ln n at R² 0.998 on four points, killed by p = 73 and p = 89 | retracted, kept in the record |
-| **On Paley graphs the degree-2 gap survives degree 4 exactly**: SoS₄ = SoS₂ = ½ + (1+√p)/(2(p−1)) for p = 29, 37, 41 | two-sided certificates agreeing with the closed form to 1e-9; p = 13, 17 lose the gap | verified (day 3) |
-| **Degree 4 is exact on every sparse graph tested** | random cubic n = 12–32 (girth up to 5, C₂ up to 1.90), the McGee cage, random d-regular d ≤ 10 at n = 24 | verified (day 3) |
+| **On Paley graphs the degree-2 gap survives degree 4 exactly**: SoS₄ = SoS₂ = ½ + (1+√p)/(2(p−1)) for p = 29, 37, 41, 53, 61 | certified lower bounds equal to the closed form to 1e-9, upper bounds within 6e-8 (1.6e-5 at p = 61); p = 13, 17 lose the gap | verified (day 3) |
+| **Degree 4 is exact on every sparse graph tested** | random cubic n = 12–32 (girth up to 5, C₂ up to 1.90), the McGee cage, random d-regular d = 4, 6, …, 18 at n = 24 | verified (day 3) |
 | The record is **locally optimal**: a certified alternating LP/SoS ascent over all 40 class-sign weights of Z₄₁ finds no improvement | stationary point; kicks fail; re-certified 1.093586 | verified (day 3) |
 | K_n: degree 4 adds nothing to degree 2 | SoS₄(K_n) = SoS₂(K_n) = n/(2(n−1)) for odd n, so C₄ → 1 | verified |
 
@@ -171,6 +171,8 @@ python hypercontract.py group                  # 2->4 norm of the carrier eigens
   statement that graphs without certified hypercontractivity are where hardness must live.
 - N. Agarwal, G. Kindler, A. Kolla and L. Trevisan, *Unique Games on the Hypercube*, CJTCS 2015 — the
   conjecture tested in section 7.
+- S. Mohanty, P. Raghavendra and J. Xu, *Lifting sum-of-squares lower bounds: degree-2 to degree-4*,
+  STOC 2020 — the asymptotic lifting theorem whose finite-n exact form is measured in section 11.2.
 
 Full bibliographies are in `docs/literature/`.
 

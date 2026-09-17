@@ -315,9 +315,9 @@ What this project establishes:
   quartic residues modulo 41.
 * Complete, not merely extensive, coverage of the circulant families swept, in the sense of section 2.
 * A construction framework for non-abelian unique games that reproduces Khot–Vishnoi as a special case.
-* (Day 3) SoS₄ = SoS₂ exactly on the Paley graphs P₂₉, P₃₇, P₄₁ (certified to 1e-9), degree-4 exactness on
-  every sparse graph tested to 32 vertices, and local optimality of the 1.093586 record under class-weight
-  perturbation — section 11.
+* (Day 3) SoS₄ = SoS₂ exactly on the Paley graphs P_p for p = 29, 37, 41, 53, 61 (lower bounds certified to
+  1e-9), degree-4 exactness on every sparse graph tested to 32 vertices and to degree 18, and local
+  optimality of the 1.093586 record under class-weight perturbation — section 11.
 
 What it does **not** establish:
 
@@ -456,8 +456,10 @@ the method, reached by the method, and it is the honest end point of this line.
 ## 12. Next
 
 1. **Non-abelian instances at informative size.** Done on day 3 (`group_sos.py`, any finite group
-   through numerically computed irreps, batched); the sweep to order 60 is running. What remains is the
-   order 60–660 range (A₅, S₅, SL(2,5), PSL(2,7)), which needs a faster stage-1 incumbent search.
+   through numerically computed irreps, batched), but the census stops at order 21: the batched stage-2
+   solve produced no completed record in 18 hours at orders 24–60. Both that range and the order 60–660
+   range (A₅, S₅, SL(2,5), PSL(2,7)) need a faster stage-1 incumbent search than the Python local search
+   used here.
 1b. **Prove the Paley lift.** Section 11.2 gives an exact equality SoS₄ = SoS₂ on P_p from p = 29 with
    no formula for the extension. The optimal moments are AGL(1,p)-invariant but not Legendre-pattern
    functions; the next ansatz is cross-ratio classes of 4-sets.
