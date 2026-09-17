@@ -395,6 +395,32 @@ depend only on the Legendre pattern of the six differences exists (an 11-paramet
 non-residues: +0.0481 at p = 29) are single orbits and constant. The lift is arithmetic-finer than the
 Legendre symbols — a concrete target for a proof, not yet a formula.
 
+**Prior art, checked (`mrx_check.py`).** MRX state their applications for random d-regular graphs
+and the Sherrington–Kirkpatrick model, but their Theorems 1.2/1.3 are general: for any graph and any
+degree-2 solution X they build Φ(X)_ij = (X_ij + X_ij³)/(1+α) with
+α = C·a_mag·(1+a_row⁴)·(1+a_spec²), losing (α/(1+α))(√n‖A‖_F − tr A) of the objective. Measured on
+the true Paley degree-2 optimum (which attains the closed form to 2e-16, confirming it is the optimum):
+a_mag·√p → 1, a_row → √2, a_spec → 2, so α = Θ(C/√p), while the loss-to-advantage ratio tends to
+8/√2 = 5.657. Their product decays like 142C/√p. **So MRX applied to Paley does predict
+SoS₄ = SoS₂·(1 − o(1)) asymptotically**, and the finding of this subsection should not be read as a
+surprise. Two things keep it from being a corollary. The crossover needs p ≫ (142C)², astronomically
+beyond p = 61 for any explicit constant, so the bound is vacuous at every size measured here. And the
+map divides the degree-2 part by 1 + α > 1, so it structurally cannot give equality — what is measured
+here is a degree-4 pseudo-expectation whose degree-2 part is *exactly* the optimal X, with no loss at
+all, from p = 29 on, and p = 13 and 17 failing. That exact finite-p statement, and its threshold, is
+what remains unexplained.
+
+A literature search (September 2026) found no published statement of the Max-Cut result on Paley
+graphs at any degree above 2. The nearest neighbours are Kunisky–Yu (CCC 2023), which is the Paley
+graph at degree 4 but for the *clique number*, not Max-Cut, and which notes the same degree-2
+phenomenon there (degree-2 SoS does not improve on Hoffman's spectral bound); de Boor's thesis
+(CMU-CS-19-118, with O'Donnell and Schramm), which is degree-4 SoS for Max-Cut but analytic and
+confined to random regular graphs and the infinite tree, with no dense or Cayley instance; and
+Kunisky–Bandeira (Math. Prog. 2021), the tight degree-4 lower bound for Sherrington–Kirkpatrick,
+which is the random analogue of the same "degree 4 does not beat the spectral bound" phenomenon.
+The degree-2 half of the closed form is classical: the eigenvalue bound equals the basic SDP value
+for walk-regular graphs, generalising Goemans–Rendl for association schemes.
+
 ### 11.3 Sparse expanders: the regime the lifting theorem names, and it is not reached
 
 MRX's theorem for random d-regular graphs gives a degree-4 value ½ + (√(d−1)/d)(1 − ε − γ(ε)/√d),

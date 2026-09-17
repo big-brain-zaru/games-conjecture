@@ -24,6 +24,19 @@ bundle defined by (f, g) = ([P_i]χ_S, [P_j]χ_T): π(T⋆U) = S⋆U, i.e. **lab
   to degree 4, giving degree-4 value ≥ ½ + (√(d−1)/d)(1 − ε − γ(ε)/√d). Asymptotic in n. **[known;
   measured at finite n in FINDINGS 11.2–11.3, where the Paley family attains it exactly from p = 29 and
   the sparse family does not attain it at any computable size]**
+* Kunisky–Bandeira, *A tight degree 4 sum-of-squares lower bound for the Sherrington–Kirkpatrick
+  Hamiltonian*, Math. Prog. 2021: degree-4 SoS cannot certify an SK bound asymptotically below
+  λ_max ≈ 2, i.e. degree 4 does not beat the spectral bound. **[known; the random analogue of
+  FINDINGS 11.2]**
+* Kunisky–Yu, *A degree 4 sum-of-squares lower bound for the clique number of the Paley graph*,
+  CCC 2023: degree-4 SoS for the Paley CLIQUE number is Ω(p^{1/3}); notes that degree-2 SoS there
+  equals Hoffman's spectral bound. Different objective from Max-Cut; contains no Max-Cut result.
+  **[known; nearest published neighbour to FINDINGS 11.2]**
+* de Boor (with O'Donnell and Schramm), *In Search of Degree-4 Sum-of-Squares Lower Bounds for
+  MaxCut*, CMU-CS-19-118, 2019: extends degree-2 pseudo-expectations to degree 4 via
+  "configuration-symmetry"; analytic, confined to large random regular graphs and the infinite
+  d-regular tree. No dense, Cayley or Paley instance, and no completed lower bound.
+  **[known; the sparse regime measured in FINDINGS 11.3]**
 * Khot–Saket 2009, Raghavendra–Steurer 2009: gaps that survive super-constant rounds of Sherali–Adams
   on top of the SDP, for every CSP (translating Raghavendra's dictatorship-test machinery). **[known;
   KV §1.3]** Property: sub-metrics on super-constantly many points are ℓ1-embeddable.
