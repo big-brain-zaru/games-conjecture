@@ -79,6 +79,7 @@ with its correction.
 | Consistent with the Agarwal–Kindler–Kolla–Trevisan hypercube conjecture | at dimensions 4 and 5 the degree-4 value equals the optimum, sandwiching the triangle-inequality SDP to exactness | measurement at d ≤ 5 only — 32 vertices, weak evidence |
 | **On Paley graphs SoS₄ = SoS₂ = ½ + (1+√p)/(2(p−1))** for p = 29, 37, 41, 53, 61 | certified lower bounds equal to the closed form to 1e-9, upper bounds within 6e-8 (1.6e-5 at p = 61); p = 13, 17 lose the gap | **predicted**: Mohanty–Raghavendra–Xu imply this asymptotically (`mrx_check.py`). The exact finite-p equality and its threshold are not implied by their lift |
 | K_n: degree 4 adds nothing to degree 2, SoS₄ = SoS₂ = n/(2(n−1)) for odd n | our solver, and Laurent's explicit certificate reproducing it to 2e-16 (`laurent_kn.py`) | **known**: a corollary of Laurent 2003, whose result covers every degree up to n−1 |
+| **The Paley extension, determined**: the question reduces to one feasibility SDP; p = 13, 17 are **proved** infeasible by exact integer dual certificates; p = 29 is feasible with a unique extension; p = 37 with a 2-parameter family, both exactly on the boundary | rank M_even = m(m−3)/2, ker Q = 2m, a single psd form on Sym²(E_min) correcting the Wick lift, circulant on the zero-frequency block | measurement + two proved negatives (section 13) |
 | A claimed growth rate | C₄ ≈ 1.046 + 0.0127·ln n at R² 0.998 on four points, killed by p = 73 and p = 89 | **retracted**, kept in the record |
 
 ## Figure

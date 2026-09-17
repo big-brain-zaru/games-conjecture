@@ -579,9 +579,20 @@ equals the closed form to 0.
 | 29 | 407 | 65 | −1.3e-12 | **feasible, exactly on the boundary** |
 | 37 | 667 | 109 | −5.5e-14 | **feasible, exactly on the boundary** |
 
-The two negatives carry exact dual certificates (`paley_certify.py`): a rational Y with Y ≻ 0,
-⟨Y,A_k⟩ = 0 exactly for every orbit, and ⟨Y,M0⟩ < 0 decided exactly in Q(√p). The A_k have
-pairwise disjoint supports and zero diagonal, which is what makes the rounding exact.
+**The two negatives are PROVED, not merely computed** (`paley_certify.py`). By the theorem of
+alternatives, no q exists iff there is a Y with Y ⪰ 0, ⟨Y,A_k⟩ = 0 for every orbit, and
+⟨Y,M0⟩ < 0. Because the A_k have pairwise disjoint supports and zero diagonal, an integer-scaled Y
+can be corrected to satisfy the orbit constraints *exactly* by integer redistribution, and no
+floating point survives into the verification:
+
+| p | rows | orbit sums | positive definiteness | (p−1)⟨Y,M0⟩ |
+|---|---|---|---|---|
+| 13 | 79 | all exactly 0 | 79 of 79 Bareiss minors > 0 (last has 299 digits) | 80601600 − 26220012√13 < 0 |
+| 17 | 137 | all exactly 0 | 137 of 137 Bareiss minors > 0 (last has 523 digits) | 213877792 − 54242240√17 < 0 |
+
+The final sign is decided in integers by comparing A² with B²p. So **SoS₄(P₁₃) < SoS₂(P₁₃) and
+SoS₄(P₁₇) < SoS₂(P₁₇) are theorems**, subject only to the correctness of the reduction in 13.1 and of
+integer arithmetic.
 
 ### 13.3 t* = 0 is rigidity, and rigidity determines the extension
 
@@ -668,7 +679,7 @@ rank M_even = m(m−3)/2, ker Q = 2m, bilinearity, the three-class frequency dec
 dim V_0 = (p−1)/4, the circulant structure on V_0, and the trivial-character eigenvalue m.
 Established at p = 29 only, where the extension is unique and therefore canonical: the rationality
 of the block data with denominator 3p, and hence the cyclotomic field Q(√p, ζ_{(p−1)/4}).
-Established at p = 13 and 17: infeasibility, with exact dual certificates.
+Established at p = 13 and 17: infeasibility, **proved** by exact integer dual certificates.
 
 Not established: a canonical choice inside the p = 37 family; a formula for the rational numerators
 valid for all p; the behaviour at p = 41, 53, 61; and a proof rather than a computation. The
