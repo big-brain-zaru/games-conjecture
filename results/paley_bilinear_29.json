@@ -1,0 +1,11 @@
+{
+ "p": 29,
+ "rank": 77,
+ "m": 14,
+ "sym_dim": 105,
+ "design_rank": 105,
+ "max_error": 8.581850508004862e-11,
+ "u_scale": 0.4967513304141408,
+ "diag_spread": 1.2583192890206682e-10,
+ "bilinear": true
+}

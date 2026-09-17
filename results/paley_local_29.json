@@ -1,0 +1,36 @@
+{
+ "p": 29,
+ "n": 407,
+ "rank": 77,
+ "kernel": 330,
+ "blocks": [
+  {
+   "s": 4,
+   "cols": 7,
+   "null_min": 0,
+   "null_max": 0,
+   "null_mean": 0.0
+  },
+  {
+   "s": 5,
+   "cols": 11,
+   "null_min": 0,
+   "null_max": 0,
+   "null_mean": 0.0
+  },
+  {
+   "s": 6,
+   "cols": 16,
+   "null_min": 0,
+   "null_max": 0,
+   "null_mean": 0.0
+  },
+  {
+   "s": 7,
+   "cols": 22,
+   "null_min": 0,
+   "null_max": 0,
+   "null_mean": 0.0
+  }
+ ]
+}
