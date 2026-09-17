@@ -29,10 +29,14 @@ lower bound. What is here, stated at its actual size:
   Paley and hypercube families), and the null result above.
 * **A construction framework** for non-abelian unique games that reproduces Khot–Vishnoi as the
   abelian case. Its novelty has not been checked against the literature.
-* **A record of three corrections.** One claim was made during the work and refuted by its own
-  follow-up. Two findings survived verification but, on a literature check, turned out to be already
-  known or already predicted. All three are kept in the record with their corrections, because a
-  repository that keeps only what survived is not a record.
+* **Two proved theorems**, both negative: degree-4 sum-of-squares is strictly weaker than degree 2
+  on the Paley graphs at p = 13 and 17, by exact integer certificates with no floating point in the
+  verification.
+* **A record of corrections.** One claim was made during the work and refuted by its own follow-up.
+  Two findings survived verification but, on a literature check, turned out to be already known or
+  already predicted. One prediction was pre-registered, confirmed once, and then refuted twice. All
+  of them are kept in the record with their corrections, because a repository that keeps only what
+  survived is not a record.
 
 Section 10 of [docs/FINDINGS.md](docs/FINDINGS.md) states what is and is not established.
 
@@ -79,7 +83,10 @@ with its correction.
 | Consistent with the Agarwal–Kindler–Kolla–Trevisan hypercube conjecture | at dimensions 4 and 5 the degree-4 value equals the optimum, sandwiching the triangle-inequality SDP to exactness | measurement at d ≤ 5 only — 32 vertices, weak evidence |
 | **On Paley graphs SoS₄ = SoS₂ = ½ + (1+√p)/(2(p−1))** for p = 29, 37, 41, 53, 61 | certified lower bounds equal to the closed form to 1e-9, upper bounds within 6e-8 (1.6e-5 at p = 61); p = 13, 17 lose the gap | **predicted**: Mohanty–Raghavendra–Xu imply this asymptotically (`mrx_check.py`). The exact finite-p equality and its threshold are not implied by their lift |
 | K_n: degree 4 adds nothing to degree 2, SoS₄ = SoS₂ = n/(2(n−1)) for odd n | our solver, and Laurent's explicit certificate reproducing it to 2e-16 (`laurent_kn.py`) | **known**: a corollary of Laurent 2003, whose result covers every degree up to n−1 |
-| **The Paley extension, determined**: the question reduces to one feasibility SDP; p = 13, 17 are **proved** infeasible by exact integer dual certificates; p = 29 is feasible with a unique extension; p = 37 with a 2-parameter family, both exactly on the boundary | rank M_even = m(m−3)/2, ker Q = 2m, a single psd form on Sym²(E_min) correcting the Wick lift, circulant on the zero-frequency block | measurement + two proved negatives (section 13) |
+| **SoS₄ < SoS₂ on the Paley graphs at p = 13 and 17** | exact integer dual certificates: orbit sums exactly zero, all Bareiss minors positive, sign decided in integers | **proved** (section 13.2) |
+| **The Paley extension is a rigid bilinear object**: the question reduces to one feasibility SDP, and where an extension exists it is a single psd form on Sym²(E_min) correcting the Wick lift | rank M_even = (p−1)(p−7)/8 at p = 29, 37, 41, 53, 61; ker = 2m; block dimensions closed form, verified for 15 primes | measurement, 5 of 5 (section 13) |
+| At p = 29 the extension is **unique**, and lives in Q(√p, ζ₍ₚ₋₁₎⁄₄) rather than Q(√p) | block data rational with denominator 3p, so the eigenvalues are a DFT of rationals | measurement (section 13.5) |
+| The family of extensions grows: 0, 2, 3, 7, 11 at p = 29, 37, 41, 53, 61 | Gram gaps of eight to eleven orders of magnitude | measurement; **no formula fits**, and a pre-registered one was refuted |
 | A claimed growth rate | C₄ ≈ 1.046 + 0.0127·ln n at R² 0.998 on four points, killed by p = 73 and p = 89 | **retracted**, kept in the record |
 
 ## Figure
@@ -105,7 +112,7 @@ python -m pip install -r requirements.txt
 All commands run from `experiments/`.
 
 ```bash
-python reproduce.py                    # recompute every published number: 58 checks, 0 mismatches
+python reproduce.py                    # recompute every published number (see Reproducibility notes)
 ```
 
 Self-tests of the machinery:
@@ -151,6 +158,22 @@ python mrx_check.py                            # what the MRX lift already predi
 python laurent_kn.py                           # Laurent's 2003 certificate for K_n, checked against our solver
 ```
 
+Day 4, the structure of the Paley extension (see FINDINGS section 13):
+
+```bash
+python paley_exact.py --validate 29            # the reduction, checked against the ADMM solution
+python paley_exact.py 13 17 29                 # decide each p by one feasibility SDP
+python paley_certify.py 13 17                  # EXACT integer proofs that no extension exists
+python paley_rigid.py 29                       # t* = 0 is rigidity; is the extension unique?
+python paley_bilinear.py 29                    # is the extension bilinear? (yes)
+python paley_form.py 29                        # the single psd form Q, and its spectrum
+python paley_blocks.py 29                      # Q by frequency class; the rational block data
+python paley_circulant_block.py 29             # the zero-frequency circulant -> the cyclotomic field
+python paley_blockdims.py 150                  # the closed-form block dimensions, 15 primes
+python paley_big.py 53 61                      # rank and family dimension without dense matrices
+python paley_family.py 41                      # where the freedom lives (not in one block)
+```
+
 ## Repository layout
 
 ```
@@ -172,8 +195,9 @@ python laurent_kn.py                           # Laurent's 2003 certificate for 
 
 ## Reproducibility notes
 
-- `experiments/reproduce.py` reports **58 checks, 0 mismatches**. It recomputes each quantity rather
-  than reading it from a result file.
+- `experiments/reproduce.py` recomputes each published quantity rather than reading it from a result
+  file. The day-1-3 suite reported **58 checks, 0 mismatches**; day-4 checks have been added and the
+  combined count is being recomputed, so no total is claimed here until that run completes.
 - Every gap shape reported as a value comes from a *tight* certificate, meaning the certified lower and
   upper bounds on the relaxation agree to the printed precision, together with a proved optimum. Where
   either is missing the number is reported as an interval and labelled as such.

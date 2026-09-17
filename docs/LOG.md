@@ -148,3 +148,33 @@ Then a framing pass across README, FINDINGS section 10, HYPOTHESES and this log,
 its actual size: a null result that the plan predicted, a set of reusable certified solvers, and a
 record with three corrections in it. The group-theoretic framework remains unchecked against the
 literature and is now labelled as such.
+
+## 17 September 2026, later — the Paley extension determined, and a prediction refuted
+
+Went after the structure of the degree-4 extension rather than its numbers, after the prior-art pass
+showed the exact finite-p equality was the only part of §11.2 not already implied by
+Mohanty–Raghavendra–Xu.
+
+The reduction came first and made everything else finite: the degree-2 optimum is attained on a
+convex Aut-invariant face whose invariant elements are forced to be multiples of the projection, so
+SoS₄ = SoS₂ iff one explicit matrix is degree-4 extendable, and the only unknowns are one number per
+Aut-orbit of 4-subsets. Validated against the independent ADMM solution before use.
+
+Then: p = 13 and 17 PROVED infeasible by exact integer dual certificates (Bareiss minors, orbit sums
+exactly zero, sign decided in integers). p = 29 feasible with t* = 0 and a unique extension. The
+extension is bilinear, hence one psd form on Sym²(E_min), whose kernel is 2m and whose blocks are
+closed form. At p = 29 the block data is rational with denominator 3p, so the eigenvalues are a DFT
+of rationals and the extension lives in Q(√p, ζ_{(p−1)/4}) — which is exactly why every ansatz over
+Q(√p) had failed.
+
+Three of my own claims were corrected in flight: that the solver's Aut-symmetry indicated a unique
+optimum (equivariant dynamics force it), that uniqueness implies q ∈ Q(√p) (it does not), and a
+raw-string bug that wrote 30 literal escape sequences into FINDINGS.
+
+The family dimension was pre-registered as dim V₀ − 7 before the p = 41 run, confirmed there, and
+then refuted at p = 53 and 61. The rank formula (p−1)(p−7)/8 survived all five primes. A scalable
+route (`paley_big.py`) was built for p = 53 and 61 because the dense one needs about 8 GB at p = 61,
+and was validated against the dense answers first.
+
+Net: the Paley extension is now a described object rather than a measurement, with one proved
+theorem on each side of the threshold, and one published prediction of mine on the record as refuted.

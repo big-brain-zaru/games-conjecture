@@ -248,3 +248,35 @@ Ledger, 17 Sep 2026 (prior-art pass): two confirmed hypotheses reclassified agai
 H15's phenomenon is implied asymptotically by MRX; its exact finite-p form is not. The complete-graph
 identity inside H17 is a corollary of Laurent 2003 in a stronger form. Neither was refuted — both are
 correct — but neither is new, and the record now says so. No hypothesis changed truth value.
+
+
+## H19 — The Paley degree-4 extension is a rigid, bilinear object over a cyclotomic field
+[computed, day 4, PARTLY CONFIRMED and PARTLY REFUTED]
+
+Statement, in the form it survived day 4.  For Max-Cut on P_p, SoS₄ = SoS₂ iff one explicit matrix is
+degree-4 extendable (§13.1, elementary and validated to 2.6e-12).  Where an extension exists it is
+bilinear: a single psd form Q on Sym²(E_min) with
+
+  * rank M_even = (p−1)(p−7)/8 = m(m−3)/2   — **CONFIRMED at p = 29, 37, 41, 53, 61 (5 of 5)**
+  * ker Q = 2m, one direction per nonzero frequency block   — confirmed
+  * dim V₀ = (p−1)/4, dim V_res = ⌈(p−1)/8⌉, dim V_non = ⌊(p−1)/8⌋, dim Sym² = (p²−1)/8
+    — proved by counting, verified for all 15 primes ≡ 1 mod 4 up to 149
+  * Q|V₀ a circulant over C_{(p−1)/4} whose trivial character carries eigenvalue exactly m
+    — confirmed at p = 29 and 37
+  * at p = 29, where the extension is unique, the block data is rational with denominator 3p, so the
+    eigenvalues are a DFT of rationals and the extension lives in Q(√p, ζ_{(p−1)/4}), NOT Q(√p)
+
+Decisive tests and verdicts:
+  * existence: **PROVED absent** at p = 13, 17 by exact integer dual certificates; present at
+    p = 29, 37, 41, 53, 61 by exhibited points.  Feasibility begins exactly where dim V_non = 3.
+  * uniqueness: unique at p = 29 only; families of dimension 2, 3, 7, 11 at p = 37, 41, 53, 61.
+  * **family dimension = dim V₀ − 7: pre-registered, CONFIRMED at p = 41, then REFUTED at p = 53
+    (7 not 6) and p = 61 (11 not 8).**  No two- or three-term formula fits the five values.
+
+Consequence for the project: none of this changes C₄(P_p) → 1, so the Paley family still gives a
+vanishing gap shape and H18 stands.  What H19 adds is that the surviving degree-2 gap is not an
+accident of the solver but a rigid algebraic object, and that its arithmetic is cyclotomic rather
+than quadratic — which is why every ansatz over Q(√p) tried on days 3 and 4 had to fail.
+
+Ledger, day 4: rank formula CONFIRMED 5/5; block dimensions PROVED; existence threshold CONFIRMED;
+uniqueness REFUTED beyond p = 29; family-dimension formula REFUTED after two confirmations.

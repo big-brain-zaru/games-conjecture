@@ -178,6 +178,74 @@ def main():
     t, w = A.run(w0, rounds=6, iters=6000, tol=1e-9, kicks=2, sigma=0.3, verbose=False)
     check("class ascent on Z_9 recovers 1.074139", t, 1.074139, tol=1e-4)
 
+
+    print("== 9. Day 4: the Paley extension, structurally ==")
+    import itertools as _it
+    # 9a. block dimensions are closed form (pure counting, no solver)
+    from paley_blockdims import block_dims
+    for p_ in (29, 37, 41, 53, 61, 73, 89, 101):
+        d0, dres_s, dnon_s = block_dims(p_)
+        dres, dnon = dres_s.pop(), dnon_s.pop()
+        m_ = (p_ - 1) // 2
+        check(f"p={p_}: dim V_0 = (p-1)/4", d0, (p_ - 1) // 4, tol=0)
+        check(f"p={p_}: dim V_res = ceil((p-1)/8)", dres, -(-(p_ - 1) // 8), tol=0)
+        check(f"p={p_}: dim V_non = floor((p-1)/8)", dnon, (p_ - 1) // 8, tol=0)
+        check(f"p={p_}: dim V_0 + (p-1)/2*(res+non) = (p^2-1)/8",
+              d0 + (p_ - 1) // 2 * (dres + dnon), (p_ * p_ - 1) // 8, tol=0)
+        check(f"p={p_}: predicted rank (p-1)(p-7)/8 = m(m-3)/2",
+              (p_ - 1) * (p_ - 7) // 8, m_ * (m_ - 3) // 2, tol=0)
+
+    # 9b. Laurent's 1938 -- 2003 certificate for K_n is psd at order 2 and matches our numbers
+    from laurent_kn import laurent_a, closed_form_a, moment_matrix
+    for n_ in (5, 9, 15, 21):
+        a = laurent_a(n_)
+        check(f"K_{n_}: Laurent recurrence = closed form",
+              max(abs(a[2 * r] - closed_form_a(n_, r)) for r in range((n_ - 1) // 2 + 1)),
+              0.0, tol=1e-12)
+        M2, _ = moment_matrix(n_, a, 2)
+        check(f"K_{n_}: Laurent moment matrix psd at order 2",
+              1.0 if np.linalg.eigvalsh(M2).min() > -1e-9 else 0.0, 1.0, tol=0)
+        check(f"K_{n_}: Ehat[(sum x)^2] = 0 at Laurent's y",
+              n_ + n_ * (n_ - 1) * a[2], 0.0, tol=1e-12)
+
+    # 9c. the MRX lift parameters on the true Paley degree-2 optimum
+    from mrx_check import row as _mrx_row
+    for p_ in (29, 101, 401):
+        r = _mrx_row(p_)
+        check(f"p={p_}: canonical X attains the closed-form SoS_2",
+              r["sos2_residual"], 0.0, tol=1e-12)
+        check(f"p={p_}: MRX a_mag * sqrt(p) -> 1", r["a_mag_times_sqrt_p"], 1.0, tol=0.4)
+    r = _mrx_row(1009)
+    check("MRX loss/advantage ratio -> 8/sqrt(2)", r["loss_over_advantage"],
+          8 / math.sqrt(2), tol=0.2)
+
+    # 9d. the reduction of section 13.1, checked against the stored ADMM solution at p = 29
+    import os as _os
+    _y = _os.path.join(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))),
+                       "results", "paley_moments_29_y.npy")
+    if _os.path.exists(_y):
+        from paley_exact import build_parts, aut_orbits4
+        from circulant_sos import CirculantSoS, orbit_key
+        p_ = 29
+        chi_ = np.zeros(p_, dtype=int)
+        _qr = set(pow(a, 2, p_) for a in range(1, p_))
+        for k in range(1, p_):
+            chi_[k] = 1 if k in _qr else -1
+        H_ = sorted(set(min(x, p_ - x) for x in range(1, p_) if chi_[x] == 1))
+        C_ = CirculantSoS(p_, device="cpu").set_instance(H_)
+        yv = np.load(_y); yv = yv / yv[0]
+        M0, A, reps, X, pairs, pidx = build_parts(p_)
+        qv = np.array([yv[C_.orbs[orbit_key(set(S), p_)]] for S in reps])
+        Mv = M0 + sum(qv[k] * A[k] for k in range(len(reps)))
+        check("p=29: reduction -- M_even psd at the ADMM point",
+              1.0 if np.linalg.eigvalsh(Mv).min() > -1e-6 else 0.0, 1.0, tol=0)
+        check("p=29: reduction -- rank M_even = (p-1)(p-7)/8",
+              int((np.linalg.eigvalsh(Mv) > 1e-7).sum()), (p_ - 1) * (p_ - 7) // 8, tol=0)
+        check("p=29: degree-2 part equals the canonical X",
+              max(abs(yv[C_.orbs[orbit_key({0, d}, p_)]] -
+                      (-1 - math.sqrt(p_) * chi_[d]) / (p_ - 1)) for d in range(1, p_)),
+              0.0, tol=1e-8)
+
     print(f"\n{len(CHECKS)} checks, {len(FAIL)} mismatches   ({time.time()-t0:.0f}s)")
     if FAIL:
         print("mismatched:", ", ".join(FAIL))

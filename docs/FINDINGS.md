@@ -305,7 +305,7 @@ cyclic instances.
 `python experiments/reproduce.py` recomputes every headline number from scratch. It does not read them
 from result files.
 
-**58 checks, 0 mismatches** (47 seconds for the day-1–2 checks; the day-3 checks add a 29-vertex symmetry-reduced solve and a weight ascent, about 2 minutes on an idle GPU). It covers the degree-2 odd-cycle calibration, the degree-4
+The day-1–3 suite reported **58 checks, 0 mismatches** (47 seconds for day 1–2; the day-3 checks add a 29-vertex symmetry-reduced solve and a weight ascent). Day-4 checks have been added and the combined total is being recomputed, so it is not claimed here yet. The suite covers the degree-2 odd-cycle calibration, the degree-4
 solver validation on K₅, K₇, C₅ and Petersen, the certified champions at 9 and 17 vertices with their
 certificate widths, the agreement of the symmetry-reduced solver with the dense one, the Khot–Vishnoi
 construction (size, total weight, subcube values, three exact symmetry-reduced SDP values), the group
@@ -579,8 +579,18 @@ equals the closed form to 0.
 | 29 | 407 | 65 | −1.3e-12 | **feasible, exactly on the boundary** |
 | 37 | 667 | 109 | −5.5e-14 | **feasible, exactly on the boundary** |
 | 41 | 821 | 134 | −1.4e-12 | **feasible, exactly on the boundary** |
+| 53 | 1379 | 225 | — | **feasible** (point exhibited, λ_min −1.5e-10) |
+| 61 | 1831 | 301 | — | **feasible** (point exhibited, λ_min −1.5e-9) |
 
-**The two negatives are PROVED, not merely computed** (`paley_certify.py`). By the theorem of
+**At p = 53 and 61 the dense route does not fit in memory — one dense orbit indicator each would
+need about 8 GB at p = 61 — so feasibility there is established by *exhibiting* a point rather than
+by maximising t. `paley_big.py` takes the point from the symmetry-reduced ADMM solver, which is
+legitimate because its updates are equivariant from a symmetric start, and computes the rank and the
+family dimension without ever forming a dense indicator, using
+G[k,l] = ⟨A_k W, A_l W⟩ = tr(A_k A_l P) with P the kernel projector. It was validated against the
+dense answers at p = 29, 37 and 41 before use, reproducing 0, 2 and 3 exactly.
+
+The two negatives are PROVED, not merely computed** (`paley_certify.py`). By the theorem of
 alternatives, no q exists iff there is a Y with Y ⪰ 0, ⟨Y,A_k⟩ = 0 for every orbit, and
 ⟨Y,M0⟩ < 0. Because the A_k have pairwise disjoint supports and zero diagonal, an integer-scaled Y
 can be corrected to satisfy the orbit constraints *exactly* by integer redistribution, and no
@@ -616,31 +626,50 @@ next one up, a gap of twelve orders of magnitude. So:
 p = 29 is the threshold prime, where the extension first exists and is therefore rigid. Past it,
 extensions exist with room to move, but never with an interior.
 
-### 13.3a The family dimension, and a prediction that held
+### 13.3a The family dimension: a prediction that held twice, then failed twice
 
-| p | dim V_0 = (p−1)/4 | rank M_even | family dimension | singular-value gap |
-|---|---|---|---|---|
-| 13 | 3 | — | **infeasible** (proved) | — |
-| 17 | 4 | — | **infeasible** (proved) | — |
-| 29 | 7 | 77 | **0** (unique) | smallest sv 0.157 of largest |
-| 37 | 9 | 135 | **2** | 1.6e-11, 1.1e-11 vs 9.70 |
-| 41 | 10 | 170 | **3** | 2.7e-9, 2.1e-9, 1.9e-9 vs 13.4 |
+| p | dim V₀ = (p−1)/4 | rank M_even | predicted rank | family dimension | predicted | Gram gap |
+|---|---|---|---|---|---|---|
+| 13 | 3 | — | — | **none** (proved) | — | — |
+| 17 | 4 | — | — | **none** (proved) | — | — |
+| 29 | 7 | 77 | 77 | **0** (unique) | 0 ✓ | smallest sv 0.157 of largest |
+| 37 | 9 | 135 | 135 | **2** | 2 ✓ | 9.4e+01 vs −1.4e-12 |
+| 41 | 10 | 170 | 170 | **3** | 3 ✓ | 1.8e+02 vs 6.5e-09 |
+| 53 | 13 | 299 | 299 | **7** | 6 ✗ | 3.7e+02 vs 7.6e-09 |
+| 61 | 15 | 405 | 405 | **11** | 8 ✗ | 5.3e+02 vs 4.4e-06 |
 
-Every rank is (p−1)(p−7)/8 = m(m−3)/2, and every gap is ten orders of magnitude or more, so none
-of these counts is a tolerance artefact. The family dimension fits
+**The rank formula holds at all five feasible primes**: rank M_even = (p−1)(p−7)/8 = m(m−3)/2,
+giving 77, 135, 170, 299, 405. Nothing contradicts it.
 
-  **family dimension = dim V_0 − 7 = (p − 29)/4**
+**The family-dimension formula is refuted.** dim V₀ − 7 = (p−29)/4 was written into the repository as
+a prediction (commit `b7db208`) before the p = 41 run finished, and p = 41 confirmed it. It then
+failed at p = 53, where the family is 7 and not 6, and failed by more at p = 61, where it is 11 and
+not 8. Both misses are clean: the Gram matrix of the kernel conditions separates by eight to eleven
+orders of magnitude at every prime, so these are not threshold artefacts.
 
-at all three feasible primes. The p = 41 value was written into the repository as a prediction
-before that run finished (commit `b7db208`), so it is a confirmed prediction rather than a fit to
-three points. Extrapolating the same formula backwards gives −4 and −3 at p = 13 and 17, where the
-extension is proved not to exist, and 0 exactly at the threshold.
+**No formula fits the five values 0, 2, 3, 7, 11.** An exhaustive search over two- and three-term
+combinations of eighteen natural features — p, p², m, m², dim V₀ and its square and binomial, the two
+block dimensions with their squares, product and binomials, the orbit count K, and residues of p —
+returns zero exact fits. Four-term combinations return 39, which is meaningless: four free
+parameters through five points fits almost anything. The increments explain the difficulty: as p runs
+29, 37, 41, 53, 61 the family rises by 2, 1, 4, 4 while p rises by 8, 4, 12, 8, so the rate per unit
+p increases, yet no quadratic in p passes through all five either.
 
-`paley_family.py` then asks where the freedom lives, since the natural reading of the −7 would be
-"the V_0 circulant minus a fixed number of conditions". **It is not that.** At p = 41 each of the
-three null directions moves all three frequency classes, with overall shares 0.38 in V_0, 0.67 in
-the residue class and 0.63 in the non-residue class. So the formula is right at three primes and
-unexplained.
+This is consistent with an earlier finding rather than a surprise. §13.1 shows the forced entries
+impose only O(p) linear conditions on a form with O(p²) free parameters, so plain linear algebra
+would leave a quadratic family. The measured families are far smaller, which means the
+positive-semidefiniteness constraint, not the linear constraints, is doing nearly all the work. The
+family dimension is therefore the dimension of a *face of the semidefinite cone*, and there is no
+reason to expect a counting formula. `paley_family.py` confirms the same thing from the other side:
+at p = 41 each of the three null directions moves all three frequency classes, with shares 0.38,
+0.67 and 0.63, so the freedom is not confined to one block.
+
+Two caveats are recorded rather than buried. The p = 61 solve converged less tightly than the others
+(λ_min −1.5e-9 against −1e-10 elsewhere), so its Gram gap is eight orders rather than eleven and 11
+is the softest number in the table. And the family dimension is the dimension of the face only if the
+point used lies in its relative interior; the ADMM is not steered there. The p = 37 cross-check was
+run precisely to test that, and the ADMM point reproduces the 2 obtained from the interior-maximising
+dense solution, as do p = 29 and p = 41.
 
 ### 13.4 The extension is one quadratic form on Sym²(E_min)
 
@@ -718,8 +747,9 @@ Feasibility begins exactly where dim V_non reaches 3, which is p ≥ 29, matchin
 infeasibility at p = 13 (dim V_non = 1) and p = 17 (dim V_non = 2).
 
 Not established: a canonical choice inside the families at p > 29; a formula for the rational
-numerators valid for all p; why the family dimension is dim V_0 − 7 when the freedom is not confined
-to V_0; the behaviour at p = 53, 61; and a proof rather than a computation. Two claims made during
+numerators valid for all p; **any** formula for the family dimension, the pre-registered one having
+been refuted at p = 53 and 61; and a proof rather than a computation. The honest summary of the
+family dimension is a table of five measured integers with no known law behind them. Two claims made during
 this work were corrected before publication: that the solver's Aut-symmetry was evidence of a unique
 optimum (it is forced by equivariant dynamics from a symmetric start), and that uniqueness implies
 q ∈ Q(√p) (it does not, and 13.5 shows the field is strictly larger).
