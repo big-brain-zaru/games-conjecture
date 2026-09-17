@@ -357,11 +357,37 @@ Tools: `weight_ascent.py` (signed complete graph, both signs on every pair), `cl
 * **K₇ is a strict local maximum at 36/35.** More generally, for odd n,
   SoS₄(K_n) = SoS₂(K_n) = n/(2(n−1)), so C₄(K_n) = (n−1)²/(n(n−2)) → 1; for even n both equal the
   optimum. Degree 4 adds nothing to degree 2 on complete graphs (K₅ … K₂₁, certificates tight to 1e-7).
+  **Not new, and the published version is stronger — see the correction below.**
 * **Z₉ and Z₁₁**: from the all-minus seed one kick recovers the known maxima 1.074139 and 1.068701
   (the latter with a mixed sign pattern, classes {2,4} with signs (+,−)).
 * **Cay(Z₄₁, H₄) is a first-order stationary point of C₄ over all 40 class-sign weights**, and four
   kicks of size 0.3 find nothing better. Its value was re-certified: C₄ ∈ [1.093586, 1.093586],
   certificate width 1.4e-10, optimum proved by CP-SAT. The record stands and is locally optimal.
+
+**Correction (17 Sep 2026): the complete-graph identity is a corollary of Laurent (2003).**
+Max-Cut on K_n with unit weights is univariate — cutting a set of size w gives w(n−w) edges — so
+maximising the cut is minimising (Σᵢxᵢ)² over the hypercube, and for odd n the question is whether
+degree-d sum-of-squares can certify Σᵢxᵢ ≠ 0. That is the parity/knapsack refutation of Grigoriev
+(2001), settled for the Lasserre hierarchy by Laurent, *Lower bound for the number of iterations in
+semidefinite hierarchies for the cut polytope*, Math. Oper. Res. 28(4), 2003. Her Theorem 6 constructs
+explicitly, for odd n, the sequence a₀ = 1, a₂ᵣ₊₂ = −a₂ᵣ(2r+1)/(n−2r−1), y_I = a_{|I|} on even I and 0
+on odd I, and proves M_{(n−1)/2}(y) ⪰ 0. Since a₂ = −1/(n−1), that y sits exactly at the basic SDP
+optimum n/(2(n−1)) with Ẽ[(Σᵢxᵢ)²] = 0. Feasibility at order (n−1)/2 implies it at every lower order,
+so degree 4 is covered for every odd n ≥ 5.
+
+`laurent_kn.py` rebuilds her y and checks it: the degree-4 moment matrix has λ_min ≥ −1.2e-15,
+Ẽ[(Σᵢxᵢ)²] = 0 exactly, and the value and gap shape it certifies match n/(2(n−1)) and
+(n−1)²/(n(n−2)) to 2e-16 for n = 5 … 21 — the same numbers our ADMM solver measured, so this also
+serves as an independent check of that solver against a published closed-form certificate.
+
+The published statement is strictly stronger than ours: it holds for **every degree up to n−1**, not
+just degree 4, so C_d(K_n) = (n−1)²/(n(n−2)) for all d ≤ n−1. That is worth keeping for a reason
+beyond the retraction. It is a family where the gap shape is known exactly at every degree, resists
+sum-of-squares to degree linear in n, and still has gap shape tending to 1. **Resistance to high
+sum-of-squares degree does not imply a large gap shape**, which is the quantity the Khot–Moshkovitz
+question asks about. The two are measuring different things, and only the second one matters here.
+
+---
 
 ### 11.2 The Paley graphs: the degree-2 gap survives degree 4 exactly
 

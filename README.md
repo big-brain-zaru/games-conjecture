@@ -51,7 +51,7 @@ At degree 2 the supremum is infinite: odd cycles give C_2 = 4L/π². At degree 4
 | **On Paley graphs the degree-2 gap survives degree 4 exactly**: SoS₄ = SoS₂ = ½ + (1+√p)/(2(p−1)) for p = 29, 37, 41, 53, 61 | certified lower bounds equal to the closed form to 1e-9, upper bounds within 6e-8 (1.6e-5 at p = 61); p = 13, 17 lose the gap. Mohanty–Raghavendra–Xu predict this asymptotically; the exact finite-p equality and its threshold are not implied by their lift (`mrx_check.py`) | verified (day 3) |
 | **Degree 4 is exact on every sparse graph tested** | random cubic n = 12–32 (girth up to 5, C₂ up to 1.90), the McGee cage, random d-regular d = 4, 6, …, 18 at n = 24 | verified (day 3) |
 | The record is **locally optimal**: a certified alternating LP/SoS ascent over all 40 class-sign weights of Z₄₁ finds no improvement | stationary point; kicks fail; re-certified 1.093586 | verified (day 3) |
-| K_n: degree 4 adds nothing to degree 2 | SoS₄(K_n) = SoS₂(K_n) = n/(2(n−1)) for odd n, so C₄ → 1 | verified |
+| K_n: degree 4 adds nothing to degree 2 | SoS₄(K_n) = SoS₂(K_n) = n/(2(n−1)) for odd n, so C₄ → 1 | **not new**: a corollary of Laurent 2003, whose result covers every degree up to n−1. Her certificate reproduces our numbers to 2e-16 (`laurent_kn.py`) |
 
 ## Figure
 
@@ -113,6 +113,7 @@ python expander_gap.py --n 16 24 --d 3         # random regular graphs: degree 2
 python group_sweep.py --max_order 60 --min_dim 3   # non-abelian sweep, batched, routed by carrier irrep
 python hypercontract.py group                  # 2->4 norm of the carrier eigenspace vs retention
 python mrx_check.py                            # what the MRX lift already predicts on Paley, and what it cannot
+python laurent_kn.py                           # Laurent's 2003 certificate for K_n, checked against our solver
 ```
 
 ## Repository layout
@@ -180,6 +181,11 @@ python mrx_check.py                            # what the MRX lift already predi
   CCC 2023 — the same graph at the same degree, for a different objective.
 - C. de Boor, *In Search of Degree-4 Sum-of-Squares Lower Bounds for MaxCut*, CMU-CS-19-118, 2019 —
   the analytic attack on the sparse regime measured in section 11.3.
+- M. Laurent, *Lower bound for the number of iterations in semidefinite hierarchies for the cut
+  polytope*, Math. Oper. Res. 28(4), 2003 — subsumes the complete-graph identity of section 11.1, at
+  every degree up to n−1 rather than only 4.
+- D. Grigoriev, *Complexity of Positivstellensatz proofs for the knapsack*, Comput. Complexity 10, 2001
+  — the parity refutation underlying that result.
 
 Full bibliographies are in `docs/literature/`.
 

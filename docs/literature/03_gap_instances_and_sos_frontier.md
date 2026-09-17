@@ -24,6 +24,14 @@ bundle defined by (f, g) = ([P_i]χ_S, [P_j]χ_T): π(T⋆U) = S⋆U, i.e. **lab
   to degree 4, giving degree-4 value ≥ ½ + (√(d−1)/d)(1 − ε − γ(ε)/√d). Asymptotic in n. **[known;
   measured at finite n in FINDINGS 11.2–11.3, where the Paley family attains it exactly from p = 29 and
   the sparse family does not attain it at any computable size]**
+* Grigoriev 2001, *Complexity of Positivstellensatz proofs for the knapsack* / *Linear lower bound on
+  degrees of Positivstellensatz calculus proofs for the parity*: degree lower bounds for refuting
+  Σᵢxᵢ = 0 over the hypercube with n odd. **[known]**
+* Laurent, *Lower bound for the number of iterations in semidefinite hierarchies for the cut polytope*,
+  Math. Oper. Res. 28(4), 2003: ⌈n/2⌉ Lasserre iterations are needed for CUT(K_n); Theorem 6 gives an
+  explicit PSD moment matrix M_{(n−1)/2}(y) sitting at the basic SDP optimum. **[known; this SUBSUMES
+  the complete-graph identity of FINDINGS 11.1 — see the correction there. Verified in
+  `laurent_kn.py`]**
 * Kunisky–Bandeira, *A tight degree 4 sum-of-squares lower bound for the Sherrington–Kirkpatrick
   Hamiltonian*, Math. Prog. 2021: degree-4 SoS cannot certify an SK bound asymptotically below
   λ_max ≈ 2, i.e. degree 4 does not beat the spectral bound. **[known; the random analogue of
