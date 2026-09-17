@@ -189,7 +189,7 @@ instances L ≤ 19: corr(ρ, H) = 0.42, corr(ρ, mult) = 0.39, driven by disjoin
 the K_n identity); mean retention 0.024 at multiplicity 2, 0.054 at multiplicity 4.
 **Verdict: WEAKLY SUPPORTED, not decisive.**  The non-abelian sweep past order 21 was stopped (no output in 18 h).
 
-## H15 — On the Paley graphs the degree-2 gap survives degree 4 completely  [computed, being certified]
+## H15 — On the Paley graphs the degree-2 gap survives degree 4 completely  [computed, CONFIRMED but not new]
 
 Stored generalised-Paley data (`genpaley.jsonl`) show SoS₄ = SoS₂ = ½ + (1+√p)/(2(p−1)) to five
 decimals for Max-Cut on P_p at p = 29, 37, 41, 53, 61, 73, whereas p = 13 (SoS₄ = opt = 2/3) and
@@ -199,6 +199,13 @@ Tests: `paley_lift.py` (two-sided certificates at 1e-9), `paley_moments.py` (str
 degree-4 moments by Legendre pattern), `wick_lift.py` (the naive scaled Wick lift is NOT PSD on any
 of them — the extension is subtler than the Gaussian formula).
 Caveat: C₂(P_p) → 1, so this family gives retention 1 of a vanishing gap; no growth.
+**Verdict (17 Sep 2026): CONFIRMED at p = 29, 37, 41, 53, 61, and NOT NEW.** MRX Theorems 1.2/1.3 are
+general, not specific to random d-regular graphs and SK. Applied to the Paley degree-2 optimum
+(`mrx_check.py`) their loss parameter is Θ(C/√p) against a loss-to-advantage ratio tending to 8/√2,
+so they already imply SoS₄ = SoS₂(1−o(1)) asymptotically. What is not implied: their bound is vacuous
+below p of order (142C)², and their map divides the degree-2 part by 1+α > 1, so it cannot produce the
+exact equality measured here. The exact finite-p statement and the p = 29 threshold remain
+unexplained; the phenomenon does not.
 
 ## H16 — The gap shape of Max-Cut on cubic expanders (C₂ ≈ 2.7) survives degree 4  [computed, OPEN]
 
@@ -219,7 +226,8 @@ monotone; kicks escape first-order stationary points.  Findings: random dense in
 are degree-4 exact (the ascent cannot even start); K₇ is a strict local optimum at 36/35; Z₉ recovers the
 known 1.074139 from the all-minus seed by one kick; Cay(Z₄₁,H₄) is a first-order stationary point of C₄
 over all 40 (class, sign) weights.  K_n itself: SoS₄(K_n) = SoS₂(K_n) = n/(2(n−1)) for odd n, so
-C₄(K_n) = (n−1)²/(n(n−2)) → 1 (`kn_gap.py`).
+C₄(K_n) = (n−1)²/(n(n−2)) → 1 (`kn_gap.py`) — **not new**, a corollary of Laurent 2003 that holds at
+every degree up to n−1 (`laurent_kn.py`, which also serves as an independent check of our solver).
 
 
 ## H18 — A trade-off: at degree 4 the degree-2 gap survives only where it vanishes  [computed, OPEN]
@@ -232,5 +240,11 @@ Prediction: no instance with n ≤ 50 has C₄ > 1.2.  Refutation would be a sin
 Consequence if true: the Khot–Moshkovitz question at degree 4 is decided only in the asymptotic
 regime of the lifting theorems, beyond exact computation.
 
-Ledger, day 3: H15 CONFIRMED at p = 29, 37, 41 (certified), H16 REFUTED at n ≤ 32 (degree 4 exact on
-all sparse graphs tested), H17 tools validated (Z₉, Z₁₁, Z₄₁ reproduced), H14 weakly supported (partial data).
+Ledger, day 3: H15 CONFIRMED at p = 29, 37, 41, 53, 61 (certified) but NOT NEW, H16 REFUTED at n ≤ 32
+(degree 4 exact on all sparse graphs tested), H17 tools validated (Z₉, Z₁₁, Z₄₁ reproduced), H14 weakly
+supported (partial data).
+
+Ledger, 17 Sep 2026 (prior-art pass): two confirmed hypotheses reclassified against the literature.
+H15's phenomenon is implied asymptotically by MRX; its exact finite-p form is not. The complete-graph
+identity inside H17 is a corollary of Laurent 2003 in a stronger form. Neither was refuted — both are
+correct — but neither is new, and the record now says so. No hypothesis changed truth value.

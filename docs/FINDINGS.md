@@ -1,12 +1,19 @@
 # Findings
 
-A computational attack on the Unique Games Conjecture, 13–14 September 2026.
+A computational investigation of one scalar derived from the Unique Games Conjecture,
+13–14 September 2026, with a prior-art pass on 17 September 2026.
 
 Every statement is tagged **[computed]** (produced and verified here, with the result file named),
 **[reasoning]** (an argument, stated as such), or **[source]** (read from a primary source, cited in
 `docs/literature/`). Nothing is claimed without a certificate, an exhaustive enumeration, or an
-explicit label saying which it is. Where I got something wrong during the work the error is kept in
-place and marked, because the corrections are part of the result.
+explicit label saying which it is.
+
+Three things in this record needed correcting, and all three are kept in place and marked. Section 4
+is a claim that was simply wrong and was refuted by its own follow-up. Section 11.1 is a correct
+result that a literature check showed was already published in 2003, in a stronger form. Section 11.2
+is a correct measurement whose asymptotic version was already implied by a 2020 theorem that this
+record had described too narrowly. The distinction between the three matters, so they are labelled
+separately rather than lumped together as "errors".
 
 ---
 
@@ -308,16 +315,27 @@ framework reproducing Khot–Vishnoi, and primal equals dual for the certified b
 
 ## 10. Scope
 
+**The headline is a null result.** Across every family searched — all circulants with L odd ≤ 19 and
+≤ 3 connection classes, all instance shapes on ≤ 6 vertices, the generalised Paley family, non-abelian
+Cayley graphs to order 21, random and structured sparse graphs to 32 vertices, complete graphs,
+cycles, hypercubes — the largest certified degree-4 gap shape is **1.093586**, and degree 4 is exact or
+nearly exact nearly everywhere. Nothing here suggests the supremum is finite, and nothing here
+suggests it is infinite. The measurement simply does not reach far enough to tell, and section 11.5
+argues that no search of this kind will.
+
 What this project establishes:
 
-* The reformulation of section 1 and the inequality of section 2, both elementary and both checked.
-* A certified maximum gap shape of **1.093586** over everything searched, at the Cayley graph of the
-  quartic residues modulo 41.
-* Complete, not merely extensive, coverage of the circulant families swept, in the sense of section 2.
-* A construction framework for non-abelian unique games that reproduces Khot–Vishnoi as a special case.
-* (Day 3) SoS₄ = SoS₂ exactly on the Paley graphs P_p for p = 29, 37, 41, 53, 61 (lower bounds certified to
-  1e-9), degree-4 exactness on every sparse graph tested to 32 vertices and to degree 18, and local
-  optimality of the 1.093586 record under class-weight perturbation — section 11.
+* The reformulation of section 1 and the inequality of section 2. Both are elementary one-line
+  arguments. The inequality is the one with consequences: it is what makes a finite sweep report
+  *absence* rather than *failure to find*.
+* The null measurement above, with two-sided certificates and proved optima throughout, and complete
+  coverage of the circulant families swept in the precise sense of section 2.
+* Working, self-tested, certified solvers — including degree-4 sum-of-squares symmetry-reduced over an
+  arbitrary finite group through numerically computed irreps, and a certified monotone ascent over
+  instance weights. This is the part most likely to be useful to someone else.
+* A construction framework for non-abelian unique games that reproduces Khot–Vishnoi as the abelian
+  case. **Its novelty has not been checked against the literature.**
+* Exact basic-SDP values for the Khot–Vishnoi game (section 6).
 
 What it does **not** establish:
 
@@ -329,6 +347,21 @@ What it does **not** establish:
 * The degree-2 champion only becomes convincing well past the sizes where degree-4 certificates are
   affordable, so a flat degree-4 curve up to 41 vertices is weak evidence for anything.
 * No new hardness result, no new algorithm, and no progress on the conjecture itself.
+* Two findings that read as discoveries in the day-3 draft are not new. The complete-graph identity
+  (11.1) is a corollary of Laurent 2003 and holds at every degree up to n−1, not just 4. The Paley
+  behaviour (11.2) is implied asymptotically by Mohanty–Raghavendra–Xu, whose theorems are general
+  rather than specific to the families they apply them to. What survives of the second is the exact
+  finite-p equality and its threshold at p = 29; what survives of the first is a calibration point,
+  not a result.
+* The hypercube evidence of section 7 reaches dimension 5, which is 32 vertices. It is consistent with
+  the Agarwal–Kindler–Kolla–Trevisan conjecture and is weak evidence for it.
+
+**Measured against the plan.** `docs/PLAN.md` set the failure criterion before the search began:
+"Track A finds no degree-4 gap with C > 2 at n ≤ 60 after the full search budget → publish the negative
+map (best C per (n, k, structure), with certificates) and the tool." That criterion was met. The
+largest value found is 1.0936, not above 2, and this repository is the pre-committed response. The
+outcome is a failure to find, reported as such; it is not a reinterpretation of the goal after the
+fact.
 
 ---
 
@@ -498,10 +531,13 @@ weakly supported; nothing in either sweep approaches the Paley behaviour.
 
 Stated as a hypothesis (H18 in HYPOTHESES.md): **at degree 4, the degree-2 gap survives only on
 pseudo-random dense structure, where it is vanishing; where it is large (sparse, high girth) it is
-spurious at every accessible size.** If that trade-off is real, the Khot–Moshkovitz question at
-degree 4 is decided only at sizes where the lifting theorems start to bite, far beyond exact
-computation, and no computational search of this kind can settle it. That is a negative result about
-the method, reached by the method, and it is the honest end point of this line.
+spurious at every accessible size.** It is a hypothesis, not a theorem, and it is supported by the
+instances listed above and by nothing else.
+
+If it is right, the Khot–Moshkovitz question at degree 4 is decided only at sizes where the lifting
+theorems begin to apply, which is far beyond exact computation, and a search of this kind cannot
+settle it. That is a statement about the limits of the method used here. It does not constrain the
+answer to the question, and it would not survive a single certified counterexample.
 
 ---
 

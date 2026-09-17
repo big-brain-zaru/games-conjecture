@@ -122,3 +122,29 @@ hypercontractivity digest on 321 instances (weak support for H14; the outlier is
 The non-abelian sweep past order 21 and the circulant run past L = 19 were stopped as not finishable
 in useful time on a shared machine; both are recorded as partial. FINDINGS section 11 is the day-3
 record; reproduce.py: 58 checks, 0 mismatches. Pushed to the private repository.
+
+## 17 September 2026 — prior-art pass and framing
+
+Checked the two most interesting day-3 findings against the literature before considering publication.
+Both are correct and neither is new.
+
+The complete-graph identity is a corollary of Laurent, Math. Oper. Res. 28(4) 2003, Theorem 6, via
+Grigoriev's parity refutation: Max-Cut on K_n with unit weights is minimising (Σᵢxᵢ)², and her explicit
+pseudo-moment sequence with a₂ = −1/(n−1) is PSD at Lasserre order (n−1)/2. So the identity holds at
+every degree up to n−1, not just 4. `laurent_kn.py` rebuilds her certificate; it reproduces our
+numbers to 2e-16, which doubles as an independent check of the ADMM solver.
+
+The Paley result is implied asymptotically by Mohanty–Raghavendra–Xu, whose Theorems 1.2/1.3 are
+general rather than specific to random d-regular graphs and SK, as this record had described them.
+`mrx_check.py` measures their loss parameters on the true Paley degree-2 optimum: α = Θ(C/√p) against
+a loss-to-advantage ratio tending to 8/√2. What survives is the exact finite-p equality, which their
+map structurally cannot give, and the threshold at p = 29.
+
+No published Max-Cut-on-Paley statement above degree 2 was found. Nearest neighbours added to the
+survey: Kunisky–Yu CCC 2023 (Paley, clique number), de Boor CMU-CS-19-118 (degree-4 MaxCut, random
+regular only), Kunisky–Bandeira (the SK analogue), Laurent 2003 and Grigoriev 2001.
+
+Then a framing pass across README, FINDINGS section 10, HYPOTHESES and this log, to state the work at
+its actual size: a null result that the plan predicted, a set of reusable certified solvers, and a
+record with three corrections in it. The group-theoretic framework remains unchecked against the
+literature and is now labelled as such.

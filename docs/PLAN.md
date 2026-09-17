@@ -95,6 +95,13 @@ alphabets). Reporting only if a quantitative handle emerges.
 
 ## What would constitute failure, stated upfront
 
+> **Outcome, recorded 17 September 2026.** The first criterion below was met: the full search found no
+> degree-4 gap shape above 1.093586, nowhere near C > 2. The pre-committed response was to publish the
+> negative map and the tool, and that is what the repository is. The second criterion was also met at
+> the sizes reached (dimension 5). Track C reached the k = 3 exact basic-SDP value; the k = 3 *optimum*
+> is still only bracketed. This section is left exactly as written before the search, so that the
+> criteria can be read against the outcome rather than after it.
+
 - Track A finds no degree-4 gap with C > 2 at n ≤ 60 after the full search budget → publish the
   negative map (best C per (n, k, structure), with certificates) and the tool.
 - Track B: triangle SDP within O(ε) on everything tried → evidence for AKKT's conjecture, published as
