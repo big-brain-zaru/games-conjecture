@@ -1,0 +1,28 @@
+[
+ {
+  "p": 13,
+  "proved": true,
+  "n": 79,
+  "n_orbits": 13,
+  "denom": 100000,
+  "constraint_residual": 0,
+  "bareiss_pd": true,
+  "A": "80601600",
+  "B": "-26220012",
+  "sign": -1,
+  "numerical_dual_value": -12.403239177538937
+ },
+ {
+  "p": 17,
+  "proved": true,
+  "n": 137,
+  "n_orbits": 22,
+  "denom": 100000,
+  "constraint_residual": 0,
+  "bareiss_pd": true,
+  "A": "213877792",
+  "B": "-54242240",
+  "sign": -1,
+  "numerical_dual_value": -7.476919897379702
+ }
+]
