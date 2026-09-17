@@ -543,43 +543,44 @@ answer to the question, and it would not survive a single certified counterexamp
 
 ## 13. The Paley extension, structurally  [computed, 17 September 2026]
 
-Section 11.2 measured that SoS\u2084 = SoS\u2082 on P_p from p = 29 and left the extension
+Section 11.2 measured that SoS₄ = SoS₂ on P_p from p = 29 and left the extension
 unexplained. This section determines it. Everything below is **[computed]** except the
 reduction of 13.1, which is **[reasoning]** and is validated numerically.
 
 ### 13.1 The reduction: one small feasibility SDP
 
 For Max-Cut on P_p the degree-2 optimum is attained exactly on
-F = {X \u2ab0 0, diag X = 1, range X \u2286 E_min}, because min \u27e8A,X\u27e9 \u2265 \u03bb_min tr X with equality iff
-the range sits in the \u03bb_min eigenspace. F is convex and Aut-invariant, so if any X in F is
+F = {X ⪰ 0, diag X = 1, range X ⊆ E_min}, because min ⟨A,X⟩ ≥ λ_min tr X with equality iff
+the range sits in the λ_min eigenspace. F is convex and Aut-invariant, so if any X in F is
 degree-4 extendable then so is its Aut-average; and the Aut-invariant elements of F are forced
 to be multiples of the projection. Hence
 
-> **SoS\u2084(P_p) = SoS\u2082(P_p) \u21d4 the single matrix X_ij = (\u22121 \u2212 \u221ap\u00b7\u03c7(i\u2212j))/(p\u22121) is degree-4
+> **SoS₄(P_p) = SoS₂(P_p) ⇔ the single matrix X_ij = (−1 − √p·χ(i−j))/(p−1) is degree-4
 > extendable**, and the extension may be taken Aut-invariant.
 
 Setting odd moments to zero (valid, the instance is invariant under a global sign flip), the
-level-2 moment matrix splits as M_odd \u2295 M_even with M_odd = X already PSD. M_even is indexed
-by {\u2205} \u222a {pairs}, its diagonal is 1, its \u2205-row and its share-one-point entries are forced to be
+level-2 moment matrix splits as M_odd ⊕ M_even with M_odd = X already PSD. M_even is indexed
+by {∅} ∪ {pairs}, its diagonal is 1, its ∅-row and its share-one-point entries are forced to be
 entries of X, and the **only** unknown is one number q(S) per 4-subset. So the whole question is
 
-> \u2203 q : M_even(q) \u2ab0 0 ? \u2014 a feasibility SDP with 1 + C(p,2) rows and one variable per Aut-orbit
+> ∃ q : M_even(q) ⪰ 0 ? — a feasibility SDP with 1 + C(p,2) rows and one variable per Aut-orbit
 > of 4-subsets (65 at p = 29, 109 at 37, 134 at 41).
 
 `paley_exact.py --validate 29` checks the reduction against the independent ADMM solution: the
-degree-2 part agrees with the canonical X to 2.6e-12, \u03bb_min(M_even) = \u22122.6e-11, and the objective
+degree-2 part agrees with the canonical X to 2.6e-12, λ_min(M_even) = −2.6e-11, and the objective
 equals the closed form to 0.
 
-### 13.2 Decisions: solving max t s.t. M_even(q) \u2212 tI \u2ab0 0
+### 13.2 Decisions: solving max t s.t. M_even(q) − tI ⪰ 0
 
 | p | rows | orbit variables | t* | verdict |
 |---|---|---|---|---|
-| 13 | 79 | 13 | \u22120.157 | **infeasible**, SoS\u2084 < SoS\u2082 |
-| 17 | 137 | 22 | \u22120.0546 | **infeasible**, SoS\u2084 < SoS\u2082 |
-| 29 | 407 | 65 | \u22121.3e-12 | **feasible, exactly on the boundary** |
+| 13 | 79 | 13 | −0.157 | **infeasible**, SoS₄ < SoS₂ |
+| 17 | 137 | 22 | −0.0546 | **infeasible**, SoS₄ < SoS₂ |
+| 29 | 407 | 65 | −1.3e-12 | **feasible, exactly on the boundary** |
+| 37 | 667 | 109 | −5.5e-14 | **feasible, exactly on the boundary** |
 
-The two negatives carry exact dual certificates (`paley_certify.py`): a rational Y with Y \u227b 0,
-\u27e8Y,A_k\u27e9 = 0 exactly for every orbit, and \u27e8Y,M0\u27e9 < 0 decided exactly in Q(\u221ap). The A_k have
+The two negatives carry exact dual certificates (`paley_certify.py`): a rational Y with Y ≻ 0,
+⟨Y,A_k⟩ = 0 exactly for every orbit, and ⟨Y,M0⟩ < 0 decided exactly in Q(√p). The A_k have
 pairwise disjoint supports and zero diagonal, which is what makes the rounding exact.
 
 ### 13.3 t* = 0 is rigidity, and rigidity determines the extension
@@ -587,64 +588,94 @@ pairwise disjoint supports and zero diagonal, which is what makes the rounding e
 t* = 0 means the feasible set has **empty interior**: every valid degree-4 extension has a
 singular moment matrix. At p = 29, M_even has **rank 77 and kernel 330**, with a spectral gap
 between 5.0e-10 and 4.49, so the rank is not a tolerance artefact. The dual at t* = 0 forces
-range(Y) \u2286 ker M(q) for *every* feasible q, and those conditions are linear in q. They have rank
-65 of 65: **the degree-4 extension is unique.** No local identity is supported on 7 or fewer
-vertices, so the rigidity is global, not a local rule (`paley_local.py`).
+range(Y) ⊆ ker M(q) for *every* feasible q, and those conditions are linear in q. They have rank
+65 of 65: **the degree-4 extension is unique at p = 29.** The smallest singular value of that
+system is 0.157 of the largest, so the full rank is not a tolerance artefact. No local identity is
+supported on 7 or fewer vertices, so the rigidity is global, not a local rule (`paley_local.py`).
 
-### 13.4 The extension is one quadratic form on Sym\u00b2(E_min)
+**p = 37 is different, and this is the sharpest thing found here.** The same computation gives rank
+107 of 109: the extension is *not* unique, there is a **two-parameter family**. That deficiency is
+real, not numerical — the two small singular values are 1.6e-11 and 1.1e-11 against 9.70 for the
+next one up, a gap of twelve orders of magnitude. So:
 
-Since \u27e8u_{xy}, u_{xl}\u27e9 = X_{yl}, for each x the map v_y \u21a6 u_{xy} is an isometry T_x of E_min, with
-T_x v_y = T_y v_x and T_x v_x = u_\u2205 for every x. Testing whether the T_x assemble into one bilinear
+> p = 13, 17: no extension. p = 29: exactly one extension. p = 37: a 2-dimensional family of them,
+> still all on the boundary (t* = 0).
+
+p = 29 is the threshold prime, where the extension first exists and is therefore rigid. Past it,
+extensions exist with room to move, but never with an interior.
+
+### 13.4 The extension is one quadratic form on Sym²(E_min)
+
+Since ⟨u_{xy}, u_{xl}⟩ = X_{yl}, for each x the map v_y ↦ u_{xy} is an isometry T_x of E_min, with
+T_x v_y = T_y v_x and T_x v_x = u_∅ for every x. Testing whether the T_x assemble into one bilinear
 map (`paley_bilinear.py`) succeeds to 8.6e-11 against a scale of 0.497. So there is a single PSD
-operator Q on Sym(E_min), m = (p\u22121)/2, with
+operator Q on Sym(E_min), m = (p−1)/2, with
 
-  M_even[{a,b},{c,d}] = \u27e8\u03a6(a,b), Q \u03a6(c,d)\u27e9,  \u03a6(a,b) = (v_a v_b\u1d40 + v_b v_a\u1d40)/2,
+  M_even[{a,b},{c,d}] = ⟨Φ(a,b), Q Φ(c,d)⟩,  Φ(a,b) = (v_a v_bᵀ + v_b v_aᵀ)/2,
 
-and \u27e8\u03a6(a,b),\u03a6(c,d)\u27e9 = (X_ac X_bd + X_ad X_bc)/2 is exactly the Wick lift. **Q measures the
-departure from Wick**: |Q \u2212 I| = 1.705, which is why `wick_lift.py` found the naive Gaussian lift
-far from PSD. Q has 105 = m(m+1)/2 rows, kernel of dimension **exactly 2m = 28 = p\u22121**, and only
-9 distinct nonzero eigenvalues.
+and ⟨Φ(a,b),Φ(c,d)⟩ = (X_ac X_bd + X_ad X_bc)/2 is exactly the Wick lift. **Q measures the
+departure from Wick**: |Q − I| = 1.705, which is why `wick_lift.py` found the naive Gaussian lift
+far from PSD. Q has 105 = m(m+1)/2 rows, kernel of dimension **exactly 2m = 28 = p−1**, and only
+9 distinct nonzero eigenvalues. The rank of M_even is **m(m−3)/2**, confirmed at both primes:
+77 at p = 29 (m = 14) and 135 at p = 37 (m = 18), and correspondingly ker Q = 2m in both cases
+(28 and 36).
 
 ### 13.5 The block structure, and the field the extension lives in
 
-E_min is spanned by the additive characters \u03c8_t at non-residue frequencies, and a translation
-multiplies \u03c8_t\u2299\u03c8_s by e(\u2212(t+s)b/p). So the frequency f = t+s splits Sym\u00b2(E_min) into blocks V_f
+E_min is spanned by the additive characters ψ_t at non-residue frequencies, and a translation
+multiplies ψ_t⊙ψ_s by e(−(t+s)b/p). So the frequency f = t+s splits Sym²(E_min) into blocks V_f
 that Q preserves, and square dilations act transitively on residues and on non-residues. Q
 commutes with the action to 8.9e-15. At p = 29:
 
 | block | dimension | spectrum of Q |
 |---|---|---|
-| V_0 | (p\u22121)/4 = 7 | 14, and a Galois orbit {2.550905, 3.068499, 3.150711} |
+| V_0 | (p−1)/4 = 7 | 14, and a Galois orbit {2.550905, 3.068499, 3.150711} |
 | V_f, f residue | 4 | 0, 196/87, 203/87, 231/87 |
 | V_f, f non-residue | 3 | 0, 182/87, 210/87 |
 
-with 7 + 14\u00b7(4+3) = 105, spectra constant across each class to 2e-15, and the kernel exactly one
+with 7 + 14·(4+3) = 105, spectra constant across each class to 2e-15, and the kernel exactly one
 direction in each of the 28 nonzero-frequency blocks. Every nonzero f-block eigenvalue is
 **rational with denominator 3p**.
 
-V_0 is the key. Its basis is indexed by the (p\u22121)/4 pairs {t,\u2212t} of non-residues, on which the
-square dilations act simply transitively modulo \u00b11, so V_0 is the regular representation of
-C_{(p\u22121)/4} and **Q|V_0 is a circulant**. Its coefficients (`paley_circulant_block.py`) are rational
+**The rationality is a p = 29 statement, and it is canonical only because the extension there is
+unique.** At p = 37 the same blocks appear with dim V_0 = (p−1)/4 = 9, but the extension is a
+2-parameter family, so the particular point the solver returns is arbitrary and its block
+eigenvalues are correspondingly not rational (217.13, 252.26, … against a predicted integer after
+scaling by 3p). Choosing a canonical point inside the p = 37 family is an open convention, not a
+computation, and nothing here privileges one.
+
+V_0 is the key. Its basis is indexed by the (p−1)/4 pairs {t,−t} of non-residues, on which the
+square dilations act simply transitively modulo ±1, so V_0 is the regular representation of
+C_{(p−1)/4} and **Q|V_0 is a circulant**. Its coefficients (`paley_circulant_block.py`) are rational
 with denominator 3p:
 
-  (c\u2080,\u2026,c\u2086) = (392, 140, 147, 126, 126, 147, 140)/87,  summing to m = 14.
+  (c₀,…,c₆) = (392, 140, 147, 126, 126, 147, 140)/87,  summing to m = 14.
+
+The circulant structure itself survives at p = 37 (circulant to 5.8e-15 over C₉, DFT reproducing the
+spectrum), and so does the one invariant that does not depend on which extension is chosen: **the
+trivial character always carries eigenvalue exactly m** — 14 at p = 29, 18 at p = 37.
 
 Their DFT reproduces the V_0 spectrum to 4e-8. **So the eigenvalues are cyclotomic of order
-(p\u22121)/4 because they are a DFT of rationals, and the extension does not live in Q(\u221ap) at all: it
-lives in Q(\u221ap, \u03b6_{(p\u22121)/4}).** That is the explanation of the failed denominator search reported
-earlier, and it is why every ansatz built from the six Legendre symbols, from the 4\u00d74 conference
-submatrix, or from quartic character sums had to fail: all of those are defined over Q(\u221ap).
+(p−1)/4 because they are a DFT of rationals, and the extension does not live in Q(√p) at all: it
+lives in Q(√p, ζ_{(p−1)/4}).** That is the explanation of the failed denominator search reported
+earlier, and it is why every ansatz built from the six Legendre symbols, from the 4×4 conference
+submatrix, or from quartic character sums had to fail: all of those are defined over Q(√p).
 
 ### 13.6 Status and what is not yet established
 
-Established: the reduction, the two negatives with exact certificates, rigidity and uniqueness at
-p = 29, bilinearity, the 2m-dimensional kernel, the three-class block structure, rationality of the
-block data with denominator 3p, and the cyclotomic field. Not yet established: the same structure
-at p = 37, 41 (the p = 37 decision was still running when this was written), a formula for the
-rational numerators valid for all p, and a proof rather than a computation. Two claims made during
+Established, at both p = 29 and p = 37: the reduction, feasibility exactly on the boundary,
+rank M_even = m(m−3)/2, ker Q = 2m, bilinearity, the three-class frequency decomposition with
+dim V_0 = (p−1)/4, the circulant structure on V_0, and the trivial-character eigenvalue m.
+Established at p = 29 only, where the extension is unique and therefore canonical: the rationality
+of the block data with denominator 3p, and hence the cyclotomic field Q(√p, ζ_{(p−1)/4}).
+Established at p = 13 and 17: infeasibility, with exact dual certificates.
+
+Not established: a canonical choice inside the p = 37 family; a formula for the rational numerators
+valid for all p; the behaviour at p = 41, 53, 61; and a proof rather than a computation. The
+dimension of the family as a function of p (0 at 29, 2 at 37) is the obvious next measurement. Two claims made during
 this work were corrected before publication: that the solver's Aut-symmetry was evidence of a unique
 optimum (it is forced by equivariant dynamics from a symmetric start), and that uniqueness implies
-q \u2208 Q(\u221ap) (it does not, and 13.5 shows the field is strictly larger).
+q ∈ Q(√p) (it does not, and 13.5 shows the field is strictly larger).
 
 ---
 
