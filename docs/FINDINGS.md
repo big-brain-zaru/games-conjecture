@@ -578,6 +578,7 @@ equals the closed form to 0.
 | 17 | 137 | 22 | −0.0546 | **infeasible**, SoS₄ < SoS₂ |
 | 29 | 407 | 65 | −1.3e-12 | **feasible, exactly on the boundary** |
 | 37 | 667 | 109 | −5.5e-14 | **feasible, exactly on the boundary** |
+| 41 | 821 | 134 | −1.4e-12 | **feasible, exactly on the boundary** |
 
 **The two negatives are PROVED, not merely computed** (`paley_certify.py`). By the theorem of
 alternatives, no q exists iff there is a Y with Y ⪰ 0, ⟨Y,A_k⟩ = 0 for every orbit, and
@@ -609,11 +610,37 @@ supported on 7 or fewer vertices, so the rigidity is global, not a local rule (`
 real, not numerical — the two small singular values are 1.6e-11 and 1.1e-11 against 9.70 for the
 next one up, a gap of twelve orders of magnitude. So:
 
-> p = 13, 17: no extension. p = 29: exactly one extension. p = 37: a 2-dimensional family of them,
-> still all on the boundary (t* = 0).
+> p = 13, 17: no extension. p = 29: exactly one extension. p = 37: a 2-dimensional family.
+> p = 41: a 3-dimensional family. All of them on the boundary (t* = 0).
 
 p = 29 is the threshold prime, where the extension first exists and is therefore rigid. Past it,
 extensions exist with room to move, but never with an interior.
+
+### 13.3a The family dimension, and a prediction that held
+
+| p | dim V_0 = (p−1)/4 | rank M_even | family dimension | singular-value gap |
+|---|---|---|---|---|
+| 13 | 3 | — | **infeasible** (proved) | — |
+| 17 | 4 | — | **infeasible** (proved) | — |
+| 29 | 7 | 77 | **0** (unique) | smallest sv 0.157 of largest |
+| 37 | 9 | 135 | **2** | 1.6e-11, 1.1e-11 vs 9.70 |
+| 41 | 10 | 170 | **3** | 2.7e-9, 2.1e-9, 1.9e-9 vs 13.4 |
+
+Every rank is (p−1)(p−7)/8 = m(m−3)/2, and every gap is ten orders of magnitude or more, so none
+of these counts is a tolerance artefact. The family dimension fits
+
+  **family dimension = dim V_0 − 7 = (p − 29)/4**
+
+at all three feasible primes. The p = 41 value was written into the repository as a prediction
+before that run finished (commit `b7db208`), so it is a confirmed prediction rather than a fit to
+three points. Extrapolating the same formula backwards gives −4 and −3 at p = 13 and 17, where the
+extension is proved not to exist, and 0 exactly at the threshold.
+
+`paley_family.py` then asks where the freedom lives, since the natural reading of the −7 would be
+"the V_0 circulant minus a fixed number of conditions". **It is not that.** At p = 41 each of the
+three null directions moves all three frequency classes, with overall shares 0.38 in V_0, 0.67 in
+the residue class and 0.63 in the non-residue class. So the formula is right at three primes and
+unexplained.
 
 ### 13.4 The extension is one quadratic form on Sym²(E_min)
 
@@ -674,16 +701,25 @@ submatrix, or from quartic character sums had to fail: all of those are defined 
 
 ### 13.6 Status and what is not yet established
 
-Established, at both p = 29 and p = 37: the reduction, feasibility exactly on the boundary,
+Established, at p = 29, 37 and 41: the reduction, feasibility exactly on the boundary,
 rank M_even = m(m−3)/2, ker Q = 2m, bilinearity, the three-class frequency decomposition with
 dim V_0 = (p−1)/4, the circulant structure on V_0, and the trivial-character eigenvalue m.
 Established at p = 29 only, where the extension is unique and therefore canonical: the rationality
 of the block data with denominator 3p, and hence the cyclotomic field Q(√p, ζ_{(p−1)/4}).
 Established at p = 13 and 17: infeasibility, **proved** by exact integer dual certificates.
 
-Not established: a canonical choice inside the p = 37 family; a formula for the rational numerators
-valid for all p; the behaviour at p = 41, 53, 61; and a proof rather than a computation. The
-dimension of the family as a function of p (0 at 29, 2 at 37) is the obvious next measurement. Two claims made during
+The block dimensions themselves are pure counting and are now closed form, verified for all 15
+primes p = 1 mod 4 up to 149 (`paley_blockdims.py`):
+
+  dim V_0 = (p−1)/4,  dim V_res = ⌈(p−1)/8⌉,  dim V_non = ⌊(p−1)/8⌋,  dim V_res + dim V_non = dim V_0,
+  dim Sym²(E_min) = (p²−1)/8,  ker Q = 2m = p−1,  rank M_even = (p−1)(p−7)/8.
+
+Feasibility begins exactly where dim V_non reaches 3, which is p ≥ 29, matching the proved
+infeasibility at p = 13 (dim V_non = 1) and p = 17 (dim V_non = 2).
+
+Not established: a canonical choice inside the families at p > 29; a formula for the rational
+numerators valid for all p; why the family dimension is dim V_0 − 7 when the freedom is not confined
+to V_0; the behaviour at p = 53, 61; and a proof rather than a computation. Two claims made during
 this work were corrected before publication: that the solver's Aut-symmetry was evidence of a unique
 optimum (it is forced by equivariant dynamics from a symmetric start), and that uniqueness implies
 q ∈ Q(√p) (it does not, and 13.5 shows the field is strictly larger).
