@@ -246,6 +246,26 @@ def main():
                       (-1 - math.sqrt(p_) * chi_[d]) / (p_ - 1)) for d in range(1, p_)),
               0.0, tol=1e-8)
 
+
+    # 9e. the proof of the rank bound (FINDINGS 13.6), every step
+    from paley_rank_proof import verify as _rankverify
+    for p_ in (29, 37):
+        r = _rankverify(p_)
+        if r is None:
+            continue
+        check(f"p={p_}: rank bound -- expansion of v_a v_a^T over frequencies",
+              r["err_expansion"], 0.0, tol=1e-9)
+        check(f"p={p_}: rank bound -- Psi(v_a v_a^T) independent of a",
+              r["err_diagonal"], 0.0, tol=1e-6)
+        check(f"p={p_}: rank bound -- dim span of W_f, f nonzero, is p-1",
+              r["dim_kernel_claimed"], p_ - 1, tol=0)
+        check(f"p={p_}: rank bound -- Psi kills every W_f with f nonzero",
+              r["rel_QW"], 0.0, tol=1e-8)
+        check(f"p={p_}: rank bound -- W_0 is NOT killed",
+              1.0 if r["W0"] > 1e-3 else 0.0, 1.0, tol=0)
+        check(f"p={p_}: rank = (p-1)(p-7)/8, the bound is attained",
+              r["rank"], (p_ - 1) * (p_ - 7) // 8, tol=0)
+
     print(f"\n{len(CHECKS)} checks, {len(FAIL)} mismatches   ({time.time()-t0:.0f}s)")
     if FAIL:
         print("mismatched:", ", ".join(FAIL))

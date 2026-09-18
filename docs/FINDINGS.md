@@ -318,7 +318,7 @@ cyclic instances.
 `python experiments/reproduce.py` recomputes every headline number from scratch. It does not read them
 from result files.
 
-Last full run: **120 checks, 0 mismatches, in 1368 s** on an idle machine with a GPU (`results/reproduce_day4.log`); checks for the rank bound of 13.6 have since been added and the new total is being recomputed. An earlier 58-check run took 7596 s, but that was under three-way contention with other jobs; the same suite is far quicker on an idle machine, and an earlier note in this section claiming about three minutes was simply wrong. The suite covers the degree-2 odd-cycle calibration, the degree-4
+**132 checks, 0 mismatches, in 1300 s** on an idle machine with a GPU (`results/reproduce_day4.log`). An earlier 58-check run took 7596 s, but that was under three-way contention with other jobs, and an earlier note here claiming about three minutes was simply wrong; 1300 s on an idle machine is the honest figure. Twelve of the checks re-derive every step of the proof in 13.6. An earlier 58-check run took 7596 s, but that was under three-way contention with other jobs; the same suite is far quicker on an idle machine, and an earlier note in this section claiming about three minutes was simply wrong. The suite covers the degree-2 odd-cycle calibration, the degree-4
 solver validation on K₅, K₇, C₅ and Petersen, the certified champions at 9 and 17 vertices with their
 certificate widths, the agreement of the symmetry-reduced solver with the dense one, the Khot–Vishnoi
 construction (size, total weight, subcube values, three exact symmetry-reduced SDP values), the group

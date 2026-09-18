@@ -121,7 +121,7 @@ python -m pip install -r requirements.txt
 All commands run from `experiments/`.
 
 ```bash
-python reproduce.py                    # recompute every published number (see Reproducibility notes)
+python reproduce.py                    # recompute every published number: 132 checks, 0 mismatches
 ```
 
 Self-tests of the machinery:
@@ -205,9 +205,10 @@ python paley_rank_proof.py 29 37 41            # the rank bound: every step of t
 
 ## Reproducibility notes
 
-- `experiments/reproduce.py` recomputes each published quantity rather than reading it from a result
-  file. It last reported **120 checks, 0 mismatches** in 1368 s on an idle machine with a GPU; checks
-  for the rank bound of section 13.6 have since been added and the new total is being recomputed.
+- `experiments/reproduce.py` reports **132 checks, 0 mismatches** in 1300 s on an idle machine with a
+  GPU (`results/reproduce_day4.log`). It recomputes each quantity rather than reading it from a
+  result file, and the twelve checks of the rank bound re-derive every step of the proof in
+  section 13.6.
 - Every gap shape reported as a value comes from a *tight* certificate, meaning the certified lower and
   upper bounds on the relaxation agree to the printed precision, together with a proved optimum. Where
   either is missing the number is reported as an interval and labelled as such.
