@@ -1,6 +1,7 @@
 # Measuring the Gap Shape of Sum-of-Squares Relaxations of Unique Games
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22823086.svg)](https://doi.org/10.5281/zenodo.22823086)
 
 A three-day computational investigation, by one person on one laptop, of a single scalar derived from
 a stated open question about Khot's Unique Games Conjecture. Every value reported here comes from a
@@ -242,12 +243,14 @@ Machine-readable metadata is in [`CITATION.cff`](CITATION.cff) and, for the Zeno
   year      = {2026},
   version   = {1.0.0},
   license   = {MIT},
+  doi       = {10.5281/zenodo.22823086},
   url       = {https://github.com/big-brain-zaru/games-conjecture}
 }
 ```
 
-Once the first release is archived, add `doi = {10.5281/zenodo.XXXXXXX}` and cite the version DOI
-rather than the concept DOI if you are referring to a specific set of numbers.
+The badge above is the **concept DOI** [10.5281/zenodo.22823086](https://doi.org/10.5281/zenodo.22823086), which always resolves
+to the newest version. Cite the **version DOI** [10.5281/zenodo.22823087](https://doi.org/10.5281/zenodo.22823087) instead if you
+are referring to a specific set of numbers, since those are what a later release could change.
 
 ## Prior work used
 

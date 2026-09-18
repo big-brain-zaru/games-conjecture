@@ -9,6 +9,14 @@ version: 1.0.0
 date-released: "2026-09-18"
 license: MIT
 repository-code: "https://github.com/big-brain-zaru/games-conjecture"
+doi: "10.5281/zenodo.22823086"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.22823086"
+    description: "Concept DOI, always resolving to the latest version"
+  - type: doi
+    value: "10.5281/zenodo.22823087"
+    description: "Version DOI for v1.0.0"
 authors:
   - family-names: Zaru
     given-names: "Nadim F."
