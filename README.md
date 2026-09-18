@@ -182,7 +182,11 @@ python paley_blockdims.py 150                  # the closed-form block dimension
 python paley_big.py 53 61                      # rank and family dimension without dense matrices
 python paley_family.py 41                      # where the freedom lives (not in one block)
 python paley_rank_proof.py 29 37 41            # the rank bound: every step of the proof, checked
+python paley_symmetrize.py 29                  # is the solution already fully symmetric? (yes)
+python paley_identify.py 29                    # do character sums determine the moments? (no)
 ```
+
+The refuted ansätze are listed together in FINDINGS section 13.5a; the pattern of failures is what identified the field.
 
 ## Repository layout
 

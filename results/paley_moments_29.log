@@ -13,7 +13,7 @@ pair moments: residue -0.22804160020039346  nonresidue 0.15661302877181615  form
   pattern ((np.int64(-1), np.int64(1), np.int64(1), np.int64(1), np.int64(1), np.int64(1)), (np.int64(2), np.int64(2), np.int64(3), np.int64(3))): n=  63  mean +0.105484  std 2.43e-02  min +0.082347 max +0.143013
   pattern ((np.int64(1), np.int64(1), np.int64(1), np.int64(1), np.int64(1), np.int64(1)), (np.int64(3), np.int64(3), np.int64(3), np.int64(3))): n=   7  mean +0.338804  std 8.64e-13  min +0.338804 max +0.338804
 Traceback (most recent call last):
-  File "C:\Users\zaro7\magic\games-conjecture\experiments\paley_moments.py", line 49, in <module>
+  File "<repo>\experiments\paley_moments.py", line 49, in <module>
     json.dump({"p": p, "sos4_lo": lo, "sos4_hi": hi, "sos2": s2, "patterns": out}, open(f"../results/paley_moments_{p}.json", "w"), indent=1)
     ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\json\__init__.py", line 181, in dump

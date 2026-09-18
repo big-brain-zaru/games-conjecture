@@ -17,7 +17,7 @@
 Traceback (most recent call last):
   File "<stdin>", line 27, in <module>
   File "<stdin>", line 10, in C
-  File "C:\Users\zaro7\magic\games-conjecture\experiments\gap_search.py", line 52, in brute_opt_boolean
+  File "<repo>\experiments\gap_search.py", line 52, in brute_opt_boolean
     sat = (x[:, u] * x[:, v]) == signs[None, :]
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ValueError: operands could not be broadcast together with shapes (128,12,3) (1,12) 

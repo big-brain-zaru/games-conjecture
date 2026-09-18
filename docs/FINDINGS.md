@@ -769,6 +769,24 @@ lives in Q(√p, ζ_{(p−1)/4}).** That is the explanation of the failed denomi
 earlier, and it is why every ansatz built from the six Legendre symbols, from the 4×4 conference
 submatrix, or from quartic character sums had to fail: all of those are defined over Q(√p).
 
+### 13.5a Ansätze tried and refuted, in one place
+
+Every guess at a closed form for the extension is recorded here rather than scattered, because the
+pattern of failures is what pointed at the right field in 13.5. All are **[computed]**.
+
+| ansatz | test | verdict |
+|---|---|---|
+| the scaled Wick (Gaussian) lift of the degree-2 Gram matrix | `wick_lift.py` | **refuted**: λ_min ≈ −0.74 at every p, nowhere near psd |
+| moments a function of the Legendre pattern of the six differences (11 parameters) | `paley_ansatz.py` | **refuted**: SDP infeasible, max λ_min = −0.092, −0.067, −0.062 at p = 29, 37, 41 |
+| moments a function of the quartic and cubic character sums over the 4-set | `paley_identify.py` | **refuted**: R² = 0.35, residual 58 % of scale. Those invariants take only 40 distinct values across 65 orbits, so they cannot separate the orbits at all |
+| the spread inside a Legendre pattern is an artefact of an unsymmetrised solution | `paley_symmetrize.py` | **refuted**: the solution is already invariant under the full automorphism group to 2e-12, so the spread is real arithmetic structure. Seven Legendre patterns cannot separate 65 orbits |
+| a local identity on few vertices, from which the rest could be bootstrapped | `paley_local.py` | **refuted**: no identity is supported on 7 or fewer vertices, despite a kernel of codimension 77 in 407 |
+
+The common cause is 13.5: all five are defined over Q(√p), and the extension is not. Anything built
+from the six Legendre symbols, from the 4×4 conference submatrix, or from character sums over the
+4-set lives in the quadratic field, while the block data is rational with denominator 3p and the
+eigenvalues are its discrete Fourier transform, hence cyclotomic of order (p−1)/4.
+
 ### 13.6 The rank formula, proved  [reasoning + computed, `paley_rank_proof.py`]
 
 Sections 13.3a and 13.5 reported rank M_even = (p−1)(p−7)/8 at five primes. That is no longer a

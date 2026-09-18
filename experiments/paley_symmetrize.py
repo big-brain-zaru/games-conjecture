@@ -22,7 +22,8 @@ This script separates them:
     zero means the solver already sits at a symmetric point; large means
     symmetrisation is doing real work.  Near zero is NOT evidence of a unique
     optimum -- the ADMM starts at Z = identity with equivariant updates, so it
-    cannot leave the symmetric subspace either way.  paley_face.py tests that.
+    cannot leave the symmetric subspace either way.  paley_rigid.py settles
+    uniqueness directly, from the kernel conditions.
   * then emit the symmetrised value per Aut-orbit -- the canonical object to try
     to identify in closed form.
 
@@ -131,7 +132,7 @@ def main():
         print("NOTE: this is NOT evidence that the optimum is unique. The ADMM starts at")
         print("Z = identity and every update is equivariant, because the instance data is")
         print("Aut-invariant, so the trajectory cannot leave the symmetric subspace whatever")
-        print("the face looks like. See paley_face.py, which tests uniqueness directly.")
+        print("the face looks like. paley_rigid.py settles uniqueness directly.")
     else:
         print("VERDICT: the stored solution is NOT Aut-invariant; symmetrising is doing")
         print("real work. The per-orbit means below are the canonical optimal moments.")

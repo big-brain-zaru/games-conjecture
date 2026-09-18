@@ -8,22 +8,22 @@
    FINAL L=9 seed all-minus: C4 in [1.074139, 1.074139]  proved True  width 8.9e-11  gens [2, 4] signs [-1.0, -1.0] kappa 0.0000
 == L=9 seed dirichlet
 Traceback (most recent call last):
-  File "C:\Users\zaro7\magic\games-conjecture\experiments\class_ascent.py", line 183, in <module>
+  File "<repo>\experiments\class_ascent.py", line 183, in <module>
     t, w = A.run(w0, a.rounds, a.iters, a.tol, a.kicks, a.sigma)
            ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\zaro7\magic\games-conjecture\experiments\class_ascent.py", line 145, in run
+  File "<repo>\experiments\class_ascent.py", line 145, in run
     t, w = self.polish(w0, rounds, iters, tol, verbose)
            ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\zaro7\magic\games-conjecture\experiments\class_ascent.py", line 132, in polish
+  File "<repo>\experiments\class_ascent.py", line 132, in polish
     w_new, t, pr = self.lp(ut)
                    ~~~~~~~^^^^
-  File "C:\Users\zaro7\magic\games-conjecture\experiments\class_ascent.py", line 108, in lp
+  File "<repo>\experiments\class_ascent.py", line 108, in lp
     xs, v, vb, pr = self.min_cut_unsat(w, time_limit=30)
                     ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
-  File "C:\Users\zaro7\magic\games-conjecture\experiments\class_ascent.py", line 91, in min_cut_unsat
+  File "<repo>\experiments\class_ascent.py", line 91, in min_cut_unsat
     xs, v, vb, pr = cpsat_min_unsat(L, E, B, W / W.sum(), time_limit=time_limit)
                     ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\zaro7\magic\games-conjecture\experiments\weight_ascent.py", line 103, in cpsat_min_unsat
+  File "<repo>\experiments\weight_ascent.py", line 103, in cpsat_min_unsat
     return xs, 1 - sv.ObjectiveValue() / tot, 1 - sv.BestObjectiveBound() / tot, sv.StatusName(st) == "OPTIMAL"
                    ~~~~~~~~~~~~~~~~~~~~^~~~~
 ZeroDivisionError: float division by zero
