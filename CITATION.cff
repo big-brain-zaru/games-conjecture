@@ -1,0 +1,108 @@
+cff-version: 1.2.0
+message: "If you use this software or its results, please cite it as below."
+type: software
+title: >-
+  Measuring the Gap Shape of Sum-of-Squares Relaxations of Unique Games:
+  A Certified Null Result, a Completeness Filter, and the Structure of the
+  Degree-4 Extension on Paley Graphs
+version: 1.0.0
+date-released: "2026-09-18"
+license: MIT
+repository-code: "https://github.com/big-brain-zaru/games-conjecture"
+authors:
+  - family-names: Zaru
+    given-names: "Nadim F."
+    affiliation: "Independent Researcher"
+abstract: >-
+  A certified computational study of one scalar derived from a stated open
+  question about Khot's Unique Games Conjecture. The gap shape of an instance is
+  C_d = (1 - opt) / (1 - R_d) for a degree-d relaxation; because diluting an
+  instance with a perfectly satisfiable part leaves it unchanged, the
+  Khot-Moshkovitz question of whether a (1-eps, 1-C eps) degree-d Lasserre gap
+  exists with C unbounded is exactly whether the supremum of C_d is infinite.
+
+  The headline is a null result, and the plan written before the search predicted
+  it. Across every family searched the largest certified degree-4 gap shape is
+  1.093586, and degree 4 is exact or nearly exact nearly everywhere.
+
+  The positive content is narrow and concerns the Paley graphs, where the
+  degree-2 gap survives degree 4 exactly from p = 29. The question reduces to a
+  single finite feasibility problem. No extension exists at p = 13 or 17, proved
+  by exact integer dual certificates with no floating point in the verification.
+  Extensions exist at p = 29, 37, 41, 53 and 61, always exactly on the boundary;
+  the moment matrix has rank (p-1)(p-7)/8 at all five, and the upper bound of
+  that formula is proved with the kernel identified explicitly. The extension is
+  bilinear, hence one positive semidefinite form correcting the Wick lift, and at
+  p = 29, where it is unique, it lives in Q(sqrt p, zeta_{(p-1)/4}) rather than
+  Q(sqrt p).
+
+  Every reported value comes from a direct evaluation, a machine-checkable
+  certificate, or an exhaustive enumeration, and the whole record recomputes with
+  132 checks and 0 mismatches. Five corrections are kept in place, including two
+  findings demoted after a literature check and one prediction that was
+  pre-registered, confirmed, and then refuted. No progress is made on the
+  conjecture itself.
+keywords:
+  - unique games conjecture
+  - sum-of-squares
+  - Lasserre hierarchy
+  - semidefinite programming
+  - integrality gap
+  - Paley graph
+  - Max-Cut
+  - Cayley graph
+  - pseudo-expectation
+  - certified computation
+  - reproducible research
+  - negative result
+references:
+  - type: report
+    title: "Candidate Lasserre Integrality Gap for Unique Games"
+    authors:
+      - family-names: Khot
+        given-names: Subhash
+      - family-names: Moshkovitz
+        given-names: Dana
+    year: 2014
+    number: "ECCC TR14-142"
+    notes: "The open question this repository measures."
+  - type: article
+    title: >-
+      The Unique Games Conjecture, Integrality Gap for Cut Problems and
+      Embeddability of Negative-Type Metrics into l1
+    authors:
+      - family-names: Khot
+        given-names: Subhash
+      - family-names: Vishnoi
+        given-names: "Nisheeth K."
+    journal: "Journal of the ACM"
+    volume: 62
+    issue: 1
+    year: 2015
+    doi: "10.1145/2629614"
+  - type: conference-paper
+    title: "Lifting Sum-of-Squares Lower Bounds: Degree-2 to Degree-4"
+    authors:
+      - family-names: Mohanty
+        given-names: Sidhanth
+      - family-names: Raghavendra
+        given-names: Prasad
+      - family-names: Xu
+        given-names: Jeff
+    collection-title: "STOC 2020"
+    year: 2020
+    doi: "10.1145/3357713.3384319"
+    notes: "Implies the Paley behaviour asymptotically; see FINDINGS section 11.2."
+  - type: article
+    title: >-
+      Lower Bound for the Number of Iterations in Semidefinite Hierarchies for
+      the Cut Polytope
+    authors:
+      - family-names: Laurent
+        given-names: Monique
+    journal: "Mathematics of Operations Research"
+    volume: 28
+    issue: 4
+    year: 2003
+    doi: "10.1287/moor.28.4.871.20397"
+    notes: "Subsumes the complete-graph identity of FINDINGS section 11.1."

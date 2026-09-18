@@ -200,7 +200,9 @@ python paley_rank_proof.py 29 37 41            # the rank bound: every step of t
 ├── experiments/                    # all code; every module has a self-test
 ├── results/                        # every instance record, certificate and solver log
 ├── figures/
-└── tools/
+├── tools/
+├── CITATION.cff                    # machine-readable citation metadata
+└── .zenodo.json                    # metadata for the Zenodo archive
 ```
 
 ## Reproducibility notes
@@ -224,15 +226,24 @@ python paley_rank_proof.py 29 37 41            # the rank bound: every step of t
 
 ## Citation
 
+Machine-readable metadata is in [`CITATION.cff`](CITATION.cff) and, for the Zenodo archive, in
+[`.zenodo.json`](.zenodo.json). GitHub renders the first as a "Cite this repository" button.
+
 ```bibtex
-@misc{zaru2026uniquegames,
-  title={Measuring the Gap Shape of Sum-of-Squares Relaxations of Unique Games:
-         A Certified Null Result, a Completeness Filter, and a Group-Theoretic
-         Generalisation of the Khot-Vishnoi Instance},
-  author={Zaru, Nadim F.},
-  year={2026}
+@software{zaru2026uniquegames,
+  title     = {Measuring the Gap Shape of Sum-of-Squares Relaxations of Unique Games:
+               A Certified Null Result, a Completeness Filter, and the Structure of the
+               Degree-4 Extension on Paley Graphs},
+  author    = {Zaru, Nadim F.},
+  year      = {2026},
+  version   = {1.0.0},
+  license   = {MIT},
+  url       = {https://github.com/big-brain-zaru/games-conjecture}
 }
 ```
+
+Once the first release is archived, add `doi = {10.5281/zenodo.XXXXXXX}` and cite the version DOI
+rather than the concept DOI if you are referring to a specific set of numbers.
 
 ## Prior work used
 

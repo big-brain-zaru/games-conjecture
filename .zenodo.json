@@ -1,0 +1,68 @@
+{
+  "title": "Measuring the Gap Shape of Sum-of-Squares Relaxations of Unique Games: A Certified Null Result, a Completeness Filter, and the Structure of the Degree-4 Extension on Paley Graphs",
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "MIT",
+  "version": "1.0.0",
+  "language": "eng",
+  "creators": [
+    {
+      "name": "Zaru, Nadim F.",
+      "affiliation": "Independent Researcher"
+    }
+  ],
+  "description": "<p>A certified computational study of one scalar derived from a stated open question about Khot's Unique Games Conjecture, run by one person on one laptop. Every reported value comes from a direct evaluation, a machine-checkable certificate, or an exhaustive enumeration, and <code>experiments/reproduce.py</code> recomputes all of them: <strong>132 checks, 0 mismatches</strong>.</p><p><strong>The reformulation.</strong> Define the gap shape of an instance as C_d = (1 - opt) / (1 - R_d) for a degree-d relaxation. Diluting an instance with a perfectly satisfiable part leaves C_d unchanged, so a gap ratio found at any completeness transports to every completeness, and the Khot-Moshkovitz question of whether a (1-eps, 1-C eps) degree-d Lasserre gap exists with C unbounded is exactly whether sup_I C_d(I) is infinite. At degree 2 the supremum is infinite; at degree 4 it is open.</p><p><strong>The headline is a null result, and it was anticipated.</strong> Across every family searched - all circulants with L odd at most 19 and at most 3 connection classes, all instance shapes on at most 6 vertices, the generalised Paley family, non-abelian Cayley graphs to order 21, random and structured sparse graphs to 32 vertices, complete graphs, cycles and hypercubes - the largest certified degree-4 gap shape is 1.093586, and degree 4 is exact or nearly exact nearly everywhere. The plan written before the search named this outcome in advance and pre-committed the response: publish the negative map and the tool.</p><p><strong>The positive content is narrow and concerns the Paley graphs.</strong> On the Paley graph of order p the degree-2 gap survives degree 4 exactly from p = 29, and this turned out to be the one result here that the literature does not already cover. The question reduces to a single finite feasibility problem: degree-4 equals degree-2 precisely when one explicit matrix is degree-4 extendable, with one unknown per automorphism orbit of 4-subsets. Results: no extension exists at p = 13 or 17, <strong>proved</strong> by exact integer dual certificates in which no floating point survives into the verification; extensions exist at p = 29, 37, 41, 53 and 61, always exactly on the boundary of the semidefinite cone; the moment matrix has rank (p-1)(p-7)/8 at all five, and the <strong>upper bound of that formula is proved</strong> with the kernel identified explicitly; the extension is bilinear, hence a single positive semidefinite form on the symmetric square of the bottom eigenspace correcting the Wick lift; and at p = 29, where it is unique, its block data is rational with denominator 3p, which places the extension in Q(sqrt p, zeta_{(p-1)/4}) rather than Q(sqrt p) and explains why every ansatz over the quadratic field had to fail.</p><p><strong>Also included:</strong> an elementary inequality C_4 &lt;= C_2 that makes finite sweeps report absence rather than failure to find; certified solvers for degree-4 sum-of-squares, symmetry-reduced for cyclic groups and for arbitrary finite groups through numerically computed irreducible representations, plus a certified monotone ascent over instance weights; exact basic-SDP values for the Khot-Vishnoi game; and a literature survey written from primary sources.</p><p><strong>Corrections are kept in the record.</strong> Five of them: one claim refuted by its own follow-up; the complete-graph identity, correct but a corollary of Laurent (2003) in a stronger form; the Paley equality, correct but implied asymptotically by Mohanty-Raghavendra-Xu; one prediction pre-registered, confirmed at p = 41, then refuted at p = 53 and 61; and a group-theoretic construction whose novelty claim was withdrawn after a literature check. A repository that keeps only what survived is not a record.</p><p><strong>No progress is made on the conjecture itself.</strong> There is no new hardness result and no new algorithm.</p>",
+  "keywords": [
+    "unique games conjecture",
+    "sum-of-squares",
+    "Lasserre hierarchy",
+    "semidefinite programming",
+    "integrality gap",
+    "Paley graph",
+    "Max-Cut",
+    "Cayley graph",
+    "pseudo-expectation",
+    "certified computation",
+    "reproducible research",
+    "negative result"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/big-brain-zaru/games-conjecture",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://eccc.weizmann.ac.il/report/2014/142/",
+      "relation": "references",
+      "scheme": "url",
+      "resource_type": "publication-preprint"
+    },
+    {
+      "identifier": "10.1145/2629614",
+      "relation": "references",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.1145/3357713.3384319",
+      "relation": "references",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.1287/moor.28.4.871.20397",
+      "relation": "references",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.4230/LIPIcs.CCC.2023.30",
+      "relation": "references",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.1007/s10107-020-01558-2",
+      "relation": "references",
+      "scheme": "doi"
+    }
+  ],
+  "notes": "Reproduce with: python experiments/reproduce.py (132 checks, 0 mismatches, about 1300 s on a machine with a GPU). The scientific record is docs/FINDINGS.md; section 10 states exactly what is and is not established, and section 13 contains the Paley results. Numbered hypotheses with their verdicts, including refuted ones, are in docs/HYPOTHESES.md."
+}
